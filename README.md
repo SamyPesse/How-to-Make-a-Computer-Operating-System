@@ -17,7 +17,7 @@ The goal is to build a very simple UNIX-based operating system in C++, but the g
 
 #### [Chapter 1: Introduction about the x86 architecture and about our OS](Chapter-1/README.md)
 
-#### Chapter 2: Setup the development environment
+#### [Chapter 2: Setup the development environment](Chapter-2/README.md)
 
 #### Chapter 3: First boot with GRUB
 
