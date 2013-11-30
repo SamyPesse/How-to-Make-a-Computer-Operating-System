@@ -15,7 +15,7 @@ The goal is to build a very simple UNIX-based operating system in C++, but the g
 
 ### Summary
 
-#### [Chapter 1: Introduction about x86 architecture and about our OS](Chapter-1/README.md)
+#### [Chapter 1: Introduction about the x86 architecture and about our OS](Chapter-1/README.md)
 
 #### Chapter 2: Setup the development environment
 
@@ -37,5 +37,17 @@ The goal is to build a very simple UNIX-based operating system in C++, but the g
 
 #### Chapter 11: Modular drivers
 
-#### Chapter 12: Some basics drivers: console, keyboard
+#### Chapter 12: Some basics modules: console, keyboard
+
+#### Chapter 13: IDE Hard disks
+
+#### Chapter 14: DOS Partitions
+
+#### Chapter 15: EXT2 read-only filesystems
+
+#### Chapter 16: Standard C library (libC)
+
+#### Chapter 17: UNIX basic tools: sh, cat
+
+#### Chapter 18: Lua interpreter
 
