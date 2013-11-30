@@ -5,6 +5,10 @@ How to Make a Computer Operating System
 
 **Source Code**: All the system source code will be stored in the `src` directory. Each steps of the course will be linked to a git tag.
 
+**Contributions**: This course is open to contribution, feel free to signal errors with issues or directly correct the errors with pull-requests.
+
+**Questions**: Feel free to ask the questions by adding issues and please don't email me.
+
 ### What kind of OS are we building?
 
 The goal is to build a very simple UNIX-based operating system in C++, but the goal is not to just build a "proof-of-concept". The OS should be able to boot, start an userland shell and be extensible.
