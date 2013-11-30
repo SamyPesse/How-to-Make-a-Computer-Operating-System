@@ -13,6 +13,8 @@ How to Make a Computer Operating System
 
 The goal is to build a very simple UNIX-based operating system in C++, but the goal is not to just build a "proof-of-concept". The OS should be able to boot, start an userland shell and be extensible.
 
+[![Screen](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)
+
 ### Summary
 
 #### [Chapter 1: Introduction about the x86 architecture and about our OS](Chapter-1/README.md)

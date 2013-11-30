@@ -1,0 +1,13 @@
+default=0
+timeout=30
+
+root (cd)
+
+title=Dev Operating System (with init)
+	kernel /kernel.elf
+	module /bin/hello
+	boot
+	
+title=Dev Operating System
+	kernel /kernel.elf
+	boot
