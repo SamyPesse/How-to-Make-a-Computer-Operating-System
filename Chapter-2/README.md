@@ -37,4 +37,10 @@ You can now access your box by ssh the virtual box using:
 vagrant ssh
 ```
 
+The code will be available in the */vagrant* directory:
+
+```
+cd /vagrant
+```
+
 
