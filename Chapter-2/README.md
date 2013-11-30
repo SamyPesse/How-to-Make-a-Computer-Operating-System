@@ -7,4 +7,10 @@ The first step is to setup a good and viable development environment. Using Vagr
 > Vagrant is free and open-source software for creating and configuring virtual development environments. It can be considered a wrapper around VirtualBox.
 
 Vagrant will help us for creating a clean virtual development environment whatever system you are using.
-The first step is to download Vagrant for your system at http://www.vagrantup.com/.
+The first step is to download and install Vagrant for your system at http://www.vagrantup.com/.
+
+### Install Virtualbox
+
+> Oracle VM VirtualBox is a virtualization software package for x86 and AMD64/Intel64-based computers.
+
+Vagrant needs Virtualbox to work, Download and install for your system at https://www.virtualbox.org/wiki/Downloads.
