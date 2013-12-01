@@ -1,13 +1,15 @@
 How to Make a Computer Operating System
 =======================================
 
-**Caution**: This repository is a remake of my old course. It was written several years ago [as one of my first projects when I was in High School](https://github.com/SamyPesse/devos) so it's normal if some parts of the code looks like "crap". The original course was in French and I'm not an English native.
+**Caution**: This repository is a remake of my old course. It was written several years ago [as one of my first projects when I was in High School](https://github.com/SamyPesse/devos) so it's normal if some parts of the code looks like "crap". The original course was in French and I'm not an English native. I'm going to continue and improve this course in my free-time.
 
 **Source Code**: All the system source code will be stored in the `src` directory. Each steps will contains links to the differents related files.
 
-**Contributions**: This course is open to contribution, feel free to signal errors with issues or directly correct the errors with pull-requests.
+**Contributions**: This course is open to contributions, feel free to signal errors with issues or directly correct the errors with pull-requests.
 
 **Questions**: Feel free to ask the questions by adding issues and please don't email me.
+
+You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or support me on [Flattr](https://flattr.com/profile/samy.pesse) or [Gittip](https://www.gittip.com/SamyPesse/).
 
 ### What kind of OS are we building?
 
