@@ -68,6 +68,106 @@ struct multiboot_info {
 };
 ```
 
+You can use the command ```mbchk kernel.elf``` to valid your kernel.elf file with the multiboot standard. You also use the command ```nm -n kernel.elf``` to valid the offset of the differents objects in the ELF binary.
+
+#### Create a disk image for our kernel and grub
+
+The script [diskimage.sh](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/sdk/diskimage.sh) will generate a hard disk image than can be used by QEMU.
+
+The first step is to create a hard-disk image (c.img) using qemu-img:
+
+```
+qemu-img create c.img 2M
+```
+
+We need now to partition the disk using fdisk:
+
+```
+fdisk ./c.img
+
+# Switch to Expert commands
+> x
+
+# Change number of cylinders (1-1048576)
+> c
+> 4
+
+# Change number of heads (1-256, default 16):
+> h
+> 16
+
+# Change number of sectors/track (1-63, default 63)
+> s
+> 63
+
+# Return to main menu
+> r
+
+# Add a new partition
+> n
+
+# Choose primary partition
+> p
+
+# Choose partition number
+> 1
+
+# Choose first cylinder (1-4, default 1)
+> 1
+
+# Choose last cylinder, +cylinders or +size{K,M,G} (1-4, default 4)
+> 4
+
+# Toggle bootable flag
+> a
+
+# Choose first partition for bootable flag
+> 1
+
+# Write table to disk and exit
+> w
+```
+
+We need now to atach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset= start_sector * bytes_by_sector**.
+
+Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32356.
+
+```
+losetup -o 32256 /dev/loop1 ./c.img
+```
+
+We create a EXT2 filesystem on this new device using:
+
+```
+mke2fs /dev/loop1
+```
+
+We copy our files on a mounted disk:
+
+```
+mount  /dev/loop1 /mnt/
+cp -R bootdisk/* /mnt/
+umount /mnt/
+```
+
+Install GRUB on the disk:
+
+```
+grub --device-map=/dev/null << EOF
+device (hd0) ./c.img
+geometry (hd0) 4 16 63
+root (hd0,0)
+setup (hd0)
+quit
+EOF
+```
+
+And finally we detach the loop device:
+
+```
+losetup -d /dev/loop1
+```
+
 #### See Also
 
 * [GNU GRUB on wikipedia](http://en.wikipedia.org/wiki/GNU_GRUB)
