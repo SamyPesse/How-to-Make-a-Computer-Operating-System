@@ -25,7 +25,7 @@ To make it simple, GRUB is the first thing booted by the machine (a boot-loader)
 * GRUB is very simple to use
 * Make it very simple to load 32bits kernels without needs of 16bits code
 * Multiboot with Linux, Windows and others
-* Make it easy to laod external modules in memory
+* Make it easy to load external modules in memory
 
 #### How to use GRUB?
 
