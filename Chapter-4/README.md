@@ -6,7 +6,7 @@ A kernel can be programmed in C++, it is very similar to making a kernel in C, e
 
 The compiler will assume that all the C++ runtime support is available by default, however you are not linking in libsupc++ into your C++ kernel, which implements the necessary run-time support. So we need to add some basic run-time support.
 
-Ou basic C++ runtime can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
+Our basic C++ runtime can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
 
 **Caution:** The operators *new* and *delete* cannot be used before virtual memory and pagination have been initialized.
 
