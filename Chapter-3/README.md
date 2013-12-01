@@ -33,7 +33,7 @@ GRUB uses the Multiboot specification, the executable binary should be 32bits an
 
 The first boot sequence of our kernel is written in Assembly: [start.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/start.asm) and we use a linker file to define our executable structure: [linker.ld](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/linker.ld).
 
-This boot process alse initialize some of our C++ runtime, it will be described in the next chapter.
+This boot process also initializes some of our C++ runtime, which will be described in the next chapter.
 
 Multiboot header structure:
 
@@ -68,11 +68,11 @@ struct multiboot_info {
 };
 ```
 
-You can use the command ```mbchk kernel.elf``` to valid your kernel.elf file with the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the differents objects in the ELF binary.
+You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You can also use the command ```nm -n kernel.elf``` to validate the offset of the different objects in the ELF binary.
 
 #### Create a disk image for our kernel and grub
 
-The script [diskimage.sh](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/sdk/diskimage.sh) will generate a hard disk image than can be used by QEMU.
+The script [diskimage.sh](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/sdk/diskimage.sh) will generate a hard disk image that can be used by QEMU.
 
 The first step is to create a hard-disk image (c.img) using qemu-img:
 
@@ -80,7 +80,7 @@ The first step is to create a hard-disk image (c.img) using qemu-img:
 qemu-img create c.img 2M
 ```
 
-We need now to partition the disk using fdisk:
+We now need to partition the disk using fdisk:
 
 ```
 fdisk ./c.img
@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to atach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset= start_sector * bytes_by_sector**.
+We now need to attach the created partition to a loop-device (which allows a file to be accessed like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset= start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32356.
 
@@ -142,10 +142,10 @@ We create a EXT2 filesystem on this new device using:
 mke2fs /dev/loop1
 ```
 
-We copy our files on a mounted disk:
+We copy our files to a mounted disk:
 
 ```
-mount  /dev/loop1 /mnt/
+mount /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
 umount /mnt/
 ```
