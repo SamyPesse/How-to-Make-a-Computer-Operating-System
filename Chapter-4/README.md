@@ -30,3 +30,26 @@ int 	strncmp( const char* s1, const char* s2, int c );
 
 These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/string.cc), [memory.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/memory.cc), [itoa.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/itoa.cc)
 
+#### Compile our kernel
+
+Compiling a kernel is not the same thing as compile a linux executable, we can't use standard library and need no dependencies to the system.
+
+Our [Makefile](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/Makefile) will define the process to compile and link our kernel.
+
+For x86 architecture, the followings arguments will be used for gcc/g++/ld:
+
+```
+# Linker
+LD=ld
+LDFLAG= -melf_i386 -static  -L ./  -T ./arch/$(ARCH)/linker.ld
+
+# C++ compiler
+SC=g++
+FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-protector -O0 -m32  -fno-rtti -nostdlib -nodefaultlibs 
+
+# Assembly compiler
+ASM=nasm  
+ASMFLAG=-f elf -o
+```
+
+
