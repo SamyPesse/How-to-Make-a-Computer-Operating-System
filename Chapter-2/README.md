@@ -2,8 +2,6 @@
 
 The first step is to setup a good and viable development environment. Using Vagrant and Virtualbox, you'll be able to compile and test your OS from all the OSs (Linux, Windows or Mac).
 
-Source Code is available with tag [Chapter-2](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/releases/tag/Chapter-2): ```git checkout Chapter-2```
-
 ### Install Vagrant
 
 > Vagrant is free and open-source software for creating and configuring virtual development environments. It can be considered a wrapper around VirtualBox.
