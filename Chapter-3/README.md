@@ -29,7 +29,7 @@ To make it simple, GRUB is the first thing booted by the machine (a boot-loader)
 
 #### How to use GRUB?
 
-GRUB use the Multiboot specification, the executable binary should be 32bits and must contains a special header (multiboot header) in its 8192 first bytes. Our kernel will be a ELF executable file ("Executable and Linkable Format", it is a common standard file format for executables in most UNIX system).
+GRUB uses the Multiboot specification, the executable binary should be 32bits and must contains a special header (multiboot header) in its 8192 first bytes. Our kernel will be a ELF executable file ("Executable and Linkable Format", it is a common standard file format for executables in most UNIX system).
 
 The first boot sequence of our kernel is written in Assembly: [start.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/start.asm) and we use a linker file to define our executable structure: [linker.ld](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/linker.ld).
 
