@@ -68,7 +68,7 @@ struct multiboot_info {
 };
 ```
 
-You can use the command ```mbchk kernel.elf``` to valid your kernel.elf file with the multiboot standard. You also use the command ```nm -n kernel.elf``` to valid the offset of the differents objects in the ELF binary.
+You can use the command ```mbchk kernel.elf``` to valid your kernel.elf file with the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the differents objects in the ELF binary.
 
 #### Create a disk image for our kernel and grub
 
