@@ -27,7 +27,7 @@ The goal is to build a very simple UNIX-based operating system in C++, but the g
 
 #### [Chapter 4: Backbone of the OS and C++ runtime](Chapter-4/README.md)
 
-#### Chapter 5: Base classes for managing x86 architecture
+#### [Chapter 5: Base classes for managing x86 architecture](Chapter-5/README.md)
 
 #### Chapter 6: GDT and IDT
 
