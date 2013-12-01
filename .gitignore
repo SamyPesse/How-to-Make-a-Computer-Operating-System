@@ -1,1 +1,26 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Elf binaries
+*.elf
+
+# Vagrant
 /src/.vagrant/
+
+# Other
+/src/userland/helloworld/hello
+
+# SDK binaries
+/src/sdk/bootdisk/bin/hello
+/src/sdk/c.img
