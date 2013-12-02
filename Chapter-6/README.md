@@ -21,7 +21,7 @@ We are going to use the GDT to define differents memory segments:
 
 The GDT is loaded using the LGDT assembly instruction. It expects the location of a GDT description structure:
 
-![test](http://wiki.osdev.org/images/7/77/Gdtr.png)
+![GDTR](./gdtr.png)
 
 And the C structure:
 
@@ -34,8 +34,23 @@ struct gdtr {
 
 **Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use the less memory possible. Without this directive, gcc include some bytes to optimize the memory alignment and the access during execution.
 
-So we need to define our GDT and load it using LGDT.
+So we need to define our GDT table and load it using LGDT.
 
+The GDT table is composed of segments with the following structure:
 
+![GDTR](./gdtentry.png)
 
+And the C structure:
+
+```cpp
+struct gdtdesc {
+	u16 lim0_15;
+	u16 base0_15;
+	u8 base16_23;
+	u8 acces;
+	u8 lim16_19:4;
+	u8 other:4;
+	u8 base24_31;
+} __attribute__ ((packed));
+```
 
