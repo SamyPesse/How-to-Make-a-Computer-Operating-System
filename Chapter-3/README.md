@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to atach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset= start_sector * bytes_by_sector**.
+We need now to attach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset = start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32356.
 
