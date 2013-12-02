@@ -86,7 +86,7 @@ void init_gdt(void)
 	default_tss.esp0 = 0x1FFF0;
 	default_tss.ss0 = 0x18;
 
-	/* initialisation des descripteurs de segment */
+	/* initialize gdt segments */
 	init_gdt_desc(0x0, 0x0, 0x0, 0x0, &kgdt[0]);
 	init_gdt_desc(0x0, 0xFFFFF, 0x9B, 0x0D, &kgdt[1]);	/* code */
 	init_gdt_desc(0x0, 0xFFFFF, 0x93, 0x0D, &kgdt[2]);	/* data */
@@ -98,17 +98,17 @@ void init_gdt(void)
 
 	init_gdt_desc((u32) & default_tss, 0x67, 0xE9, 0x00, &kgdt[7]);	/* descripteur de tss */
 
-	/* initialisation de la structure pour GDTR */
+	/* initialize the gdtr structure */
 	kgdtr.limite = GDTSIZE * 8;
 	kgdtr.base = GDTBASE;
 
-	/* recopie de la GDT a son adresse */
+	/* copy the gdtr to its memory area */
 	memcpy((char *) kgdtr.base, (char *) kgdt, kgdtr.limite);
 
-	/* chargement du registre GDTR */
+	/* load the gdtr registry */
 	asm("lgdtl (kgdtr)");
 
-	/* initialisation des segments */
+	/* initiliaz the segments */
 	asm("   movw $0x10, %ax	\n \
             movw %ax, %ds	\n \
             movw %ax, %es	\n \
