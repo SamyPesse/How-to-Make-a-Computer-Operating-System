@@ -8,7 +8,7 @@ The compiler will assume that all the C++ runtime support is available by defaul
 
 Our basic C++ runtime can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
 
-**Caution:** The operators *new* and *delete* cannot be used before virtual memory and pagination have been initialized.
+**Caution:** The operators `new` and `delete` cannot be used before virtual memory and pagination have been initialized.
 
 #### Basic C/C++ functions
 
@@ -32,7 +32,7 @@ These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-M
 
 #### Compile our kernel
 
-Compiling a kernel is not the same thing as compiling a linux executable, we can't use standard library and should have no dependencies to the system.
+Compiling a kernel is not the same thing as compiling a linux executable, we can't use a standard library and should have no dependencies to the system.
 
 Our [Makefile](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/Makefile) will define the process to compile and link our kernel.
 
