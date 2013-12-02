@@ -1,6 +1,4 @@
-
 #include <os.h>
-
 #include <x86.h>
 #include <keyboard.h>
 
@@ -52,17 +50,17 @@ u32 cpu_vendor_name(char *name)
 
 void schedule();
 
-idtdesc 	kidt[IDTSIZE]; 		/* Table de IDT */
-int_desc 	intt[IDTSIZE]; 		/* Table des fonctions interruptions */
+idtdesc 	kidt[IDTSIZE]; 		/* IDT table */
+int_desc 	intt[IDTSIZE]; 		/* Interruptions functions tables */
 gdtdesc 	kgdt[GDTSIZE];		/* GDT */
 tss 		default_tss;
 gdtr 		kgdtr;				/* GDTR */
-idtr 		kidtr; 				/* Registre IDTR */
+idtr 		kidtr; 				/* IDTR registry */
 u32 *		stack_ptr=0;
 
 /*
- * 'init_desc' initialise un descripteur de segment situe en gdt ou en ldt.
- * 'desc' est l'adresse lineaire du descripteur a initialiser.
+ * 'init_desc' initialize a segment descriptor in gdt or ldt.
+ * 'desc' is a pointer to the address
  */
 void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other,struct gdtdesc *desc)
 {
@@ -78,10 +76,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other,struct gdtdesc *desc
 
 
 /*
- * Cette fonction initialise la GDT apres que le kernel soit charge 
- * en memoire. Une GDT est deja operationnelle, mais c'est celle qui
- * a ete initialisee par le secteur de boot et qui ne correspond
- * pas forcement a celle que l'on souhaite.
+ * This function initialize the GDT after the kernel is loaded.
  */
 void init_gdt(void)
 {
