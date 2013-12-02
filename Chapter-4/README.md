@@ -12,7 +12,7 @@ Our basic C++ runtime can be found in the [cxx.cc](https://github.com/SamyPesse/
 
 #### Basic C/C++ functions
 
-The kernel code can't use functions from the standards libraries so we need to add some basics functions for managing memory, string, ...
+The kernel code can't use functions from the standard libraries so we need to add some basic functions for managing memory and strings:
 
 ```
 void 	itoa(char *buf, unsigned long int n, int base);
@@ -32,7 +32,7 @@ These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-M
 
 #### Compile our kernel
 
-Compiling a kernel is not the same thing as compile a linux executable, we can't use standard library and need no dependencies to the system.
+Compiling a kernel is not the same thing as compiling a linux executable, we can't use standard library and should have no dependencies to the system.
 
 Our [Makefile](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/Makefile) will define the process to compile and link our kernel.
 
@@ -48,7 +48,7 @@ SC=g++
 FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-protector -O0 -m32  -fno-rtti -nostdlib -nodefaultlibs 
 
 # Assembly compiler
-ASM=nasm  
+ASM=nasm
 ASMFLAG=-f elf -o
 ```
 
