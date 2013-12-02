@@ -29,7 +29,7 @@ The goal is to build a very simple UNIX-based operating system in C++, not just 
 
 #### [Chapter 5: Base classes for managing x86 architecture](Chapter-5/README.md)
 
-#### Chapter 6: GDT
+#### [Chapter 6: GDT](Chapter-6/README.md)
 
 #### Chapter 7: IDT and interruptions
 
