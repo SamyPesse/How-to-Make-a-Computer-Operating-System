@@ -1,4 +1,3 @@
-
 #ifndef APROC_H
 #define APROC_H
 
@@ -26,23 +25,17 @@ extern "C" {
 			u16 ss0;
 		} kstack __attribute__ ((packed));
 
-		/* 
-		 * ATTENTION ! On ne peut ajouter des elements au dessus de cette
-		 * limite sans modifier la fonction assembleur do_switch() qui effectue
-		 * la commutation de tache.
-		 */
-
-		/* NOTE: redondance entre regs.cr3 et pd->base->p_addr */
+		// Caution: with task switch
 		struct page_directory *pd;	
 
-		list_head pglist;	/* Pages utilisees par le processus (exec, data, stack) */
+		list_head pglist;
 
 		char *b_exec;
 		char *e_exec;
 		char *b_bss;
 		char *e_bss;
 		char *b_heap;
-		char *e_heap;			/* Pointe sur le sommet du "heap" */
+		char *e_heap;
 
 		u32 signal;
 		void* sigfn[32];

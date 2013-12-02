@@ -1,4 +1,3 @@
-
 #ifndef DEVICE_H
 #define DEVICE_H
 
@@ -19,9 +18,6 @@ class Device : public File
 		virtual u32		ioctl(u32 id,u8* buffer);
 		virtual u32		remove();
 		virtual void	scan();
-		
-		
-		
 		
 		
 	protected:

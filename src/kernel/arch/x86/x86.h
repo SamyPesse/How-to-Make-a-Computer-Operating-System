@@ -1,5 +1,3 @@
-
-
 #ifndef __X86__
 #define __X86__
 

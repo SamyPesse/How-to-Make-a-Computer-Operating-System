@@ -5,8 +5,6 @@
 
 extern "C" {
 
-
-
 regs_t cpu_cpuid(int code)
 {
 	regs_t r;
@@ -343,8 +341,7 @@ void isr_PF_exc(void)
 
 
 /*
- * Cette fonction initialise la IDT apres que le kernel soit charge 
- * en memoire. 
+ * Init IDT after kernel is loaded
  */
 void init_idt(void)
 {
@@ -652,4 +649,3 @@ int handle_signal(int sig)
 
 
 }
-

@@ -1,8 +1,7 @@
-
 #include <os.h>
 
 /*
-Classe statique 
+Static objects
 */
 
 Io 				io;			/* Input/Output interface */

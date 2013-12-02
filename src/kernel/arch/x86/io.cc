@@ -1,18 +1,17 @@
 #include <os.h>
 
-
 Io* Io::last_io=&io;		/* definis la derniere io avant switch */
 Io* Io::current_io=&io;		/* interface actuel (clavier redirigé vers celle ci) */
 
-/* video memory */
+/* Video memory */
 char* Io::vidmem = (char*)RAMSCREEN;
 
-/* constructeur */
+/* Constructor */
 Io::Io(){
-	real_screen=(char*)RAMSCREEN;
+	real_screen = (char*)RAMSCREEN;
 }
 
-/* destructeur */
+/* Destructor */
 Io::Io(u32 flag){
 	real_screen=(char*)screen;
 }
@@ -251,7 +250,6 @@ void Io::print(const char *s, ...){
 
 /* put a byte on the console */
 void Io::putctty(char c){
-	//putc(c);	//enlever de puis la 10.4.6
 	if (keystate==BUFFERED){
 		if (c == 8) {		/* backspace */
 			if (keypos>0) {
