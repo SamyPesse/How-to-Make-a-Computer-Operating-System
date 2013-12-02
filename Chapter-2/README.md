@@ -43,4 +43,21 @@ The code will be available in the */vagrant* directory:
 cd /vagrant
 ```
 
+#### Build and test our operating system
+
+The file [**Makefile**](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Makefile) defines some basics rules for building the kernel, the user libc and some userland programs.
+
+Build:
+
+```
+make all
+```
+
+Test our operating system with qemu:
+
+```
+make run
+```
+
+
 
