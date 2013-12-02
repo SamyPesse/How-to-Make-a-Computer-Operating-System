@@ -10,14 +10,14 @@ In this course we are not going to design an operating system for x86-64 archite
 
 ### Our Operating System
 
-The goal is to build a very simple UNIX-based operating system in C++, but the goal is not to just build a "proof-of-concept". The OS should be able to boot, start an userland shell and be extensible.
+The goal is to build a very simple UNIX-based operating system in C++, but the goal is not to just build a "proof-of-concept". The OS should be able to boot, start a userland shell and be extensible.
 
-The OS will be built for x86 32bits architecture and IBM compatible PCs.
+The OS will be built for x86 architecture, running on 32 bits, and compatible on IBM PCs.
 
 **Specifications:**
 
 * Code in C++
-* x86-32 architecture
+* x86, 32 bit architecture
 * Boot with Grub
 * Kind of modular system for drivers
 * Kind of UNIX style
@@ -33,4 +33,3 @@ The OS will be built for x86 32bits architecture and IBM compatible PCs.
     * API Posix
     * LibC
     * "Can" run a shell or some excutables like Lua, ...
-

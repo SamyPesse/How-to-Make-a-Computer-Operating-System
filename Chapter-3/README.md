@@ -6,11 +6,11 @@ When an x86-based computer is turned on, it begins a complex path to get to the 
 
 The BIOS boot sequence is: RAM detection -> Hardware detection/Initialization -> Boot sequence.
 
-The step important for us is the "Boot sequence", when the BIOS is done with its initialization and tries to transfer control to the next stage of the bootloader process.
+The important step for us is the "Boot sequence", where the BIOS is done with its initialization and tries to transfer control to the next stage of the bootloader process.
 
-During the "Boot sequence", the BIOS will first choose the "boot device" (floppy disk, hard-disk, CD, usb flash memory device or network). Our Operating system will first boot from the hard-disk (but it's possible to boot it from a CD or a usb flash memory device).
+During the "Boot sequence", the BIOS will first choose the "boot device" (floppy disk, hard-disk, CD, usb flash memory device or network). Our Operating system will first boot from the hard-disk (but it will be possible to boot it from a CD or a usb flash memory device).
 
-The BIOS will read the 512 bytes from the first valid bootsector (If the last two bytes are 0x55, and then 0xAA, then the BIOS considers this to be a valid bootsector), If the BIOS never finds a valid bootsector, it will lock up with an error message. And it'll transfer these 512 bytes into physical memory starting at address 0x7c00 then starts running the code that now begins at 0x7c00.
+The BIOS will read 512 bytes from the first valid bootsector (where the last two bytes are 0x55 0xAA), or lock up with an error message if it cannot find one. And it'll transfer these 512 bytes into physical memory starting at address 0x7c00 then starts running the code that now begins at 0x7c00.
 
 When the BIOS transfers control to the bootsector, the bootsector code is loaded and running at physical address 0x7c00 and the CPU is in 16-bit Real Mode but our kernel will be only 32bits so we need a bootloader to read our kernel switch to protected mode and starts running it.
 
@@ -68,7 +68,7 @@ struct multiboot_info {
 };
 ```
 
-You can use the command ```mbchk kernel.elf``` to valid your kernel.elf file with the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the differents objects in the ELF binary.
+You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the differents objects in the ELF binary.
 
 #### Create a disk image for our kernel and grub
 

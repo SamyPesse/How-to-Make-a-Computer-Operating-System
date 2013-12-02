@@ -1,10 +1,10 @@
 ## Chapter 5: Base classes for managing x86 architecture
 
-Now that we know how to compile our C++ kernel and boot the binary using GRUB, we can start to do some nice stuffs in C/C++.
+Now that we know how to compile our C++ kernel and boot the binary using GRUB, we can start to do some cool things in C/C++.
 
 #### Printing to the screen console
 
-We are going to use VGA default mode (03h) to display some text to the user. The screen can be directly access using the video memory at 0xB8000. The screen resolution is 80x25 and each caracters in the screen is defined by 2 bytes: one for the caracter and one for the style flag. So the size of the video memory is 4000 = 80*25*2
+We are going to use VGA default mode (03h) to display some text to the user. The screen can be directly access using the video memory at 0xB8000. The screen resolution is 80x25 and each character on the screen is defined by 2 bytes: one for the character code, and and one for the style flag. This means that the total size of the video memory is 4000B (80B*25B*2B).
 
 In the IO class ([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)),:
 * **x,y**: define the cursor position on the screen
@@ -12,7 +12,7 @@ In the IO class ([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Ope
 * **putc(char c)**: print a unique caracter on the screen and manage cursor position
 * **printf(char* s, ...)**: print a string
 
-We add a method **putc** to the [IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc) to put a caracter on the screen and update the x,y position.
+We add a method **putc** to the [IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc) to put a character on the screen and update the (x,y) position.
 
 ```cpp
 /* put a byte on screen */
@@ -47,7 +47,7 @@ void Io::putc(char c){
 }
 ```
 
-We also add a usefull and very known method: [printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
+We also add a useful and very known method: [printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
 
 ```cpp
 /* put a string in screen */
