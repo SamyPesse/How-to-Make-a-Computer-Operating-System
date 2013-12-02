@@ -14,7 +14,7 @@ Our basic C++ runtime can be found in the [cxx.cc](https://github.com/SamyPesse/
 
 The kernel code can't use functions from the standard libraries so we need to add some basic functions for managing memory and strings:
 
-```
+```cpp
 void 	itoa(char *buf, unsigned long int n, int base);
 
 void *	memset(char *dst,char src, int n);
@@ -29,6 +29,22 @@ int 	strncmp( const char* s1, const char* s2, int c );
 ```
 
 These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/string.cc), [memory.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/memory.cc), [itoa.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/itoa.cc)
+
+#### C types
+
+During the next step, we are going to use different types in our code, most of the types we are going to use unsigned types (all the bytes are used to stored the integer, in signed types one byte is used to signal the sign):
+
+```cpp
+typedef unsigned char 	u8;
+typedef unsigned short 	u16;
+typedef unsigned int 	u32;
+typedef unsigned long long 	u64;
+
+typedef signed char 	s8;
+typedef signed short 	s16;
+typedef signed int 		s32;
+typedef signed long long	s64;
+```
 
 #### Compile our kernel
 
