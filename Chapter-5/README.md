@@ -148,3 +148,44 @@ void Io::print(const char *s, ...){
 	return;
 }
 ```
+
+#### Assembly interface
+
+A large number of instructions are available in Assembly but there is not equivalent in C (like cli, sti, in and out), so we need an interface to these instructions.
+
+In C, we can include Assembly using the diretctive "asm()", gcc use gas to compile the assembly.
+
+**Caution:** gas use the AT&T syntax.
+
+```cpp
+/* output byte */
+void Io::outb(u32 ad, u8 v){
+	asmv("outb %%al, %%dx" :: "d" (ad), "a" (v));;
+}
+/* output word */
+void Io::outw(u32 ad, u16 v){
+	asmv("outw %%ax, %%dx" :: "d" (ad), "a" (v));
+}
+/* output word */
+void Io::outl(u32 ad, u32 v){
+	asmv("outl %%eax, %%dx" : : "d" (ad), "a" (v));
+}
+/* input byte */
+u8 Io::inb(u32 ad){
+	u8 _v;       \
+	asmv("inb %%dx, %%al" : "=a" (_v) : "d" (ad)); \
+	return _v;
+}
+/* input word */
+u16	Io::inw(u32 ad){
+	u16 _v;			\
+	asmv("inw %%dx, %%ax" : "=a" (_v) : "d" (ad));	\
+	return _v;
+}
+/* input word */
+u32	Io::inl(u32 ad){
+	u32 _v;			\
+	asmv("inl %%dx, %%eax" : "=a" (_v) : "d" (ad));	\
+	return _v;
+}
+```
