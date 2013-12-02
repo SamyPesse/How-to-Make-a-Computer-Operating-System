@@ -1,4 +1,3 @@
-
 #include <os.h>
 #include <x86.h>
 
@@ -17,7 +16,7 @@ char* Architecture::detect(){
 
 /* start the processor interface */
 void Architecture::init(){
-	 io.print("Architecture x86, cpu=%s \n",detect());
+	 io.print("Architecture x86, cpu=%s \n", detect());
 			 
 	 io.print("Loading GDT \n");
 		 init_gdt();
@@ -220,7 +219,7 @@ int Architecture::createProc(process_st* info,char* file,int argc,char** argv){
 }
 
 
-/* destroy a processus */
+// Destroy a process
 void Architecture::destroy_process(Process* pp){
 	disable_interrupt();
 	
@@ -233,10 +232,7 @@ void Architecture::destroy_process(Process* pp){
 	process_st *pidproc=pp->getPInfo();
 	
 	
-	/*
-	 * Passe sur la table page du processus à detruire
-	 */
-	//io.print("cr3 to %x \n",pidproc->regs.cr3);
+	// Switch page to the process to destroy
 	asm("mov %0, %%eax ;mov %%eax, %%cr3"::"m" (pidproc->regs.cr3));
 
 	
@@ -248,7 +244,7 @@ void Architecture::destroy_process(Process* pp){
 	 *   - le repertoire et les tables de pages
 	 */
 
-	// Libere la memoire occupee par le processus   (sauf thread !!!!)
+	// Free process memory
 		list_for_each_safe(p, n, &pidproc->pglist) {
 			pg = list_entry(p, struct page, list);
 			release_page_frame(pg->p_addr);
@@ -258,14 +254,14 @@ void Architecture::destroy_process(Process* pp){
 	
 	release_page_from_heap((char *) ((u32)pidproc->kstack.esp0 & 0xFFFFF000));
 
-	// Libere le repertoire de pages et les tables associees 
+	// Free pages directory
 	asm("mov %0, %%eax; mov %%eax, %%cr3"::"m"(pd0));
 
 	pd_destroy(pidproc->pd);
 
 	asm("mov %0, %%eax ;mov %%eax, %%cr3"::"m" (proccurrent->regs.cr3));
 	
-	//on l'enleve de la liste
+	// Remove from the list
 	
 	if (plist==pp){
 		plist=pp->getPNext();
@@ -276,7 +272,6 @@ void Architecture::destroy_process(Process* pp){
 		while (l!=NULL){
 			
 			if (l==pp){
-				//io.print("%s next is now %s\n",ol->getName(),l->getName());
 				ol->setPNext(pp->getPNext());
 			}
 			
@@ -310,16 +305,12 @@ void Architecture::destroy_all_zombie(){
 		pn=p->getPNext();
 		if (p->getState()==ZOMBIE && p->getPid()!=1){
 			destroy_process(p);
-			//io.print("delete '%s' \n",p->getName());
 			delete p;
 		}
 		
 		p=pn;
 	}
-	//io.print("destroy all zombie end !\n");
 }
-
-//1076e8
 
 /* set the syscall arguments */
 void Architecture::setParam(u32 ret,u32 ret1,u32 ret2, u32 ret3,u32 ret4){
@@ -352,7 +343,3 @@ u32	Architecture::getArg(u32 n){
 void Architecture::setRet(u32 ret){
 	stack_ptr[14] = ret;
 }
-
-
-
-
