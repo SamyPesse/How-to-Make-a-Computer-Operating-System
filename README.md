@@ -29,29 +29,31 @@ The goal is to build a very simple UNIX-based operating system in C++, not just 
 
 #### [Chapter 5: Base classes for managing x86 architecture](Chapter-5/README.md)
 
-#### Chapter 6: GDT and IDT
+#### Chapter 6: GDT
 
-#### Chapter 7: Memory management: physical and virtual
+#### Chapter 7: IDT and interruptions
 
-#### Chapter 8: Process management and multitasking
+#### Chapter 8: Memory management: physical and virtual
 
-#### Chapter 9: External program execution: ELF files
+#### Chapter 9: Process management and multitasking
 
-#### Chapter 10: Userland and syscalls
+#### Chapter 10: External program execution: ELF files
 
-#### Chapter 11: Modular drivers
+#### Chapter 11: Userland and syscalls
 
-#### Chapter 12: Some basics modules: console, keyboard
+#### Chapter 12: Modular drivers
 
-#### Chapter 13: IDE Hard disks
+#### Chapter 13: Some basics modules: console, keyboard
 
-#### Chapter 14: DOS Partitions
+#### Chapter 14: IDE Hard disks
 
-#### Chapter 15: EXT2 read-only filesystems
+#### Chapter 15: DOS Partitions
 
-#### Chapter 16: Standard C library (libC)
+#### Chapter 16: EXT2 read-only filesystems
 
-#### Chapter 17: UNIX basic tools: sh, cat
+#### Chapter 17: Standard C library (libC)
 
-#### Chapter 18: Lua interpreter
+#### Chapter 18: UNIX basic tools: sh, cat
+
+#### Chapter 19: Lua interpreter
 
