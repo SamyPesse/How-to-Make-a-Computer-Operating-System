@@ -30,7 +30,7 @@ These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-M
 
 #### C types
 
-During the next step, we are going to use different types in our code, most of the types we are going to use unsigned types (all the bytes are used to stored the integer, in signed types one byte is used to signal the sign):
+During the next step, we are going to use different types in our code, most of the types we are going to use unsigned types (all the bits are used to stored the integer, in signed types one bit is used to signal the sign):
 
 ```cpp
 typedef unsigned char 	u8;
