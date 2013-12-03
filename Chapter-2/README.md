@@ -6,7 +6,7 @@ The first step is to setup a good and viable development environment. Using Vagr
 
 > Vagrant is free and open-source software for creating and configuring virtual development environments. It can be considered a wrapper around VirtualBox.
 
-Vagrant will help us for creating a clean virtual development environment whatever system you are using.
+Vagrant will help us create a clean virtual development environment on whatever system you are using.
 The first step is to download and install Vagrant for your system at http://www.vagrantup.com/.
 
 ### Install Virtualbox
@@ -23,7 +23,7 @@ Once Vagrant and Virtualbox are installed, you need to download the ubuntu lucid
 vagrant box add base http://files.vagrantup.com/lucid32.box
 ```
 
-Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines that our environment need: nasm, make, build-essential, grub and qemu.
+Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
 
 Start your box using:
 
@@ -31,7 +31,7 @@ Start your box using:
 vagrant up
 ```
 
-You can now access your box by ssh the virtual box using:
+You can now access your box by using ssh to connect to the virtual box using:
 
 ```
 vagrant ssh
