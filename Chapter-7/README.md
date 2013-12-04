@@ -26,8 +26,50 @@ In this chapter, we will need to program this controller to initialize it and ma
 
 Our kernel is going to use the IDT to define the different functions to be executed when an interrupt occured.
 
+Like the GDT, the IDT is loaded using the LIDTL assembly instruction. It expects the location of a IDT description structure:
+
+```cpp
+struct idtr {
+	u16 limite;
+	u32 base;
+} __attribute__ ((packed));
+```
+
+The IDT table is composed of IDT segments with the following structure:
+
+```cpp
+struct idtdesc {
+	u16 offset0_15;
+	u16 select;
+	u16 type;
+	u16 offset16_31;
+} __attribute__ ((packed));
+```
+
+**Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use as little memory as possible. Without this directive, gcc include some bytes to optimize the memory alignment and the access during execution.
+
+Now we need to define our IDT table and then load it using LIDTL. The IDT table can be stored wherever we want in memory, its address should just be signaled to the process using the IDTR registry.
+
+Here is a table of common interrupts (Maskable hardware interrupt are called IRQ):
 
 
-
+| IRQ   |         Description        |
+|:-----:| -------------------------- |
+| 0 | Programmable Interrupt Timer Interrupt | 
+| 1 | Keyboard Interrupt | 
+| 2 | Cascade (used internally by the two PICs. never raised) | 
+| 3 | COM2 (if enabled) | 
+| 4 | COM1 (if enabled) | 
+| 5 | LPT2 (if enabled) | 
+| 6 | Floppy Disk | 
+| 7 | LPT1 | 
+| 8 | CMOS real-time clock (if enabled) | 
+| 9 | Free for peripherals / legacy SCSI / NIC | 
+| 10 | Free for peripherals / SCSI / NIC | 
+| 11 | Free for peripherals / SCSI / NIC | 
+| 12 | PS2 Mouse | 
+| 13 | FPU / Coprocessor / Inter-processor | 
+| 14 | Primary ATA Hard Disk | 
+| 15 | Secondary ATA Hard Disk | 
 
 
