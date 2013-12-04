@@ -31,7 +31,7 @@ The goal is to build a very simple UNIX-based operating system in C++, not just 
 
 #### [Chapter 6: GDT](Chapter-6/README.md)
 
-#### Chapter 7: IDT and interruptions
+#### [Chapter 7: IDT and interruptions](Chapter-7/README.md)
 
 #### Chapter 8: Memory management: physical and virtual
 
