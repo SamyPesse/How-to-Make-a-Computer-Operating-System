@@ -4,12 +4,12 @@ Now that we know how to compile our C++ kernel and boot the binary using GRUB, w
 
 #### Printing to the screen console
 
-We are going to use VGA default mode (03h) to display some text to the user. The screen can be directly access using the video memory at 0xB8000. The screen resolution is 80x25 and each character on the screen is defined by 2 bytes: one for the character code, and and one for the style flag. This means that the total size of the video memory is 4000B (80B*25B*2B).
+We are going to use VGA default mode (03h) to display some text to the user. The screen can be directly access using the video memory at 0xB8000. The screen resolution is 80x25 and each character on the screen is defined by 2 bytes: one for the character code, and one for the style flag. This means that the total size of the video memory is 4000B (80B*25B*2B).
 
 In the IO class ([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)),:
 * **x,y**: define the cursor position on the screen
 * **real_screen**: define the  video memory pointer
-* **putc(char c)**: print a unique caracter on the screen and manage cursor position
+* **putc(char c)**: print a unique character on the screen and manage cursor position
 * **printf(char* s, ...)**: print a string
 
 We add a method **putc** to the [IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc) to put a character on the screen and update the (x,y) position.
@@ -153,7 +153,7 @@ void Io::print(const char *s, ...){
 
 A large number of instructions are available in Assembly but there is not equivalent in C (like cli, sti, in and out), so we need an interface to these instructions.
 
-In C, we can include Assembly using the diretctive "asm()", gcc use gas to compile the assembly.
+In C, we can include Assembly using the directive "asm()", gcc use gas to compile the assembly.
 
 **Caution:** gas use the AT&T syntax.
 

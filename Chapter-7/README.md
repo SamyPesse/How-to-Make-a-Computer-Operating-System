@@ -14,9 +14,9 @@ When the user pressed a key on the keyboard, the keyboard controller will signal
 
 #### What is the PIC?
 
-The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable interrupt controler)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
+The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable interrupt controller)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
 
-The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, it's allow the computer to manager interupts from 14 devices.
+The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, it's allow the computer to manager interrupts from 14 devices.
 
 In this chapter, we will need to program this controller to initialize it and mask interrupts.
 
@@ -24,7 +24,7 @@ In this chapter, we will need to program this controller to initialize it and ma
 
 > The Interrupt Descriptor Table (IDT) is a data structure used by the x86 architecture to implement an interrupt vector table. The IDT is used by the processor to determine the correct response to interrupts and exceptions.
 
-Our kernel is going to use the IDT to define the different functions to be executed when an interrupt occured.
+Our kernel is going to use the IDT to define the different functions to be executed when an interrupt occurred.
 
 Like the GDT, the IDT is loaded using the LIDTL assembly instruction. It expects the location of a IDT description structure:
 

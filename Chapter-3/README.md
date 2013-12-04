@@ -33,7 +33,7 @@ GRUB uses the Multiboot specification, the executable binary should be 32bits an
 
 The first boot sequence of our kernel is written in Assembly: [start.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/start.asm) and we use a linker file to define our executable structure: [linker.ld](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/linker.ld).
 
-This boot process alse initialize some of our C++ runtime, it will be described in the next chapter.
+This boot process also initializes some of our C++ runtime, it will be described in the next chapter.
 
 Multiboot header structure:
 
@@ -68,7 +68,7 @@ struct multiboot_info {
 };
 ```
 
-You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the differents objects in the ELF binary.
+You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the different objects in the ELF binary.
 
 #### Create a disk image for our kernel and grub
 
@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to attach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculed using: **offset= start_sector * bytes_by_sector**.
+We need now to attach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32356.
 
