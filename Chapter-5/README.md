@@ -20,19 +20,19 @@ void Io::putc(char c){
 	kattr = 0x07;
 	unsigned char *video;
 	video = (unsigned char *) (real_screen+ 2 * x + 160 * y);
-	if (c == 10) {			
+	if (c == 10) {
 		x = 0;
 		y++;
-	} else if (c == 8) {	
+	} else if (c == 8) {
 		if (x) {
 			*(video + 1) = 0x0;
 			x--;
 		}
-	} else if (c == 9) {	
+	} else if (c == 9) {
 		x = x + 8 - (x % 8);
-	} else if (c == 13) {	
+	} else if (c == 13) {
 		x = 0;
-	} else {		
+	} else {
 		*video = c;
 		*(video + 1) = kattr;
 
@@ -140,7 +140,7 @@ void Io::print(const char *s, ...){
 				print("0x%s", buf);
 			} else if (c == 's') {
 				print((char *) va_arg(ap, int));
-			} 
+			}
 		} else
 			putc(c);
 	}

@@ -1,5 +1,5 @@
 
- 
+
 #include <os.h>
 #include <ext2.h>
 
@@ -10,7 +10,7 @@ File* ext2_mount(char* name,u32 flag,File* dev){
 		io.print("ext2: can't mount %s in %s \n",dev->getName(),name);
 		return NULL;
 	}
-	else{	
+	else{
 		io.print("ext2:  mount %s in %s \n",dev->getName(),name);
 		Ext2* ret=new Ext2(name);
 		ret->ext2inode=EXT2_INUM_ROOT;
@@ -23,7 +23,7 @@ File* ext2_mount(char* name,u32 flag,File* dev){
 module("module.ext2",MODULE_FILESYSTEM,Ext2,ext2_mount)
 
 Ext2::~Ext2(){
-	
+
 }
 
 Ext2::Ext2(char* n) : File(n,TYPE_DIRECTORY)
@@ -151,7 +151,7 @@ int ext2_is_directory(Ext2 *fp)
 char *ext2_read_file(ext2_disk *hd,ext2_inode *inode)
 {
 	File *dev=hd->dev;
-	
+
 	char *mmap_base, *mmap_head, *buf;
 
 	int *p, *pp, *ppp;
@@ -237,14 +237,14 @@ int ext2_scan(Ext2 *dir)
 	if (dir->getType()!=TYPE_DIRECTORY) {
 		return ERROR_PARAM;
 	}
-	
+
 	if (!dir->map) {
 		dir->map = ext2_read_file(dir->disk, inode);
 		f_toclose = 1;
 	} else {
 		f_toclose = 0;
 	}
-	
+
 	dsize = inode->i_size;
 	dentry = (ext2_directory_entry *) dir->map;
 	while (inode && dsize) {

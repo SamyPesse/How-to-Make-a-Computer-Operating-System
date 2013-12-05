@@ -1,5 +1,5 @@
 
- 
+
 #include <string.h>
 
 char* strpbrk( const char* s, const char* accept ) {

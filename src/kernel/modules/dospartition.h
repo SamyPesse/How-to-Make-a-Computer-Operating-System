@@ -23,7 +23,7 @@ struct dos_partition {
 	u32 s_lba;				/* Starting LBA value */
 	u32 size;				/* Total Sectors in partition */
 } __attribute__ ((packed));
- 
+
 /*
  *	Driver class
  */
@@ -32,8 +32,8 @@ class DosPartition : public Device
 	public:
 		DosPartition(char* n,File* dev,u32 num);
 		~DosPartition();
-		
-		
+
+
 		u32		open(u32 flag);
 		u32		close();
 		u32		read(u32 pos,u8* buffer,u32 sizee);
@@ -41,7 +41,7 @@ class DosPartition : public Device
 		u32		ioctl(u32 id,u8* buffer);
 		u32		remove();
 		void	scan();
-		
+
 
 	private:
 		u32 			numpart;

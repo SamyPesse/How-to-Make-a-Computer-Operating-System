@@ -51,7 +51,7 @@ u32 Buffer::isEmpty(){
 void Buffer::clear(){
 	size=0;
 	if (map!=NULL)
-		kfree(map);	
+		kfree(map);
 }
 
 Buffer &Buffer::operator>>(char *c)

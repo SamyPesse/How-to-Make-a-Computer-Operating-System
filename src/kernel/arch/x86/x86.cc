@@ -17,7 +17,7 @@ regs_t cpu_cpuid(int code)
 u32 cpu_vendor_name(char *name)
 {
 		regs_t r = cpu_cpuid(0x00);
-		
+
 		char line1[5];
 		line1[0] = ((char *) &r.ebx)[0];
 		line1[1] = ((char *) &r.ebx)[1];
@@ -31,14 +31,14 @@ u32 cpu_vendor_name(char *name)
 		line2[2] = ((char *) &r.ecx)[2];
 		line2[3] = ((char *) &r.ecx)[3];
 		line2[4] = '\0';
-		
+
 		char line3[5];
 		line3[0] = ((char *) &r.edx)[0];
 		line3[1] = ((char *) &r.edx)[1];
 		line3[2] = ((char *) &r.edx)[2];
 		line3[3] = ((char *) &r.edx)[3];
 		line3[4] = '\0';
-							
+
 		strcpy(name, line1);
 		strcat(name, line3);
 		strcat(name, line2);
@@ -114,7 +114,7 @@ void init_gdt(void)
             movw %ax, %gs	\n \
             ljmp $0x08, $next	\n \
             next:		\n");
-			
+
 }
 
 
@@ -146,12 +146,12 @@ void do_syscalls(int num){
 	 io.print(" ecx : %x \n",ret1);
 	 io.print(" edx : %x  ",ret2);
 	 io.print(" edi : %x \n",ret3);*/
-	   
+
 	 arch.setParam(ret,ret1,ret2,ret3,ret4);
 	 asm("cli");
 	 asm("mov %%ebp, %0": "=m"(stack_ptr):);
 
-	 
+
 	 syscall.call(num);
 	 asm("sti");
 }
@@ -168,7 +168,7 @@ void isr_kbd_int(void)
 	do {
 		i = io.inb(0x64);
 	} while ((i & 0x01) == 0);
-	
+
 
 	i = io.inb(0x60);
 	i--;
@@ -188,28 +188,28 @@ void isr_kbd_int(void)
 			alt_enable = 1;
 			break;
 		default:
-		
+
 				if(alt_enable==1)
 				{
 					io.putctty(kbdmap[i * 4 + 2]);
 					if (&io != io.current_io)
 					io.current_io->putctty(kbdmap[i * 4 + 2]);
-		 
+
 				}
 				else if(lshift_enable == 1 || rshift_enable == 1)
 				{
-		 
+
 					 io.putctty(kbdmap[i * 4 + 1]);
 					 if (&io != io.current_io)
 						io.current_io->putctty(kbdmap[i * 4 + 1]);
-		 
+
 				}
 				else
 				{
 						  io.putctty(kbdmap[i * 4]);
 					 if (&io != io.current_io)
 					 io.current_io->putctty(kbdmap[i * 4]);
-		 
+
 				}
                break;
 
@@ -236,9 +236,9 @@ void isr_kbd_int(void)
 			break;
 		}
 	}
-	
+
 		io.outb(0x20,0x20);
-		io.outb(0xA0,0x20); 
+		io.outb(0xA0,0x20);
 }
 
 
@@ -250,13 +250,13 @@ void isr_default_int(int id)
 		case 1:
 			isr_kbd_int();
 			break;
-			
-			
+
+
 		default:
 			return;
-		
+
 	}
-	
+
 	io.outb(0x20,0x20);
 	io.outb(0xA0,0x20);
 }
@@ -304,13 +304,13 @@ void isr_PF_exc(void)
     		mov %%eax, %2"
 		: "=m"(eip), "=m"(faulting_addr), "=m"(code));
 	 asm("mov %%ebp, %0": "=m"(stack):);
-	
+
 	//io.print("#PF : %x \n",faulting_addr);
-	
+
 	//for (;;);
 		if (arch.pcurrent==NULL)
 			return;
-			
+
 		process_st* current=arch.pcurrent->getPInfo();
 
 	if (faulting_addr >= USER_OFFSET && faulting_addr <= USER_STACK) {
@@ -324,7 +324,7 @@ void isr_PF_exc(void)
 		io.print("\n");
 		io.print("No autorized memory acces on : %p (eip:%p,code:%p)\n", faulting_addr,eip,  code);
 		io.print("heap=%x, heap_limit=%x, stack=%x\n",kern_heap,KERN_HEAP_LIM,stack);
-		
+
 		if (arch.pcurrent!=NULL){
 			io.print("The processus %s have to be killed !\n\n",(arch.pcurrent)->getName());
 			(arch.pcurrent)->exit();
@@ -335,7 +335,7 @@ void isr_PF_exc(void)
 			asm("hlt");
 		}
 	}
-		
+
 }
 
 
@@ -346,26 +346,26 @@ void isr_PF_exc(void)
 void init_idt(void)
 {
 	/* init irq */
-	
+
 
 	int i;
-	for (i = 0; i < IDTSIZE; i++) 
-		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); // 
-	
+	for (i = 0; i < IDTSIZE; i++)
+		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); //
+
 	/* Les vecteurs 0 -> 31 sont reserves pour les exceptions */
 	init_idt_desc(0x08, (u32) _asm_exc_GP, INTGATE, &kidt[13]);		/* #GP */
 	init_idt_desc(0x08, (u32) _asm_exc_PF, INTGATE, &kidt[14]);     /* #PF */
-	
+
 	init_idt_desc(0x08, (u32) _asm_schedule, INTGATE, &kidt[32]);
 	init_idt_desc(0x08, (u32) _asm_int_1, INTGATE, &kidt[33]);
-	
+
 	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[48]);
 	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[128]); //48
-	
+
 	kidtr.limite = IDTSIZE * 8;
 	kidtr.base = IDTBASE;
-	
-	
+
+
 	/* Recopie de la IDT a son adresse */
 	memcpy((char *) kidtr.base, (char *) kidt, kidtr.limite);
 
@@ -415,7 +415,7 @@ void schedule(){
 	/* Stocke dans stack_ptr le pointeur vers les registres sauvegardes */
 	asm("mov (%%ebp), %%eax; mov %%eax, %0": "=m"(stack_ptr):);
 	//asm("mov (%%eip), %%eax; mov %%eax, %0": "=m"(current->regs.eip):);
-	
+
 	//io.print("stack_ptr : %x \n",stack_ptr);
 		/* Sauver les registres du processus courant */
 		current->regs.eflags = stack_ptr[16];
@@ -433,8 +433,8 @@ void schedule(){
 		current->regs.fs = stack_ptr[3];
 		current->regs.gs = stack_ptr[2];
 
-	
-		/* 
+
+		/*
 		 * Sauvegarde le contenu des registres de pile (ss, esp)
 		 * au moment de l'interruption. Necessaire car le processeur
 		 * empile ou non ces valeurs selon le contexte de l'interruption.
@@ -450,7 +450,7 @@ void schedule(){
 		/* Sauver le TSS de l'ancien processus */
 		current->kstack.ss0 = default_tss.ss0;
 		current->kstack.esp0 = default_tss.esp0;
-	
+
 	//io.print("schedule %s ",pcurrent->getName());
 	pcurrent=pcurrent->schedule();
 	p = pcurrent->getPInfo();
@@ -474,7 +474,7 @@ void schedule(){
 	DEBUG_REG(gs);
 	DEBUG_REG(cr3);
 	io.print("\n");*/
-	
+
 	/* Commutation */
 	if (p->regs.cs != 0x08)
 		switch_to_task(p, USERMODE);
@@ -482,7 +482,7 @@ void schedule(){
 		switch_to_task(p, KERNELMODE);
 }
 
-/* 
+/*
  * switch_to_task(): Prepare la commutation de tache effectuee par do_switch().
  * Le premier parametre indique le pid du processus a charger.
  * Le mode indique si ce processus etait en mode utilisateur ou en mode kernel
@@ -495,17 +495,17 @@ void switch_to_task(process_st* current, int mode)
 	u32 kesp, eflags;
 	u16 kss, ss, cs;
 	int sig;
-	
+
 	/* Traite les signaux */
 
-		if ((sig = dequeue_signal(current->signal))) 
+		if ((sig = dequeue_signal(current->signal)))
 			handle_signal(sig);
-	
+
 	/* Charge le TSS du nouveau processus */
 	default_tss.ss0 = current->kstack.ss0;
 	default_tss.esp0 = current->kstack.esp0;
 
-	/* 
+	/*
 	 * Empile les registres ss, esp, eflags, cs et eip necessaires a la
 	 * commutation. Ensuite, la fonction do_switch() restaure les
 	 * registres, la table de page du nouveau processus courant et commute
@@ -514,9 +514,9 @@ void switch_to_task(process_st* current, int mode)
 	ss = current->regs.ss;
 	cs = current->regs.cs;
 	eflags = (current->regs.eflags | 0x200) & 0xFFFFBFFF;
-	
 
-	
+
+
 	/* Prepare le changement de pile noyau */
 	if (mode == USERMODE) {
 		kss = current->kstack.ss0;
@@ -525,11 +525,11 @@ void switch_to_task(process_st* current, int mode)
 		kss = current->regs.ss;
 		kesp = current->regs.esp;
 	}
-	
-	
+
+
 	//io.print("switch to %x \n",current->regs.eip);
 
-	
+
 	asm("	mov %0, %%ss; \
 		mov %1, %%esp; \
 		cmp %[KMODE], %[mode]; \
@@ -541,7 +541,7 @@ void switch_to_task(process_st* current, int mode)
 		push %5; \
 		push %6; \
 		push %7; \
-		ljmp $0x08, $do_switch" 
+		ljmp $0x08, $do_switch"
 		:: \
 		"m"(kss), \
 		"m"(kesp), \
@@ -554,11 +554,11 @@ void switch_to_task(process_st* current, int mode)
 		[KMODE] "i"(KERNELMODE), \
 		[mode] "g"(mode)
 	    );
-	
+
 }
 
 
-int dequeue_signal(int mask) 
+int dequeue_signal(int mask)
 {
 	int sig;
 
@@ -582,7 +582,7 @@ int handle_signal(int sig)
 		return 0;
 
 	process_st* current=pcurrent->getPInfo();
-	
+
 	u32 *esp;
 
 	//io.print("signal> handle signal : signal %d for process %d\n", sig, pcurrent->getPid());
@@ -592,11 +592,11 @@ int handle_signal(int sig)
 	}
 	else if (current->sigfn[sig] == (void*) SIG_DFL) {
 		switch(sig) {
-			case SIGHUP : case SIGINT : case SIGQUIT : 
+			case SIGHUP : case SIGINT : case SIGQUIT :
 				asm("mov %0, %%eax; mov %%eax, %%cr3"::"m"(current->regs.cr3));
 				pcurrent->exit();
 				break;
-			case SIGCHLD : 
+			case SIGCHLD :
 				break;
 			default :
 				clear_signal(&(current->signal), sig);
@@ -607,12 +607,12 @@ int handle_signal(int sig)
 		esp = (u32*) current->regs.esp - 20;
 
 		asm("mov %0, %%eax; mov %%eax, %%cr3"::"m"(current->regs.cr3));
-		
-		// Code assembleur qui appelle sys_sigreturn() 
+
+		// Code assembleur qui appelle sys_sigreturn()
 		esp[19] = 0x0030CD00;
 		esp[18] = 0x00000EB8;
 
-		// Sauvegarde des registres 
+		// Sauvegarde des registres
 		esp[17] = current->kstack.esp0;
 		esp[16] = current->regs.ss;
 		esp[15] = current->regs.esp;
@@ -631,7 +631,7 @@ int handle_signal(int sig)
 		esp[2] = current->regs.fs;
 		esp[1] = current->regs.gs;
 
-		// Adresse de retour pour %eip 
+		// Adresse de retour pour %eip
 		esp[0] = (u32) &esp[18];
 
 

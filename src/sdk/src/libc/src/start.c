@@ -12,7 +12,7 @@ int errno;
 
 char** environ={
 	"PATH","/bin/",
-	NULL,NULL	
+	NULL,NULL
 };
 
 int __environ_allocated;

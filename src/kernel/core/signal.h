@@ -43,9 +43,9 @@
 
 	#define SIGEVENT	SIGPOLL
 	#define SIGIPC		SIGUSR1
-	
-	
-	
+
+
+
 	#define SIG_DFL		0	/* default signal handling */
 	#define SIG_IGN		1	/* ignore signal */
 

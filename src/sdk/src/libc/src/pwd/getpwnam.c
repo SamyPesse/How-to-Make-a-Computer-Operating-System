@@ -1,5 +1,5 @@
 
- 
+
 
 #include <pwd.h>
 
@@ -24,7 +24,7 @@ struct passwd* getpwnam( const char* name ) {
 	passwd_myos* pass=myos_user_getN(name);
 	if (pass==NULL)
 		return NULL;
-	
+
 	build_tmp_passwd();
 	return &__tmp_passwd;
 }

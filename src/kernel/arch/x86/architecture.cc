@@ -17,22 +17,22 @@ char* Architecture::detect(){
 /* Start and initialize the architecture */
 void Architecture::init(){
 	 io.print("Architecture x86, cpu=%s \n", detect());
-	
+
 	 io.print("Loading GDT \n");
 		 init_gdt();
 		 asm("	movw $0x18, %%ax \n \
 			movw %%ax, %%ss \n \
 			movl %0, %%esp"::"i" (KERN_STACK));
-		
+
 	 io.print("Loading IDT \n");
 		 init_idt();
-		
-		
+
+
 	 io.print("Configure PIC \n");
 		 init_pic();
-	 
+
 	 io.print("Loading Task Register \n");
-		 asm("	movw $0x38, %ax; ltr %ax");	 
+		 asm("	movw $0x38, %ax; ltr %ax");
 }
 
 /* Initialise the list of processus */
@@ -42,10 +42,10 @@ void Architecture::initProc(){
 	firstProc->addFile(fsm.path("/dev/tty"),0);
 	firstProc->addFile(fsm.path("/dev/tty"),0);
 	firstProc->addFile(fsm.path("/dev/tty"),0);
-	
-	
+
+
 	plist=firstProc;
-	pcurrent=firstProc; 
+	pcurrent=firstProc;
 	pcurrent->setPNext(NULL);
 	process_st* current=pcurrent->getPInfo();
 	current->regs.cr3 = (u32) pd0;
@@ -89,16 +89,16 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 
 	char **param, **uparam;
 	u32 stackp;
-	u32 e_entry; 
+	u32 e_entry;
 
-	
+
 	int pid;
 	int i;
 
 	pid = 1;
 
 	info->pid = pid;
-	
+
 	if (argc) {
 		param = (char**) kmalloc(sizeof(char*) * (argc+1));
 		for (i=0 ; i<argc ; i++) {
@@ -107,7 +107,7 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 		}
 		param[i] = 0;
 	}
-	
+
 	info->pd = pd_create();
 
 
@@ -116,13 +116,13 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 
 	previous = arch.pcurrent->getPInfo();
 	current=info;
-	
+
 	asm("mov %0, %%eax; mov %%eax, %%cr3"::"m"((info->pd)->base->p_addr));
-	
+
 	e_entry = (u32) load_elf(file,info);
 
-	if (e_entry == 0) {	
-		for (i=0 ; i<argc ; i++) 
+	if (e_entry == 0) {
+		for (i=0 ; i<argc ; i++)
 			kfree(param[i]);
 		kfree(param);
 		arch.pcurrent = (Process*) previous->vinfo;
@@ -145,37 +145,37 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 			uparam[i] = (char*) stackp;
 		}
 
-		stackp &= 0xFFFFFFF0;	
+		stackp &= 0xFFFFFFF0;
 
-		// Creation des arguments de main() : argc, argv[]... 
+		// Creation des arguments de main() : argc, argv[]...
 		stackp -= sizeof(char*);
 		*((char**) stackp) = 0;
 
-		for (i=argc-1 ; i>=0 ; i--) {		
+		for (i=argc-1 ; i>=0 ; i--) {
 			stackp -= sizeof(char*);
-			*((char**) stackp) = uparam[i]; 
+			*((char**) stackp) = uparam[i];
 		}
 
-		stackp -= sizeof(char*);	
-		*((char**) stackp) = (char*) (stackp + 4); 
+		stackp -= sizeof(char*);
+		*((char**) stackp) = (char*) (stackp + 4);
 
-		stackp -= sizeof(char*);	
-		*((int*) stackp) = argc; 
+		stackp -= sizeof(char*);
+		*((int*) stackp) = argc;
 
 		stackp -= sizeof(char*);
 
-		for (i=0 ; i<argc ; i++) 
+		for (i=0 ; i<argc ; i++)
 			kfree(param[i]);
 
 		kfree(param);
 		kfree(uparam);
 	}
 
-	
+
 	kstack = get_page_from_heap();
 
 
-	// Initialise le reste des registres et des attributs 
+	// Initialise le reste des registres et des attributs
 	info->regs.ss = 0x33;
 	info->regs.esp = stackp;
 	info->regs.eflags = 0x0;
@@ -209,7 +209,7 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 	arch.pcurrent = (Process*) previous->vinfo;
 	current=arch.pcurrent->getPInfo();
 	asm("mov %0, %%eax ;mov %%eax, %%cr3":: "m"(current->regs.cr3));
-	
+
 	return 1;
 }
 
@@ -217,7 +217,7 @@ int Architecture::createProc(process_st* info, char* file, int argc, char** argv
 // Destroy a process
 void Architecture::destroy_process(Process* pp){
 	disable_interrupt();
-	
+
 	u16 kss;
 	u32 kesp;
 	u32 accr3;
@@ -225,12 +225,12 @@ void Architecture::destroy_process(Process* pp){
 	page *pg;
 	process_st *proccurrent=(arch.pcurrent)->getPInfo();
 	process_st *pidproc=pp->getPInfo();
-	
-	
+
+
 	// Switch page to the process to destroy
 	asm("mov %0, %%eax ;mov %%eax, %%cr3"::"m" (pidproc->regs.cr3));
 
-	
+
 	// Free process memory:
 	//  - pages used by the executable code
 	//  - user stack
@@ -244,7 +244,7 @@ void Architecture::destroy_process(Process* pp){
 		list_del(p);
 		kfree(pg);
 	}
-	
+
 	release_page_from_heap((char *) ((u32)pidproc->kstack.esp0 & 0xFFFFF000));
 
 	// Free pages directory
@@ -253,7 +253,7 @@ void Architecture::destroy_process(Process* pp){
 	pd_destroy(pidproc->pd);
 
 	asm("mov %0, %%eax ;mov %%eax, %%cr3"::"m" (proccurrent->regs.cr3));
-	
+
 	// Remove from the list
 	if (plist==pp){
 		plist=pp->getPNext();
@@ -262,16 +262,16 @@ void Architecture::destroy_process(Process* pp){
 		Process* l=plist;
 		Process*ol=plist;
 		while (l!=NULL){
-			
+
 			if (l==pp){
 				ol->setPNext(pp->getPNext());
 			}
-			
+
 			ol=l;
 			l=l->getPNext();
 		}
 	}
-	
+
 	enable_interrupt();
 }
 
@@ -284,7 +284,7 @@ void Architecture::change_process_father(Process* pe, Process* pere){
 		if (p->getPParent()==pe){
 			p->setPParent(pere);
 		}
-		
+
 		p=pn;
 	}
 }
@@ -299,7 +299,7 @@ void Architecture::destroy_all_zombie(){
 			destroy_process(p);
 			delete p;
 		}
-		
+
 		p=pn;
 	}
 }

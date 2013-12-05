@@ -29,7 +29,7 @@ int  supcon_lenp(unsigned int p);
 int  supcon_lenui(unsigned int p);
 int  supcon_leni(int num);
 
- 
+
 int printf_buffer(int i)
 {
 	int j;
@@ -55,15 +55,15 @@ int 	support_vfprintf(FILE* stream, const char* format, va_list ap)
 
 	modifier = 0;
 	state    = STATE_OFF;
-	
+
 	off_length = 0;
 	pad_length = 0;
 
 	while (*format)
 	{
-	  switch(*format++) 
+	  switch(*format++)
 	  {
-	     case 's':       
+	     case 's':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			s = va_arg(ap, char*);
 			printf_buffer( off_length - strlen(s) );
@@ -73,80 +73,80 @@ int 	support_vfprintf(FILE* stream, const char* format, va_list ap)
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'd':        
-	     case 'i':        
+	     case 'd':
+	     case 'i':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			i = va_arg(ap, int);
 			printf_buffer( off_length - supcon_leni(i) - pad_length );
 			for ( index = 0; index < pad_length - supcon_leni(i); index++)
 			  supcon_putc( '0' );
-		  
+
 			supcon_puti(i);
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'u':        
+	     case 'u':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			i = va_arg(ap, int);
 			printf_buffer( off_length - supcon_lenui(i) - pad_length );
 			for ( index = 0; index < pad_length - supcon_lenui(i); index++)
 			  supcon_putc( '0' );
-			  
+
 			supcon_putui(i);
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'p':         
+	     case 'p':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			d = va_arg(ap, int);
 			printf_buffer( off_length - supcon_lenp(d) - pad_length );
 			for ( index = 0; index < pad_length - supcon_lenp(d); index++ )
 			   supcon_putc( '0' );
-			   
+
 			supcon_putp(d,'A');
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'x':         
+	     case 'x':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			d = va_arg(ap, int);
-			
+
 			printf_buffer( off_length - supcon_lenx(d) - 2 );
 			supcon_puts((unsigned char*)"0x");
 			for ( index = 0; index < pad_length-supcon_lenx(d)-2; index++ )
 			   supcon_putc( '0' );
-	
+
 			supcon_putx(d);
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'l':         
+	     case 'l':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			break;
-	     case 'X':         
+	     case 'X':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			d = va_arg(ap, int);
 			printf_buffer( off_length - supcon_lenx(d) - 2 );
 			supcon_puts((unsigned char*)"0x");
 			for ( index = 0; index < pad_length-supcon_lenx(d)-2; index++ )
 			   supcon_putc( '0' );
-			   
+
 			supcon_putX(d);
-			
+
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
 			break;
-	     case 'c':          
+	     case 'c':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			c = (char) va_arg(ap, int);
 			printf_buffer( off_length - 1 );
@@ -164,18 +164,18 @@ int 	support_vfprintf(FILE* stream, const char* format, va_list ap)
 			break;
 	     case '.':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
-			if ( state == STATE_PAD ) 
+			if ( state == STATE_PAD )
 			{
 				modifier = 0;
 				off_length = 0;
 				pad_length = 0;
 				state = STATE_OFF;
-				break; 
+				break;
 			}
-	
+
 			state = STATE_PAD;
 			break;
-	     
+
 	     case '0':
 	     case '1':
 	     case '2':
@@ -201,7 +201,7 @@ int 	support_vfprintf(FILE* stream, const char* format, va_list ap)
 			  pad_length = pad_length * 10 + ((*(format-1)) - '0');
 	     		break;
 
-	     default:     
+	     default:
 			printf_buffer( off_length - 1 );
 			supcon_putc( *(format-1) );
 			modifier = 0;
@@ -252,7 +252,7 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 
 	modifier = 0;
 	state    = STATE_OFF;
-	
+
 	off_length = 0;
 	pad_length = 0;
 
@@ -260,9 +260,9 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 
 	while (*format)
 	{
-	  switch(*format++) 
+	  switch(*format++)
 	  {
-	     case 's':       
+	     case 's':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		s = va_arg(ap, char*);
 		sprintf_buffer( buffer, off_length - strlen(s) );
@@ -272,40 +272,40 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 		pad_length = 0;
 		state = STATE_OFF;
 		break;
-	     case 'd':        
-	     case 'i':        
+	     case 'd':
+	     case 'i':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		i = va_arg(ap, int);
 		sprintf_buffer( buffer, off_length - supcon_leni(i) - pad_length );
 		for ( index = 0; index < pad_length - supcon_leni(i); index++)
 		  bufcon_putc( buffer, '0' );
-		  
+
 		bufcon_puti(buffer, i);
 		modifier = 0;
 		off_length = 0;
 		pad_length = 0;
 		state = STATE_OFF;
 		break;
-	     case 'u':        
+	     case 'u':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		i = va_arg(ap, int);
 		sprintf_buffer( buffer, off_length - supcon_lenui(i) - pad_length );
 		for ( index = 0; index < pad_length - supcon_lenui(i); index++)
 		  bufcon_putc( buffer, '0' );
-		  
+
 		bufcon_putui( buffer, i);
 		modifier = 0;
 		off_length = 0;
 		pad_length = 0;
 		state = STATE_OFF;
 		break;
-	     case 'p':         
+	     case 'p':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		d = va_arg(ap, int);
 		sprintf_buffer( buffer, off_length - supcon_lenp(d) - pad_length );
 		for ( index = 0; index < pad_length - supcon_lenp(d); index++ )
 		   bufcon_putc( buffer, '0' );
-		   
+
 		bufcon_putp( buffer, d);
 		modifier = 0;
 		off_length = 0;
@@ -313,14 +313,14 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 		state = STATE_OFF;
 		break;
 
-	     case 'l':         
+	     case 'l':
 			if (modifier == 0) { supcon_putc(*(format-1)); break; }
 			break;
 
-	     case 'x':         
+	     case 'x':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		d = va_arg(ap, int);
-		
+
 		sprintf_buffer( buffer, off_length - supcon_lenx(d) - 2 );
 		/*bufcon_puts(buffer,"0x");
 		for ( index = 0; index < pad_length-supcon_lenx(d)-2; index++ )
@@ -332,22 +332,22 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 		pad_length = 0;
 		state = STATE_OFF;
 		break;
-	     case 'X':         
+	     case 'X':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		d = va_arg(ap, int);
 		sprintf_buffer( buffer, off_length - supcon_lenx(d) - 2 );
 		/*bufcon_puts(buffer,"0x");
 		for ( index = 0; index < pad_length-supcon_lenx(d)-2; index++ )
 		   bufcon_putc( buffer, '0' );*/
-		   
+
 		bufcon_putX(buffer,d);
-		
+
 		modifier = 0;
 		off_length = 0;
 		pad_length = 0;
 		state = STATE_OFF;
 		break;
-	     case 'c':          
+	     case 'c':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
 		c = (char) va_arg(ap, int);
 		sprintf_buffer( buffer, off_length - 1 );
@@ -365,18 +365,18 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 		break;
 	     case '.':
 		if (modifier == 0) { bufcon_putc( buffer, *(format-1)); break; }
-		if ( state == STATE_PAD ) 
+		if ( state == STATE_PAD )
 		{
 			modifier = 0;
 			off_length = 0;
 			pad_length = 0;
 			state = STATE_OFF;
-			break; 
+			break;
 		}
 
 		state = STATE_PAD;
 		break;
-	     
+
 	     case '0':
 	     case '1':
 	     case '2':
@@ -401,8 +401,8 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 			if ( state == STATE_PAD )
 			  pad_length = pad_length * 10 + ((*(format-1)) - '0');
 	     		break;
-	     
-	     default:     
+
+	     default:
 		sprintf_buffer( buffer, off_length - 1 );
 		bufcon_putc( buffer, *(format-1) );
 		modifier = 0;
@@ -418,7 +418,7 @@ int 	support_vsprintf(char* buffer, const char* format, va_list ap)
 
 
 
- 
+
 
 
 

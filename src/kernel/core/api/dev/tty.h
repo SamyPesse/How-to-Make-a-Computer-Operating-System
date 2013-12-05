@@ -58,7 +58,7 @@ enum TTY_Colour
 	Yellow      =14,
 	White       =15
 };
-		  
+
 //iotcl
 #define API_TTY_SWITCH_SCREEN	0xff52
 #define API_TTY_CLEAR_SCREEN	0xff53

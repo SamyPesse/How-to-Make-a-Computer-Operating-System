@@ -1,7 +1,7 @@
 #include <os.h>
 
 extern "C" {
-		
+
 	/* change memory segment size */
 	void *ksbrk(int n)
 	{
@@ -44,7 +44,7 @@ extern "C" {
 	{
 		if (size==0)
 			return 0;
-			
+
 		unsigned long realsize;	/* taille totale de l'enregistrement */
 		struct kmalloc_header *chunk, *other;
 
@@ -52,7 +52,7 @@ extern "C" {
 		     sizeof(struct kmalloc_header) + size) < KMALLOC_MINSIZE)
 			realsize = KMALLOC_MINSIZE;
 
-		/* 
+		/*
 		 * On recherche un bloc libre de 'size' octets en parcourant le HEAP
 		 * kernel a partir du debut
 		 */
@@ -87,7 +87,7 @@ extern "C" {
 			}
 		}
 
-		/* 
+		/*
 		 * Found free block with size >= 'size'
 		 * We limit size block
 		 */
@@ -114,7 +114,7 @@ extern "C" {
 	{
 		if (v_addr==(void*)0)
 			return;
-			
+
 		struct kmalloc_header *chunk, *other;
 
 		/* On libere le bloc alloue */
@@ -125,7 +125,7 @@ extern "C" {
 
 		kmalloc_used -= chunk->size;
 
-		/* 
+		/*
 		 * Merge free block with next free block
 		 */
 		while ((other =

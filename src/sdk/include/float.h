@@ -202,9 +202,9 @@
          -1  indeterminate
          0  evaluate all operations and constants just to the range and
             precision of the type
-         1  evaluate operations and constants of type _Decimal32 
-	    and _Decimal64 to the range and precision of the _Decimal64 
-            type, evaluate _Decimal128 operations and constants to the 
+         1  evaluate operations and constants of type _Decimal32
+	    and _Decimal64 to the range and precision of the _Decimal64
+            type, evaluate _Decimal128 operations and constants to the
 	    range and precision of the _Decimal128 type;
 	 2  evaluate all operations and constants to the range and
 	    precision of the _Decimal128 type.  */

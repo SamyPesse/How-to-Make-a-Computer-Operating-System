@@ -26,9 +26,9 @@
 #define VBE_DISPI_INDEX_VIRT_WIDTH (6)
 #define VBE_DISPI_INDEX_VIRT_HEIGHT (7)
 #define VBE_DISPI_INDEX_X_OFFSET (8)
-#define VBE_DISPI_INDEX_Y_OFFSET (9) 
+#define VBE_DISPI_INDEX_Y_OFFSET (9)
 #define VBE_DISPI_IOPORT_DATA (0x01CF)
- 
+
 #define VBE_DISPI_LFB_PHYSICAL_ADDRESS  0xE0000000
 
 
@@ -37,8 +37,8 @@ class Bochs : public Device
 	public:
 		Bochs(char* n);
 		~Bochs();
-		
-		
+
+
 		u32		open(u32 flag);
 		u32		close();
 		u32		read(u32 pos,u8* buffer,u32 size);
@@ -46,8 +46,8 @@ class Bochs : public Device
 		u32		ioctl(u32 id,u8* buffer);
 		u32		remove();
 		void	scan();
-		
-		
+
+
 	private:
 		fb_info	fbinfo_best;
 		fb_info	fbinfo;

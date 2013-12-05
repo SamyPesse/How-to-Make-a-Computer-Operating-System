@@ -1,5 +1,5 @@
 
- 
+
 
 #include <string.h>
 #include <stdio.h>
@@ -37,7 +37,7 @@ size_t strftime(char* s, size_t max, const char* format,
                 const tm_t* tm){
     size_t ret = 0;
     int state;
-    int flags; 
+    int flags;
     char tmp[max];
 
     s[0] = '\0'; /* Initialize s */

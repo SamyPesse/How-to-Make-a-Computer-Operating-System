@@ -8,7 +8,7 @@
 
 /* Inclusion de la liste des modules */
 #include "modules.conf"
-	
+
 Module::Module(){
 
 }
@@ -16,7 +16,7 @@ Module::Module(){
 Module::~Module(){
 
 }
-		
+
 void Module::initLink(){
 	int i=0;
 	ModLink* mod;
@@ -31,13 +31,13 @@ File* Module::createDevice(char* name,char* module,u32 flag){
 	File* fp;
 	while (module_builder[i] != 0){
 		if (!strcmp(module_builder[i]->module_name,module)){
-			
+
 			if (module_builder[i]->module_type==MODULE_DEVICE){
 				fp=module_builder[i]->drive(name,flag,NULL);
 				return fp;
 			}
 		}
-		
+
 		i=i++;
 	}
 	return NULL;
@@ -60,7 +60,7 @@ File* Module::mount(char* dev,char* dir,char* module,u32 flag){
 			else
 				return NULL;
 		}
-		
+
 		i=i++;
 	}
 	return NULL;
@@ -78,7 +78,7 @@ File* Module::install(char* dir,char* module,u32 flag,char* dev){
 				return module_builder[i]->drive(dir,flag,fdev);
 			}
 		}
-		
+
 		i=i++;
 	}
 	return NULL;

@@ -12,7 +12,7 @@ File* dospartition_mount(char* name,u32 flag,File* dev){
 module("module.dospartition",MODULE_FILESYSTEM,DosPartition,dospartition_mount)
 
 DosPartition::~DosPartition(){
-	
+
 }
 
 DosPartition::DosPartition(char* n,File* dev,u32 num) : Device(n)
@@ -24,12 +24,12 @@ DosPartition::DosPartition(char* n,File* dev,u32 num) : Device(n)
 		partition_info=(dos_partition*)kmalloc(sizeof(dos_partition));
 		device->read((u32)(DOS_PART_1+(u32)(numpart*sizeof(dos_partition))),
 					 (u8*)partition_info,
-					 sizeof(dos_partition));	
+					 sizeof(dos_partition));
 	}
 }
 
 void DosPartition::scan(){
-	
+
 }
 
 u32	DosPartition::close(){

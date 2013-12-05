@@ -22,7 +22,7 @@
 
 #define	USER_OFFSET 		0x40000000
 #define	USER_STACK 			0xE0000000
-	
+
 #define KERN_PG_1			0x400000
 #define KERN_PG_1_LIM 		0x800000
 

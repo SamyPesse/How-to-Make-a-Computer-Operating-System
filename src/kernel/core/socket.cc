@@ -4,7 +4,7 @@
 
 
 Socket::~Socket(){
-	
+
 }
 
 Socket::Socket(char* n) : File(n,TYPE_FILE)

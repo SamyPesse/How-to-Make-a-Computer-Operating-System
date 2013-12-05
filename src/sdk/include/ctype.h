@@ -21,13 +21,13 @@ int tolower( int c );
 int toupper( int c );
 
 typedef struct {
-	long quot;   
-	long rem;  
+	long quot;
+	long rem;
 }ldiv_t;
 
 typedef struct {
 	int quot;
-	int rem;   
+	int rem;
 }div_t;
 
 div_t div ( int numerator, int denominator );
