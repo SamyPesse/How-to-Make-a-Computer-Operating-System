@@ -1,5 +1,5 @@
 
- 
+
 
 #include <pwd.h>
 
@@ -25,7 +25,7 @@ struct passwd* getpwuid( uid_t uid ) {
 	passwd_myos* pass=myos_user_getID(uid);
 	if (pass==NULL)
 		return NULL;
-	
+
 	build_tmp_passwd();
 	return &__tmp_passwd;
 }

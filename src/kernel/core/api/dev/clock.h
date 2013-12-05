@@ -7,7 +7,7 @@ struct clock_info{
 	clock_d		h;
 	clock_d		m;
 	clock_d		s;
-	
+
 	clock_d		day;
 	clock_d		month;
 	clock_d		year;

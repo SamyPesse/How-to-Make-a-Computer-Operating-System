@@ -1,5 +1,5 @@
 
- 
+
 #ifndef _TIME_INT_H_
 #define _TIME_INT_H_
 #include <time.h> /* Time structures */

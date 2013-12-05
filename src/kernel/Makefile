@@ -18,14 +18,14 @@ PLATFORMS= `find ./arch/ -type d | sed "s/.*\///" | sort`
 all: $(KERNEL)
 
 $(KERNEL): $(OBJS)
-	$(LD) $(LDFLAG) -o $@ $^ 
+	$(LD) $(LDFLAG) -o $@ $^
 	cp $(KERNEL) $(SDKDIR)/bootdisk/
-	
+
 help:
 	@echo "Makefile for Kernel."
 	@echo "Please see COPYING for licensing information."
 	@echo "Output should be: "$(KERNEL)
-	@echo "Usage: make [ all | clean] " 
+	@echo "Usage: make [ all | clean] "
 	@echo "Currently supported platforms:"
 	@echo $(PLATFORMS)
 	@echo
@@ -35,37 +35,37 @@ tosdk:
 
 install:
 	sudo cp $(KERNEL) /boot/
-	
+
 debug:
 	$(NM) -n $(KERNEL)
 
-	
+
 hinfo:
 	$(OBJDUMP) -f $(KERNEL)
-	
+
 dasm:
 	$(OBJDUMP) -d $(KERNEL) > dasm.txt
-	
-				
+
+
 run:
 	cd $(SDKDIR) &&	sh ./diskimage.sh
 	cd $(SDKDIR) &&	sh ./qemu.sh
-	
+
 geniso:
 	cd $(SDKDIR) &&	sh ./cdrom.sh
 
 %.o: %.cc
 	$(SC) $(FLAG) -c $< -o  $@
-	
+
 %.o: %.S
 	$(SC) $(FLAG) -c $< -o  $@
-	
+
 %.o: %.asm
 	$(ASM) $(ASMFLAG)  -c $< -o  $@
 
 
 clean:
 	rm -f $(OBJS)  $(KERNEL) dasm.txt
-	
-	
+
+
 

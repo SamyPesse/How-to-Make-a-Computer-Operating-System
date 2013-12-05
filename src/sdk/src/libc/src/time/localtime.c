@@ -1,5 +1,5 @@
 
- 
+
 #include <time.h>
 
 static tm_t ret;

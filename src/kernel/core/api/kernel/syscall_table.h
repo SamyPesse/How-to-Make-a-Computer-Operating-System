@@ -61,7 +61,7 @@ enum {
 	SYS_wake_up_thread		=NOT_DEFINED,
 	SYS_kill_thread			=NOT_DEFINED,
 	SYS_mmap				=55,
-	
+
 	SYS_loadmod				=71,
 	SYS_login				=72,
 	SYS_newuser				=73,
@@ -70,4 +70,4 @@ enum {
 
 
 
-#endif 
+#endif

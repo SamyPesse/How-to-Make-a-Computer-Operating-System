@@ -12,7 +12,7 @@ File* null_mknod(char* name,u32 flag,File* dev){
 module("module.null",MODULE_DEVICE,Null,null_mknod)
 
 Null::~Null(){
-	
+
 }
 
 Null::Null(char* n) : Device(n)
@@ -47,15 +47,15 @@ u32	Null::ioctl(u32 id,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_TTY;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_CHAR;
 			break;
-	
+
 		default:
 			ret=NOT_DEFINED;
 	}

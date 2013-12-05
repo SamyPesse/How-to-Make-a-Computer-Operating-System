@@ -3,7 +3,7 @@
 
 extern "C" {
 
-/* 
+/*
  * La fonction memcpy permet de copier n octets de src vers dest.
  * Les adresses sont lineaires.
  */

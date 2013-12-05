@@ -17,8 +17,8 @@ LIBDIR   = $(SDKDIR)/lib
 DEFS:= $(DEFS)
 
 CFLAGS   = -I $(INCDIR) -Wall -fno-builtin -g -O2 -w -trigraphs   -fno-exceptions -fno-stack-protector -O0 -m32  -fno-rtti $(DEFS)
-CXXFLAGS = $(CFLAGS) 
-ASFLAGS  = $(CFLAGS) 
+CXXFLAGS = $(CFLAGS)
+ASFLAGS  = $(CFLAGS)
 
 ifeq ($(CRT_FILE),)
 CRT_FILE = crt_c.o
@@ -42,16 +42,16 @@ run:
 	cd $(SDKDIR) &&	sh ./qemu.sh
 
 %.o: %.c
-	$(CC) $(CFLAGS)  -c $< 
+	$(CC) $(CFLAGS)  -c $<
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS)  -c $< 
-	
+	$(CXX) $(CXXFLAGS)  -c $<
+
 %.o: %.cc
-	$(CXX) $(CXXFLAGS)  -c $< 
-	
-.PHONY: clean 
-	
+	$(CXX) $(CXXFLAGS)  -c $<
+
+.PHONY: clean
+
 clean:
 	rm -rf *.o $(TARGET)
 

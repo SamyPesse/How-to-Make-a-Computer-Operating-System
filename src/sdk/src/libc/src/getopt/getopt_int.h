@@ -1,5 +1,5 @@
 
- 
+
 #ifndef _GETOPT_INT_H_
 #define _GETOPT_INT_H_
 

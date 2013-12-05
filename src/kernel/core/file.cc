@@ -26,7 +26,7 @@ File::File(char* n,u8 t){
 	memset(name,0,strlen(n));
 	memcpy(name,n,strlen(n));
 	name[strlen(n)]=0;
-	
+
 	checkName();
 	master=arch.pcurrent;	//à la creation, le maitre est le processus courant
 	inode=inode_system;
@@ -44,9 +44,9 @@ File::File(char* n,u8 t){
 /* destructeur */
 File::~File(){
 	kfree(name);
-	
+
 	//on modifie la liste des frere
-	
+
 	if (prec==NULL){
 		parent->setChild(next);
 		next->setPrec(NULL);
@@ -63,7 +63,7 @@ File::~File(){
 		prec->setNext(next);
 		next->setPrec(prec);
 	}
-	
+
 	//on supprime les enfant (dossier)
 	File* n=child;
 	File* nn=NULL;
@@ -73,7 +73,7 @@ File::~File(){
 		delete n;
 		n=nn;
 	}
-	
+
 }
 
 #define CAR_REPLACE '_'
@@ -191,7 +191,7 @@ File* File::find(char* n){
 	while (fp!=0){
 		if (!strcmp(fp->getName(),n))
 			return fp;
-		
+
 		fp=fp->next;
 	}
 	return NULL;
@@ -226,7 +226,7 @@ u32	File::remove(){
 
 stat_fs File::stat(){
 	stat_fs st;
-	
+
 	return st;
 }
 

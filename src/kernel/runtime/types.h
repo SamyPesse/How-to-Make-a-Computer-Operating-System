@@ -60,8 +60,8 @@ enum{
 	ERROR_PARAM=-4,
 	RETURN_FAILURE=-128 //Added by NoMaintener aka William. In case of error
 };
- 
- 
+
+
 /*
  *	Interruption handler
  */

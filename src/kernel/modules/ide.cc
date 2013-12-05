@@ -11,7 +11,7 @@
 int bl_wait(unsigned short base)
 {
 	while(io.inb(base+0x206) & 0x80);
-	return 0;	
+	return 0;
 }
 
 /*
@@ -20,7 +20,7 @@ int bl_wait(unsigned short base)
 int bl_common(int drive, int numblock, int count)
 {
 	bl_wait(0x1F0);
-	
+
 	io.outb(0x1F1, 0x00);	/* NULL byte to port 0x1F1 */
 	io.outb(0x1F2, count);	/* Sector count */
 	io.outb(0x1F3, (unsigned char) numblock);	/* Low 8 bits of the block address */
@@ -89,12 +89,12 @@ File* ide_mknod(char* name,u32 flag,File* dev){
 module("module.ide",MODULE_DEVICE,Ide,ide_mknod)
 
 Ide::~Ide(){
-	
+
 }
 
 Ide::Ide(char* n) : Device(n)
 {
-	
+
 }
 
 u32	Ide::close(){
@@ -102,7 +102,7 @@ u32	Ide::close(){
 }
 
 void Ide::scan(){
-	
+
 }
 
 u32	Ide::open(u32 flag){
@@ -111,10 +111,10 @@ u32	Ide::open(u32 flag){
 
 u32	Ide::read(u32 pos,u8* buffer,u32 sizee){
 	int count=(int)sizee;
-	
+
 	if (buffer==NULL)
 		return -1;
-	
+
 	int offset=(int)pos;
 	int bl_begin, bl_end, blocks;
 
@@ -139,19 +139,19 @@ u32	Ide::ioctl(u32 idd,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_DISK;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_BLOCK;
 			break;
-			
+
 		default:
 			ret=NOT_DEFINED;
 			break;
-	}	
+	}
 	return ret;
 }
 

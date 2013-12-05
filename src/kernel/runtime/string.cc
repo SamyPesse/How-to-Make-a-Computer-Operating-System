@@ -12,7 +12,7 @@ extern "C"
 			i++;
 		return i;
 	}
-	
+
 	char *strncpy(char *destString, const char *sourceString,int maxLength)
 	{
 	  unsigned count;
@@ -28,7 +28,7 @@ extern "C"
 	  for (count = 0; (int)count < (int)maxLength; count ++)
 		{
 		  destString[count] = sourceString[count];
-		  
+
 		  if (sourceString[count] == '\0')
 		break;
 		}
@@ -40,7 +40,7 @@ extern "C"
 
 	  return (destString);
 	}
-	
+
 	int strcmp(const char *dst, char *src)
 	{
 		int i = 0;
@@ -52,7 +52,7 @@ extern "C"
 
 		return 1;
 	}
-	
+
 
 	int strcpy(char *dst,const char *src)
 	{
@@ -61,13 +61,13 @@ extern "C"
 
 		return i;
 	}
-	
+
 
 	void strcat(void *dest,const void *src)
 	{
 	   memcpy((char*)((int)dest+(int)strlen((char*)dest)),(char*)src,strlen((char*)src));
 	}
-	
+
 
 	int strncmp( const char* s1, const char* s2, int c ) {
 		int result = 0;

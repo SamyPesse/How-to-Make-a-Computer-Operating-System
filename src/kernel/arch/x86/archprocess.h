@@ -26,7 +26,7 @@ extern "C" {
 		} kstack __attribute__ ((packed));
 
 		// Caution: with task switch
-		struct page_directory *pd;	
+		struct page_directory *pd;
 
 		list_head pglist;
 
@@ -41,7 +41,7 @@ extern "C" {
 		void* sigfn[32];
 
 		void*	vinfo;
-		
+
 	} __attribute__ ((packed));
 }
 

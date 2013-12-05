@@ -1,5 +1,5 @@
 
- 
+
 
 #include <stdlib.h>
 #include <string.h>
@@ -8,7 +8,7 @@ extern char** environ;
 
 char* getenv( const char* name ) {
 	return NULL;
-	
+
     int i;
     size_t length;
     size_t name_length;

@@ -16,7 +16,7 @@ File* x86serial_mknod(char* name,u32 flag,File* dev){
 module("module.x86serial",MODULE_DEVICE,X86Serial,x86serial_mknod)
 
 X86Serial::~X86Serial(){
-	
+
 }
 
 X86Serial::X86Serial(char* n) : Device(n)
@@ -37,13 +37,13 @@ char X86Serial::getc(){
 
 u32	X86Serial::open(u32 flag){
 	if (init_serial==0){
-		io.outb( COM1 + 1,	0x00 );	
-		io.outb( COM1 + 3,	0x80 );	
-		io.outb( COM1,		0x03 );	
-		io.outb( COM1 + 1,	0x00 ); 
-		io.outb( COM1 + 3, 0x03 );	
-		io.outb( COM1 + 2, 0xC7 );	
-		io.outb( COM1 + 4, 0x0B );	
+		io.outb( COM1 + 1,	0x00 );
+		io.outb( COM1 + 3,	0x80 );
+		io.outb( COM1,		0x03 );
+		io.outb( COM1 + 1,	0x00 );
+		io.outb( COM1 + 3, 0x03 );
+		io.outb( COM1 + 2, 0xC7 );
+		io.outb( COM1 + 4, 0x0B );
 		init_serial=1;
 	}
 	return RETURN_OK;
@@ -66,7 +66,7 @@ u32	X86Serial::read(u32 pos,u8* buffer,u32 sizee){
 	return sizee;
 }
 
-u32	X86Serial::write(u32 pos,u8* buffer,u32 sizee){	
+u32	X86Serial::write(u32 pos,u8* buffer,u32 sizee){
 	int i;
 	for (i=0;i<sizee;i++){
 		putc(*buffer);
@@ -81,11 +81,11 @@ u32	X86Serial::ioctl(u32 id,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_TTY;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_CHAR;
 			break;

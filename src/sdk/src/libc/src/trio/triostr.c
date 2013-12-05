@@ -196,7 +196,7 @@ TRIO_PRIVATE_STRING trio_string_t *
 internal_string_alloc(TRIO_NOARGS)
 {
   trio_string_t *self;
-  
+
   self = (trio_string_t *)TRIO_MALLOC(sizeof(trio_string_t));
   if (self)
     {
@@ -233,7 +233,7 @@ TRIO_ARGS2((self, delta),
   new_size = (delta == 0)
     ? ( (self->allocated == 0) ? 1 : self->allocated * 2 )
     : self->allocated + delta;
-  
+
   new_content = (char *)TRIO_REALLOC(self->content, new_size);
   if (new_content)
     {
@@ -278,16 +278,16 @@ TRIO_ARGS1((source),
 	   int source)
 {
 # if defined(HAVE_TOUPPER)
-  
+
   return toupper(source);
-  
+
 # else
 
   /* Does not handle locales or non-contiguous alphabetic characters */
   return ((source >= (int)'a') && (source <= (int)'z'))
     ? source - 'a' + 'A'
     : source;
-  
+
 # endif
 }
 
@@ -379,11 +379,11 @@ TRIO_ARGS2((string, max),
 
 /**
    Append @p source at the end of @p target.
-   
+
    @param target Target string.
    @param source Source string.
    @return Boolean value indicating success or failure.
-   
+
    @pre @p target must point to a memory chunk with sufficient room to
    contain the @p target string and @p source string.
    @pre No boundary checking is performed, so insufficient memory will
@@ -400,7 +400,7 @@ TRIO_ARGS2((target, source),
 {
   assert(target);
   assert(source);
-  
+
   return (strcat(target, source) != NULL);
 }
 
@@ -408,12 +408,12 @@ TRIO_ARGS2((target, source),
 
 /**
    Append at most @p max characters from @p source to @p target.
-   
+
    @param target Target string.
    @param max Maximum number of characters to append.
    @param source Source string.
    @return Boolean value indicating success or failure.
-   
+
    @pre @p target must point to a memory chuck with sufficient room to
    contain the @p target string and the @p source string (at most @p max
    characters).
@@ -431,12 +431,12 @@ TRIO_ARGS3((target, max, source),
 	   TRIO_CONST char *source)
 {
   size_t length;
-  
+
   assert(target);
   assert(source);
 
   length = trio_length(target);
-  
+
   if (max > length)
     {
       strncat(target, source, max - length - 1);
@@ -463,7 +463,7 @@ TRIO_ARGS2((string, substring),
 {
   assert(string);
   assert(substring);
-  
+
   return (0 != strstr(string, substring));
 }
 
@@ -471,11 +471,11 @@ TRIO_ARGS2((string, substring),
 
 /**
    Copy @p source to @p target.
-   
+
    @param target Target string.
    @param source Source string.
    @return Boolean value indicating success or failure.
-   
+
    @pre @p target must point to a memory chunk with sufficient room to
    contain the @p source string.
    @pre No boundary checking is performed, so insufficient memory will
@@ -492,7 +492,7 @@ TRIO_ARGS2((target, source),
 {
   assert(target);
   assert(source);
-     
+
   (void)strcpy(target, source);
   return TRUE;
 }
@@ -501,12 +501,12 @@ TRIO_ARGS2((target, source),
 
 /**
    Copy at most @p max characters from @p source to @p target.
-   
+
    @param target Target string.
    @param max Maximum number of characters to append.
    @param source Source string.
    @return Boolean value indicating success or failure.
-   
+
    @pre @p target must point to a memory chunk with sufficient room to
    contain the @p source string (at most @p max characters).
    @pre No boundary checking is performed, so insufficient memory will
@@ -535,10 +535,10 @@ TRIO_ARGS3((target, max, source),
 
 /**
    Duplicate @p source.
-   
+
    @param source Source string.
    @return A copy of the @p source string.
-   
+
    @post @p target will be zero terminated.
 */
 #if defined(TRIO_FUNC_DUPLICATE)
@@ -555,11 +555,11 @@ TRIO_ARGS1((source),
 
 /**
    Duplicate at most @p max characters of @p source.
-   
+
    @param source Source string.
    @param max Maximum number of characters to duplicate.
    @return A copy of the @p source string.
-   
+
    @post @p target will be zero terminated.
 */
 #if defined(TRIO_FUNC_DUPLICATE_MAX)
@@ -587,11 +587,11 @@ TRIO_ARGS2((source, max),
 
 /**
    Compare if two strings are equal.
-   
+
    @param first First string.
    @param second Second string.
    @return Boolean indicating whether the two strings are equal or not.
-   
+
    Case-insensitive comparison.
 */
 #if defined(TRIO_FUNC_EQUAL)
@@ -629,11 +629,11 @@ TRIO_ARGS2((first, second),
 
 /**
    Compare if two strings are equal.
-   
+
    @param first First string.
    @param second Second string.
    @return Boolean indicating whether the two strings are equal or not.
-   
+
    Case-sensitive comparison.
 */
 #if defined(TRIO_FUNC_EQUAL_CASE)
@@ -658,12 +658,12 @@ TRIO_ARGS2((first, second),
 
 /**
    Compare if two strings up until the first @p max characters are equal.
-   
+
    @param first First string.
    @param max Maximum number of characters to compare.
    @param second Second string.
    @return Boolean indicating whether the two strings are equal or not.
-   
+
    Case-sensitive comparison.
 */
 #if defined(TRIO_FUNC_EQUAL_CASE_MAX)
@@ -689,7 +689,7 @@ TRIO_ARGS3((first, max, second),
 
 /**
    Compare if two strings are equal.
-   
+
    @param first First string.
    @param second Second string.
    @return Boolean indicating whether the two strings are equal or not.
@@ -718,12 +718,12 @@ TRIO_ARGS2((first, second),
 
 /**
    Compare if two strings up until the first @p max characters are equal.
-   
+
    @param first First string.
    @param max Maximum number of characters to compare.
    @param second Second string.
    @return Boolean indicating whether the two strings are equal or not.
-   
+
    Case-insensitive comparison.
 */
 #if defined(TRIO_FUNC_EQUAL_MAX)
@@ -777,7 +777,7 @@ TRIO_ARGS1((error_number),
 	   int error_number)
 {
 # if defined(USE_STRERROR)
-  
+
   return strerror(error_number);
 
 # else
@@ -789,9 +789,9 @@ TRIO_ARGS1((error_number),
   return ((error_number < 0) || (error_number >= sys_nerr))
     ? "unknown"
     : sys_errlist[error_number];
- 
+
 #  else
-  
+
   return "unknown";
 
 #  endif
@@ -854,7 +854,7 @@ TRIO_ARGS2((string, type),
   char ch;
 
   assert(string);
-  
+
   switch (type)
     {
     case TRIO_HASH_PLAIN:
@@ -945,7 +945,7 @@ TRIO_ARGS1((target),
    @return Boolean value indicating success or failure.
 
    Case-insensitive comparison.
-   
+
    The following wildcards can be used
    @li @c * Match any number of characters.
    @li @c ? Match a single character.
@@ -960,7 +960,7 @@ TRIO_ARGS2((string, pattern),
 {
   assert(string);
   assert(pattern);
-  
+
   for (; ('*' != *pattern); ++pattern, ++string)
     {
       if (NIL == *string)
@@ -985,7 +985,7 @@ TRIO_ARGS2((string, pattern),
 	}
     }
   while (*string++);
-  
+
   return FALSE;
 }
 
@@ -999,7 +999,7 @@ TRIO_ARGS2((string, pattern),
    @return Boolean value indicating success or failure.
 
    Case-sensitive comparison.
-   
+
    The following wildcards can be used
    @li @c * Match any number of characters.
    @li @c ? Match a single character.
@@ -1014,7 +1014,7 @@ TRIO_ARGS2((string, pattern),
 {
   assert(string);
   assert(pattern);
-  
+
   for (; ('*' != *pattern); ++pattern, ++string)
     {
       if (NIL == *string)
@@ -1039,7 +1039,7 @@ TRIO_ARGS2((string, pattern),
 	}
     }
   while (*string++);
-  
+
   return FALSE;
 }
 
@@ -1067,7 +1067,7 @@ TRIO_ARGS3((target, source, Function),
   assert(target);
   assert(source);
   assert(Function);
-  
+
   while (*source != NIL)
     {
       *target++ = Function(*source++);
@@ -1126,7 +1126,7 @@ TRIO_ARGS3((string, max, substring),
 
   assert(string);
   assert(substring);
-  
+
   size = trio_length(substring);
   if (size <= max)
     {
@@ -1162,7 +1162,7 @@ TRIO_ARGS2((string, delimiters),
 	   TRIO_CONST char *delimiters)
 {
   assert(delimiters);
-  
+
   return strtok(string, delimiters);
 }
 
@@ -1299,7 +1299,7 @@ TRIO_ARGS2((source, endp),
 	    }
 	}
     }
-  
+
   value = integer + fraction;
   if (exponent != 0)
     {
@@ -1389,7 +1389,7 @@ TRIO_ARGS3((string, endp, base),
 {
   assert(string);
   assert((base >= 2) && (base <= 36));
-  
+
   return strtol(string, endp, base);
 }
 
@@ -1409,16 +1409,16 @@ TRIO_ARGS1((source),
 	   int source)
 {
 # if defined(HAVE_TOLOWER)
-  
+
   return tolower(source);
-  
+
 # else
 
   /* Does not handle locales or non-contiguous alphabetic characters */
   return ((source >= (int)'A') && (source <= (int)'Z'))
     ? source - 'A' + 'a'
     : source;
-  
+
 # endif
 }
 
@@ -1442,7 +1442,7 @@ TRIO_ARGS3((string, endp, base),
 {
   assert(string);
   assert((base >= 2) && (base <= 36));
-  
+
   return strtoul(string, endp, base);
 }
 
@@ -1502,7 +1502,7 @@ TRIO_ARGS1((target),
 
 /**
    Create a new dynamic string.
-   
+
    @param initial_size Initial size of the buffer.
    @return Newly allocated dynamic string, or NULL if memory allocation failed.
 */
@@ -1537,7 +1537,7 @@ TRIO_ARGS1((initial_size),
 
 /**
    Deallocate the dynamic string and its contents.
-   
+
    @param self Dynamic string
 */
 #if defined(TRIO_FUNC_STRING_DESTROY)
@@ -1548,7 +1548,7 @@ TRIO_ARGS1((self),
 	   trio_string_t *self)
 {
   assert(self);
-  
+
   if (self)
     {
       trio_destroy(self->content);
@@ -1560,11 +1560,11 @@ TRIO_ARGS1((self),
 
 /**
    Get a pointer to the content.
-   
+
    @param self Dynamic string.
    @param offset Offset into content.
    @return Pointer to the content.
-   
+
    @p Offset can be zero, positive, or negative. If @p offset is zero,
    then the start of the content will be returned. If @p offset is positive,
    then a pointer to @p offset number of characters from the beginning of the
@@ -1581,7 +1581,7 @@ TRIO_ARGS2((self, offset),
 	   int offset)
 {
   char *result = NULL;
-  
+
   assert(self);
 
   if (self->content != NULL)
@@ -1614,10 +1614,10 @@ TRIO_ARGS2((self, offset),
 
 /**
    Extract the content.
-   
+
    @param self Dynamic String
    @return Content of dynamic string.
-   
+
    The content is removed from the dynamic string. This enables destruction
    of the dynamic string without deallocation of the content.
 */
@@ -1629,7 +1629,7 @@ TRIO_ARGS1((self),
 	   trio_string_t *self)
 {
   char *result;
-  
+
   assert(self);
 
   result = self->content;
@@ -1643,13 +1643,13 @@ TRIO_ARGS1((self),
 
 /**
    Set the content of the dynamic string.
-   
+
    @param self Dynamic String
    @param buffer The new content.
-   
+
    Sets the content of the dynamic string to a copy @p buffer.
    An existing content will be deallocated first, if necessary.
-   
+
    @remark
    This function will make a copy of @p buffer.
    You are responsible for deallocating @p buffer yourself.
@@ -1704,7 +1704,7 @@ TRIO_ARGS1((self),
 
 /**
    Append the second string to the first.
-   
+
    @param self Dynamic string to be modified.
    @param other Dynamic string to copy from.
    @return Boolean value indicating success or failure.
@@ -1718,7 +1718,7 @@ TRIO_ARGS2((self, other),
 	   trio_string_t *other)
 {
   size_t length;
-  
+
   assert(self);
   assert(other);
 
@@ -1728,7 +1728,7 @@ TRIO_ARGS2((self, other),
   trio_copy(&self->content[self->length], other->content);
   self->length = length;
   return TRUE;
-  
+
  error:
   return FALSE;
 }
@@ -1748,7 +1748,7 @@ TRIO_ARGS2((self, other),
 	   TRIO_CONST char *other)
 {
   size_t length;
-  
+
   assert(self);
   assert(other);
 
@@ -1758,7 +1758,7 @@ TRIO_ARGS2((self, other),
   trio_copy(&self->content[self->length], other);
   self->length = length;
   return TRUE;
-  
+
  error:
   return FALSE;
 }
@@ -1786,7 +1786,7 @@ TRIO_ARGS2((self, character),
   self->content[self->length] = character;
   self->length++;
   return TRUE;
-  
+
  error:
   return FALSE;
 }
@@ -1795,7 +1795,7 @@ TRIO_ARGS2((self, character),
 
 /**
    Search for the first occurrence of second parameter in the first.
-   
+
    @param self Dynamic string to be modified.
    @param other Dynamic string to copy from.
    @return Boolean value indicating success or failure.
@@ -1887,7 +1887,7 @@ TRIO_ARGS1((other),
 	   trio_string_t *other)
 {
   trio_string_t *self;
-  
+
   assert(other);
 
   self = internal_string_alloc();
@@ -1920,7 +1920,7 @@ TRIO_ARGS1((other),
 	   TRIO_CONST char *other)
 {
   trio_string_t *self;
-  
+
   assert(other);
 
   self = internal_string_alloc();

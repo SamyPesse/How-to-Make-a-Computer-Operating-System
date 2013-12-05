@@ -25,7 +25,7 @@ struct module_class{
 #define module(name,type,classe,mknod)	module_class classe##_module={type,\
 																name, \
 																#classe, \
-																(device_driver)mknod};	
+																(device_driver)mknod};
 
 #define import_module(classe) 	extern module_class  classe##_module
 

@@ -7,4 +7,4 @@
 #include "../../kernel/core/api/kernel/syscall.h"
 #include "../../kernel/core/api/kernel/syscall_table.h"
 
-#endif 
+#endif

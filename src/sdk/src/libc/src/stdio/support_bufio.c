@@ -7,7 +7,7 @@
  *  I'm keeping the helper functions for printf and
  *  sprintf here.
  *
- *  So this file consists of formatting and printing (to 
+ *  So this file consists of formatting and printing (to
  *  screen and to a buffer) of strings and numbers.
  *
  */
@@ -19,7 +19,7 @@ int  bufcon_leni(int num)
   int p;
   int sign;
 
-      if ( num < 0 ) 
+      if ( num < 0 )
       {
         p = -num;
       	sign = 1;
@@ -29,7 +29,7 @@ int  bufcon_leni(int num)
         p = num;
       	sign = 0;
       }
-  
+
 	if ( p < 10 ) return sign + 1;
 	if ( p < 100 ) return sign + 2;
 	if ( p < 1000 ) return sign + 3;
@@ -81,7 +81,7 @@ int  bufcon_lenx( unsigned int  p )
 int  bufcon_lens( char *s )
 {
    int i = 0;
-   while ( s[i] != 0 ) i++; 
+   while ( s[i] != 0 ) i++;
    return i;
 }
 
@@ -93,12 +93,12 @@ int  bufcon_lens( char *s )
 char*  bufcon_putc( char *buffer, unsigned char c )
 {
   unsigned char str[2];
-   
+
      str[0] = c;
      str[1] = 0;
-     
+
      strcat( buffer,(const char*)str );
-     
+
   return buffer;
 }
 
@@ -114,17 +114,17 @@ char*  bufcon_puti( char *buffer, int num )
   unsigned int current;
   unsigned int remainder;
   unsigned int found;
- 
+
   if ( num < 0 )
   {
     bufcon_putc( buffer, '-' );
     current = -num;
   }
   else current = num;
- 
+
   divisor = 1000000000;
   found = 0;
-  
+
   while (divisor > 0)
   {
     remainder = current % divisor;
@@ -148,12 +148,12 @@ char*  bufcon_putui( char *buffer, unsigned int num )
   unsigned int current;
   unsigned int remainder;
   unsigned int found;
- 
+
   current = num;
- 
+
   divisor = 1000000000;
   found = 0;
-  
+
   while (divisor > 0)
   {
     remainder = current % divisor;
@@ -188,9 +188,9 @@ char*  bufcon_putp( char *buffer, unsigned int p )
      	         else bufcon_putc( buffer, c - 10 + 'a' );
      }
    }
-   
+
    if (found == 0 ) bufcon_putc( buffer, '0' );
-   
+
    return buffer;
 }
 
@@ -212,9 +212,9 @@ char*  bufcon_putx( char *buffer, unsigned int p )
         	else bufcon_putc( buffer, c - 10 + 'a' );
      }
    }
-  
+
    if (found == 0 ) bufcon_putc( buffer, '0' );
-  
+
    return buffer;
 }
 
@@ -236,9 +236,9 @@ char*  bufcon_putX( char *buffer, unsigned int p )
      	         else bufcon_putc( buffer, c - 10 + 'A' );
      }
    }
-   
+
    if (found == 0 ) bufcon_putc( buffer, '0' );
-   
+
    return buffer;
 }
 

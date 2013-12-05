@@ -4,7 +4,7 @@
 
 
 User::~User(){
-	
+
 }
 
 User::User(char* n) : File(n,TYPE_FILE)

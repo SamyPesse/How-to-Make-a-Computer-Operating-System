@@ -1,5 +1,5 @@
 
- 
+
 #ifndef __LIST__
 #define __LIST__
 
@@ -47,10 +47,10 @@
 		list_entry((head)->next, type, member)
 
 	#define list_for_each(p, head) \
-		for (p = (head)->next; p != (head); p = p->next) 
+		for (p = (head)->next; p != (head); p = p->next)
 
 	#define list_for_each_safe(p, n, head) \
-		for (p = (head)->next, n = p->next; p != (head); p = n, n = n->next) 
+		for (p = (head)->next, n = p->next; p != (head); p = n, n = n->next)
 
 	#define list_for_each_entry(p, head, member)				\
 		for (p = list_entry((head)->next, typeof(*p), member);		\

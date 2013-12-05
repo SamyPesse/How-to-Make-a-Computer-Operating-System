@@ -43,7 +43,7 @@ enum {
  *
  * The following resolves internal dependencies.
  */
-  
+
 # if defined(TRIO_FUNC_XSTRING_SET)
 #  if !defined(TRIO_FUNC_DUPLICATE)
 #   define TRIO_FUNC_DUPLICATE
