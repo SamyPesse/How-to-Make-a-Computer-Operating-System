@@ -59,7 +59,7 @@ Test our operating system with qemu:
 make run
 ```
 
-The documentation for quemu is available at [QUEMU Emulator Documentation](http://wiki.qemu.org/download/qemu-doc.html).
+The documentation for qemu is available at [QEMU Emulator Documentation](http://wiki.qemu.org/download/qemu-doc.html).
 
-You can exit the emulator using: <Ctrl-a x>.
+You can exit the emulator using: \<Ctrl-a x\>.
 
