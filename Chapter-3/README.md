@@ -2,13 +2,13 @@
 
 #### How the boot works?
 
-When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine ("kmain()"). For this course, we are not going to consider new UEFI method but only BIOS boot method.
+When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine ("kmain()"). For this course, we are going to consider only a BIOS boot method and not the new UEFI one.
 
 The BIOS boot sequence is: RAM detection -> Hardware detection/Initialization -> Boot sequence.
 
-The important step for us is the "Boot sequence", where the BIOS is done with its initialization and tries to transfer control to the next stage of the bootloader process.
+The most important step for us is the "Boot sequence", where the BIOS is done with its initialization and tries to transfer control to the next stage of the bootloader process.
 
-During the "Boot sequence", the BIOS will first choose the "boot device" (floppy disk, hard-disk, CD, usb flash memory device or network). Our Operating system will first boot from the hard-disk (but it will be possible to boot it from a CD or a usb flash memory device).
+During the "Boot sequence", the BIOS will first choose the "boot device" (floppy disk, hard-disk, CD, usb flash memory device or network). Our Operating System will first boot from the hard-disk (but it will be possible to boot it from a CD or a usb flash memory device).
 
 The BIOS will read 512 bytes from the first valid bootsector (where the last two bytes are 0x55 0xAA), or lock up with an error message if it cannot find one. And it'll transfer these 512 bytes into physical memory starting at address 0x7c00 then starts running the code that now begins at 0x7c00.
 
@@ -68,7 +68,7 @@ struct multiboot_info {
 };
 ```
 
-You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You also use the command ```nm -n kernel.elf``` to validate the offset of the different objects in the ELF binary.
+You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file against the multiboot standard. You can also use the command ```nm -n kernel.elf``` to validate the offset of the different objects in the ELF binary.
 
 #### Create a disk image for our kernel and grub
 
@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to attach the created partition to loop-device (which allow a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
+We need now to attach the created partition to the loop-device (which allows a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32356.
 
@@ -170,5 +170,5 @@ losetup -d /dev/loop1
 
 #### See Also
 
-* [GNU GRUB on wikipedia](http://en.wikipedia.org/wiki/GNU_GRUB)
+* [GNU GRUB on Wikipedia](http://en.wikipedia.org/wiki/GNU_GRUB)
 * [Multiboot specification](https://www.gnu.org/software/grub/manual/multiboot/multiboot.html)
