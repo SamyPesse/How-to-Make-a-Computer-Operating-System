@@ -24,7 +24,7 @@ void Io::putc(char c){
 	if (c == '\n') {			
 		x = 0;
 		y++;
-        // back space
+	// back space
 	} else if (c == '\b') {	
 		if (x) {
 			*(video + 1) = 0x0;
