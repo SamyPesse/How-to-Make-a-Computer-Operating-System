@@ -421,7 +421,7 @@ TRIO_ARGS2((number, is_negative),
   /* Remember the old mask */
   mask = _control87(0, 0);
 # endif
-  
+
   switch (_fpclass(number)) {
   case _FPCLASS_QNAN:
   case _FPCLASS_SNAN:
@@ -465,12 +465,12 @@ TRIO_ARGS2((number, is_negative),
     result = TRIO_FP_NORMAL;
     break;
   }
-  
+
 # if defined(TRIO_COMPILER_BORLAND)
   /* Restore the old precision */
   (void)_control87(mask, MCW_PC);
 # endif
-  
+
   return result;
 }
 
@@ -593,9 +593,9 @@ TRIO_ARGS1((number),
   return isnan(number);
 
 # endif
-  
+
 # if defined(TRIO_INTERNAL_ISNAN_IEEE_754)
-  
+
   /*
    * Examine IEEE 754 bit-pattern. A NaN must have a special exponent
    * pattern, and a non-empty mantissa.
@@ -604,23 +604,23 @@ TRIO_ARGS1((number),
   int is_special_quantity;
 
   is_special_quantity = internal_is_special_quantity(number, &has_mantissa);
-  
+
   return (is_special_quantity && has_mantissa);
-  
+
 # endif
 
 # if defined(TRIO_INTERNAL_ISNAN_FALLBACK)
-  
+
   /*
    * Fallback solution
    */
   int status;
   double integral, fraction;
-  
+
 #  if defined(TRIO_PLATFORM_UNIX)
   void (*signal_handler)(int) = signal(SIGFPE, SIG_IGN);
 #  endif
-  
+
   status = (/*
 	     * NaN is the only number which does not compare to itself
 	     */
@@ -631,13 +631,13 @@ TRIO_ARGS1((number),
 	    ((number != 0.0) &&
 	     (fraction = modf(number, &integral),
 	      integral == fraction)));
-  
+
 #  if defined(TRIO_PLATFORM_UNIX)
   signal(SIGFPE, signal_handler);
 #  endif
-  
+
   return status;
-  
+
 # endif
 }
 
@@ -665,7 +665,7 @@ TRIO_ARGS1((number),
   int is_special_quantity;
 
   is_special_quantity = internal_is_special_quantity(number, &has_mantissa);
-  
+
   return (is_special_quantity && !has_mantissa)
     ? ((number < 0.0) ? -1 : 1)
     : 0;
@@ -673,26 +673,26 @@ TRIO_ARGS1((number),
 # endif
 
 # if defined(TRIO_INTERNAL_ISINF_FALLBACK)
-  
+
   /*
    * Fallback solution.
    */
   int status;
-  
+
 #  if defined(TRIO_PLATFORM_UNIX)
   void (*signal_handler)(int) = signal(SIGFPE, SIG_IGN);
 #  endif
-  
+
   double infinity = trio_pinf();
-  
+
   status = ((number == infinity)
 	    ? 1
 	    : ((number == -infinity) ? -1 : 0));
-  
+
 #  if defined(TRIO_PLATFORM_UNIX)
   signal(SIGFPE, signal_handler);
 #  endif
-  
+
   return status;
 
 # endif
@@ -713,7 +713,7 @@ TRIO_ARGS2((number, is_negative),
 	   int *is_negative)
 {
   /* The TRIO_FUNC_xxx_FPCLASSIFY_AND_SIGNBIT macros are mutually exclusive */
-  
+
 #if defined(TRIO_FUNC_C99_FPCLASSIFY_AND_SIGNBIT)
 
   return c99_fpclassify_and_signbit(number, is_negative);
@@ -745,12 +745,12 @@ TRIO_ARGS2((number, is_negative),
 #endif
 
 #if defined(TRIO_FUNC_INTERNAL_FPCLASSIFY_AND_SIGNBIT)
-  
+
   /*
    * Fallback solution.
    */
   int rc;
-  
+
   if (number == 0.0) {
     /*
      * In IEEE 754 the sign of zero is ignored in comparisons, so we
@@ -803,7 +803,7 @@ TRIO_ARGS1((number),
 	   double number)
 {
   int dummy;
-  
+
   return (trio_fpclassify_and_signbit(number, &dummy) == TRIO_FP_NAN);
 }
 
@@ -823,7 +823,7 @@ TRIO_ARGS1((number),
 	   double number)
 {
   int is_negative;
-  
+
   if (trio_fpclassify_and_signbit(number, &is_negative) == TRIO_FP_INFINITE)
     {
       return (is_negative) ? -1 : 1;
@@ -850,7 +850,7 @@ TRIO_ARGS1((number),
 	   double number)
 {
   int dummy;
-  
+
   switch (trio_fpclassify_and_signbit(number, &dummy))
     {
     case TRIO_FP_INFINITE:
@@ -878,7 +878,7 @@ TRIO_ARGS1((number),
 	   double number)
 {
   int is_negative;
-  
+
   (void)trio_fpclassify_and_signbit(number, &is_negative);
   return is_negative;
 }
@@ -899,7 +899,7 @@ TRIO_ARGS1((number),
 	   double number)
 {
   int dummy;
-  
+
   return trio_fpclassify_and_signbit(number, &dummy);
 }
 
@@ -916,17 +916,17 @@ TRIO_PUBLIC_NAN double
 trio_nzero(TRIO_NOARGS)
 {
 # if defined(TRIO_NZERO_IEEE_754)
-  
+
   return internal_make_double(ieee_754_negzero_array);
 
 # endif
-  
+
 # if defined(TRIO_NZERO_FALLBACK)
-  
+
   TRIO_VOLATILE double zero = 0.0;
 
   return -zero;
-  
+
 # endif
 }
 
@@ -948,13 +948,13 @@ trio_pinf(TRIO_NOARGS)
   if (pinf_value == 0.0) {
 
 # if defined(TRIO_PINF_C99_MACRO)
-    
+
     pinf_value = (double)INFINITY;
 
 # endif
-    
+
 # if defined(TRIO_PINF_IEEE_754)
-    
+
     pinf_value = internal_make_double(ieee_754_infinity_array);
 
 # endif
@@ -974,7 +974,7 @@ trio_pinf(TRIO_NOARGS)
       /* Force overflow */
       pinf_value += HUGE_VAL;
     }
-    
+
 #  if defined(TRIO_PLATFORM_UNIX)
     signal(SIGFPE, signal_handler);
 #  endif
@@ -1025,25 +1025,25 @@ trio_nan(TRIO_NOARGS)
   static double nan_value = 0.0;
 
   if (nan_value == 0.0) {
-    
+
 # if defined(TRIO_NAN_C99_FUNCTION) || defined(TRIO_PLATFORM_SYMBIAN)
-    
+
     nan_value = nan("");
 
 # endif
-    
+
 # if defined(TRIO_NAN_C99_MACRO)
-    
+
     nan_value = (double)NAN;
 
 # endif
 
 # if defined(TRIO_NAN_IEEE_754)
-    
+
     nan_value = internal_make_double(ieee_754_qnan_array);
 
 # endif
-    
+
 # if defined(TRIO_NAN_FALLBACK)
     /*
      * There are several ways to generate NaN. The one used here is
@@ -1057,9 +1057,9 @@ trio_nan(TRIO_NOARGS)
 #  if defined(TRIO_PLATFORM_UNIX)
     void (*signal_handler)(int) = signal(SIGFPE, SIG_IGN);
 #  endif
-    
+
     nan_value = trio_pinf() / trio_pinf();
-    
+
 #  if defined(TRIO_PLATFORM_UNIX)
     signal(SIGFPE, signal_handler);
 #  endif
@@ -1140,7 +1140,7 @@ int main(TRIO_NOARGS)
   print_class("NNorm", -1.0);
   print_class("PSub", 1.01e-307 - 1.00e-307);
   print_class("NSub", 1.00e-307 - 1.01e-307);
-  
+
   printf("NaN : %4g 0x%02x%02x%02x%02x%02x%02x%02x%02x (%2d, %2d, %2d)\n",
 	 my_nan,
 	 ((unsigned char *)&my_nan)[0],
@@ -1174,11 +1174,11 @@ int main(TRIO_NOARGS)
 	 ((unsigned char *)&my_ninf)[6],
 	 ((unsigned char *)&my_ninf)[7],
 	 trio_isnan(my_ninf), trio_isinf(my_ninf), trio_isfinite(my_ninf));
-  
+
 # if defined(TRIO_PLATFORM_UNIX)
   signal_handler = signal(SIGFPE, SIG_IGN);
 # endif
-  
+
   my_pinf = DBL_MAX + DBL_MAX;
   my_ninf = -my_pinf;
   my_nan = my_pinf / my_pinf;
@@ -1186,7 +1186,7 @@ int main(TRIO_NOARGS)
 # if defined(TRIO_PLATFORM_UNIX)
   signal(SIGFPE, signal_handler);
 # endif
-  
+
   printf("NaN : %4g 0x%02x%02x%02x%02x%02x%02x%02x%02x (%2d, %2d, %2d)\n",
 	 my_nan,
 	 ((unsigned char *)&my_nan)[0],
@@ -1220,7 +1220,7 @@ int main(TRIO_NOARGS)
 	 ((unsigned char *)&my_ninf)[6],
 	 ((unsigned char *)&my_ninf)[7],
 	 trio_isnan(my_ninf), trio_isinf(my_ninf), trio_isfinite(my_ninf));
-  
+
   return 0;
 }
 #endif

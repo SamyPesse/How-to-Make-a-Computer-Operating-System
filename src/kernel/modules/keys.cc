@@ -14,7 +14,7 @@ File* keys_mknod(char* name,u32 flag,File* dev){
 module("module.keyboard",MODULE_DEVICE,Keyboard,keys_mknod)
 
 Keyboard::~Keyboard(){
-	
+
 }
 
 Keyboard::Keyboard(char* n) : Device(n)
@@ -48,21 +48,21 @@ u32	Keyboard::ioctl(u32 id,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_TTY;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_CHAR;
 			break;
-			
+
 		case API_KEYBOARD_SET_TABLE:
 			memcpy(scantable,(char*)buffer,TABLE_KEYBOARD_SIZE);
 			kbdmap=scantable;
 			ret=TABLE_KEYBOARD_SIZE;
 			break;
-	
+
 		default:
 			ret=NOT_DEFINED;
 	}

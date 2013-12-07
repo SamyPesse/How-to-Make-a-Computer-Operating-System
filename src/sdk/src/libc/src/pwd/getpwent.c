@@ -1,5 +1,5 @@
 
- 
+
 
 #include <pwd.h>
 
@@ -53,7 +53,7 @@ struct passwd* getpwent( void ) {
 	passwd_myos* pass=myos_user_getID(_passwd_db_position);
 	if (pass==NULL)
 		return NULL;
-	
+
 	build_tmp_passwd();
 	_passwd_db_position++;
 	return &__tmp_passwd;

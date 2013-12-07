@@ -2,7 +2,7 @@
 global do_switch
 
 do_switch:
-	; recuper l'adresse de *current 
+	; recuper l'adresse de *current
 	mov esi, [esp]
 	pop eax			; depile @current
 
@@ -40,6 +40,6 @@ do_switch:
 	pop ecx
 	pop eax
 
-	; retourne 
+	; retourne
 	iret
 

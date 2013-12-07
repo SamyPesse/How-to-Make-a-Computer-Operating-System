@@ -31,7 +31,7 @@ void Console::reset_info(){
 	sinfo.state=TTY_STATE_RUN;
 	sinfo.type=TTY_TYPE_IOSTD;
 	sinfo.flags=0;
-	
+
 	//moving info
 	minfo.x=iotty->getX();
 	minfo.y=iotty->getY();
@@ -55,7 +55,7 @@ u32	Console::read(u32 pos,u8* buffer,u32 sizee){
 	return iotty->read((char*)buffer,sizee);
 }
 
-u32	Console::write(u32 pos,u8* buffer,u32 size){	
+u32	Console::write(u32 pos,u8* buffer,u32 size){
 	int i;
 	for (i=0;i<size;i++){
 		iotty->putc(*buffer);
@@ -71,34 +71,34 @@ u32	Console::ioctl(u32 id,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_TTY;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_CHAR;
 			break;
-			
+
 		case API_TTY_SWITCH_SCREEN:
 			iotty->switchtty();
 			break;
-			
+
 		case API_TTY_CLEAR_SCREEN:
 			iotty->clear();
 			break;
-			
+
 		case API_TTY_GET_SINFO:
 			memcpy((char*)buffer,(char*)&sinfo,sizeof(tty_info_static));
 			break;
-			
+
 		case API_TTY_GET_MINFO:
 			memcpy((char*)buffer,(char*)&minfo,sizeof(tty_info_moving));
 			break;
-			
+
 		case API_TTY_SET_MINFO:
 			break;
-			
+
 		default:
 			ret=NOT_DEFINED;
 			break;

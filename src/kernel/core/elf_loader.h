@@ -27,7 +27,7 @@ typedef struct {
 	u16 e_shstrndx;		/* index of the section name string table */
 } Elf32_Ehdr;
 
-/* 
+/*
  * ELF identification
  */
 #define	EI_MAG0		0
@@ -59,8 +59,8 @@ typedef struct {
 #define	EV_CURRENT	1
 #define	ELFVERSION	EV_CURRENT
 
-/* 
- * PROGRAM HEADER 
+/*
+ * PROGRAM HEADER
  */
 typedef struct {
 	u32 p_type;		/* type of segment */

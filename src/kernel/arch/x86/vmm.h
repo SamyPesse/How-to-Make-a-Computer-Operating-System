@@ -21,7 +21,7 @@ struct page_directory {
 };
 
 struct vm_area {
-		char *vm_start;	
+		char *vm_start;
 		char *vm_end;	/* exclude */
 		list_head list;
 };
@@ -61,8 +61,8 @@ typedef page_directory proc_memory;
 	struct page_directory *pd_create(void);
 	int pd_destroy(struct page_directory *);
 	struct page_directory *pd_copy(struct page_directory * pdfather);
-	
-	
+
+
 	/* Ajoute une entree dans l'espace du noyau */
 	int pd0_add_page(char *, char *, int);
 
@@ -73,7 +73,7 @@ typedef page_directory proc_memory;
 	/* Retourne l'adresse physique associee a une adresse virtuelle */
 	char *get_p_addr(char *);
 
-	
+
 	#define KMALLOC_MINSIZE		16
 
 	struct kmalloc_header {
@@ -90,9 +90,9 @@ class Vmm
 		proc_memory*	createPM();					/* Create page directory for a process */
 		void			switchPM(proc_memory* ad);	/* Switch page directory for a process */
 		void			map(proc_memory* ad,u32 phy,u32 adr);	/* map a physical page memory in virtual space */
-		
+
 		void			kmap(u32 phy,u32 virt);
-		
+
 };
 
 extern Vmm vmm;

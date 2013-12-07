@@ -140,7 +140,7 @@ struct ext2_disk {
 #define	EXT2_S_IXOTH	0x0001	/* execute */
 
 #define EXT2_INUM_ROOT	2
- 
+
 /*
  *	Driver class
  */
@@ -149,8 +149,8 @@ class Ext2 : public File
 	public:
 		Ext2(char* n);
 		~Ext2();
-		
-		
+
+
 		u32		open(u32 flag);
 		u32		close();
 		u32		read(u32 pos,u8* buffer,u32 sizee);
@@ -158,12 +158,12 @@ class Ext2 : public File
 		u32		ioctl(u32 id,u8* buffer);
 		u32		remove();
 		void	scan();
-		
+
 		char*		map;
 		ext2_disk*	disk;
 		int 		ext2inode;
 	private:
-		
+
 };
 
 int 			ext2_check_disk(File *dev);

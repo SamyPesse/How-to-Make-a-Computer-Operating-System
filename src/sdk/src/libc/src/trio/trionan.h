@@ -15,7 +15,7 @@ extern "C" {
 # endif
 # define TRIO_PUBLIC_NAN TRIO_PUBLIC
 #endif
-  
+
 enum {
   TRIO_FP_INFINITE,
   TRIO_FP_NAN,
@@ -36,7 +36,7 @@ enum {
  *
  * The following resolves internal dependencies.
  */
-  
+
 # if defined(TRIO_FUNC_ISNAN) \
   || defined(TRIO_FUNC_ISINF)
 #  if !defined(TRIO_FUNC_FPCLASSIFY_AND_SIGNBIT)
@@ -49,7 +49,7 @@ enum {
 #   define TRIO_FUNC_PINF
 #  endif
 # endif
-  
+
 # if defined(TRIO_FUNC_NINF)
 #  if !defined(TRIO_FUNC_PINF)
 #   define TRIO_FUNC_PINF
@@ -61,7 +61,7 @@ enum {
 /*
  * When trionan is not embedded all all functions are defined.
  */
-  
+
 # define TRIO_FUNC_NAN
 # define TRIO_FUNC_PINF
 # define TRIO_FUNC_NINF
@@ -72,7 +72,7 @@ enum {
 # define TRIO_FUNC_SIGNBIT
 # define TRIO_FUNC_FPCLASSIFY
 # define TRIO_FUNC_FPCLASSIFY_AND_SIGNBIT
-  
+
 #endif
 
 /*************************************************************************

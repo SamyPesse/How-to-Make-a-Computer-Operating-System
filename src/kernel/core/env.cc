@@ -13,7 +13,7 @@ Variable::~Variable(){
 		kfree(value);
 }
 
-/* 
+/*
  *	Constructeur :
  *		n : nom
  *		v : valeur
@@ -46,7 +46,7 @@ u32	Variable::read(u32 pos,u8* buffer,u32 size){
 		return NOT_DEFINED;
 	else{
 		strncpy((char*)buffer,value,size);
-		return size;		
+		return size;
 	}
 }
 

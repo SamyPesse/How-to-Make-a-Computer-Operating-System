@@ -11,7 +11,7 @@ Filesystem::Filesystem(){
 
 void Filesystem::init(){
 	root=new File("/",TYPE_DIRECTORY);
-	
+
 	dev=root->createChild("dev",TYPE_DIRECTORY);		//dossier contenant les peripherique
 	root->createChild("proc",TYPE_DIRECTORY);			//dossier contenant les processus tournant
 	root->createChild("mnt",TYPE_DIRECTORY);			//dossier contenant les points de montages des disques
@@ -37,10 +37,10 @@ File* Filesystem::getRoot(){
 File* Filesystem::path(char* p){
 	if (!p)
 		return NULL;
-		
+
 	File* fp=root;
 	char *name, *beg_p, *end_p;
-	
+
 	if (p[0]=='/')
 		fp=root;
 	else{
@@ -51,7 +51,7 @@ File* Filesystem::path(char* p){
 	while (*beg_p == '/')
 		beg_p++;
 	end_p = beg_p + 1;
-	
+
 	while (*beg_p != 0) {
 		if (fp->getType() != TYPE_DIRECTORY){
 			return NULL;
@@ -62,17 +62,17 @@ File* Filesystem::path(char* p){
 		memcpy(name, beg_p, end_p - beg_p);
 		name[end_p - beg_p] = 0;
 
-		if (strcmp("..", name) == 0) {		// '..' 
+		if (strcmp("..", name) == 0) {		// '..'
 			fp = fp->getParent();
-		} else if (strcmp(".", name) == 0) {	// '.' 
-		
+		} else if (strcmp(".", name) == 0) {	// '.'
+
 		} else {
 			fp->scan();
 			if (!(fp = fp->find(name))) {
 				kfree(name);
 				return 0;
 			}
-			
+
 			if (fp->getType()==TYPE_LINK && (fp->getLink()!=NULL)){
 				fp=fp->getLink();
 			}
@@ -85,7 +85,7 @@ File* Filesystem::path(char* p){
 
 		kfree(name);
 	}
-	
+
 	return fp;
 }
 
@@ -125,7 +125,7 @@ File* Filesystem::pivot_root(File* targetdir){
 	      }while(i == 1);
 	return newRoot;
 	}
- 
+
 }
 
 File* Filesystem::path_parent(char* p,char *fname){
@@ -134,15 +134,15 @@ File* Filesystem::path_parent(char* p,char *fname){
 	File* ofp;
 	File* fp=root;
 	char *name, *beg_p, *end_p;
-	
+
 	if (p[0]=='/')
 		fp=root;
-		
+
 	beg_p = p;
 	while (*beg_p == '/')
 		beg_p++;
 	end_p = beg_p + 1;
-	
+
 	while (*beg_p != 0) {
 		if (fp->getType() != TYPE_DIRECTORY)
 			return NULL;
@@ -154,23 +154,23 @@ File* Filesystem::path_parent(char* p,char *fname){
 		name[end_p - beg_p] = 0;
 
 
-		if (strcmp("..", name) == 0) {		// '..' 
+		if (strcmp("..", name) == 0) {		// '..'
 			fp = fp->getParent();
-		} else if (strcmp(".", name) == 0) {	// '.' 
-		
+		} else if (strcmp(".", name) == 0) {	// '.'
+
 		} else {
 			ofp=fp;
-			
+
 			if (fp->getType()==TYPE_LINK && (fp->getLink()!=NULL)){
 				fp=fp->getLink();
 			}
-			
+
 			if (!(fp = fp->find(name))) {
 				strcpy(fname,name);
 				kfree(name);
 				return ofp;
 			}
-		
+
 		}
 
 		beg_p = end_p;
@@ -180,7 +180,7 @@ File* Filesystem::path_parent(char* p,char *fname){
 
 		kfree(name);
 	}
-	
+
 	return fp;
 }
 

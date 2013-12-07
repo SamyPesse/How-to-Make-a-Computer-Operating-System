@@ -48,8 +48,8 @@ static void GetTime(unsigned int *Hour, unsigned int *Minute, unsigned int *Seco
 
 	io.outb(0x70, 2);
 	DataMinute = io.inb(0x71);
-	*Minute = DataMinute - ((unsigned int) DataMinute/16) * 6;	
-	
+	*Minute = DataMinute - ((unsigned int) DataMinute/16) * 6;
+
 	io.outb(0x70, 0);
 	DataSecond = io.inb(0x71);
 	*Second = DataSecond - ((unsigned int) DataSecond/16) * 6;
@@ -66,7 +66,7 @@ File* clockx86_mknod(char* name,u32 flag,File* dev){
 module("module.clock_x86",MODULE_DEVICE,Clock_x86,clockx86_mknod)
 
 Clock_x86::~Clock_x86(){
-	
+
 }
 
 Clock_x86::Clock_x86(char* n) : Device(n)
@@ -105,20 +105,20 @@ u32	Clock_x86::ioctl(u32 id,u8* buffer){
 		case DEV_GET_TYPE:
 			ret=DEV_TYPE_TTY;
 			break;
-			
+
 		case DEV_GET_STATE:
 			ret=DEV_STATE_OK;
 			break;
-			
+
 		case DEV_GET_FORMAT:
 			ret=DEV_FORMAT_CHAR;
 			break;
-			
+
 		case API_CLOCK_GET_INFO:
 			reset_info();
 			memcpy((char*)buffer,(char*)&cinfo,sizeof(clock_info));
 			break;
-	
+
 		default:
 			ret=NOT_DEFINED;
 	}

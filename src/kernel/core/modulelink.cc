@@ -4,7 +4,7 @@
 
 
 ModLink::~ModLink(){
-	
+
 }
 
 ModLink::ModLink(char* n) : File(n,TYPE_FILE)

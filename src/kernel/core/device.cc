@@ -3,7 +3,7 @@
 
 
 Device::~Device(){
-	
+
 }
 
 Device::Device(char* n) : File(n,TYPE_DEVICE)

@@ -9,7 +9,7 @@ int  supcon_leni(int num)
   int p;
   int sign;
 
-      if ( num < 0 ) 
+      if ( num < 0 )
       {
         p = -num;
       	sign = 1;
@@ -19,7 +19,7 @@ int  supcon_leni(int num)
         p = num;
       	sign = 0;
       }
-  
+
 	if ( p < 10 ) return sign + 1;
 	if ( p < 100 ) return sign + 2;
 	if ( p < 1000 ) return sign + 3;
@@ -46,7 +46,7 @@ int  supcon_lenui(unsigned int p)
 	if ( p < 10000000 ) return 7;
 	if ( p < 100000000 ) return 8;
 	if ( p < 1000000000 ) return 9;
-	
+
   return 10;
 }
 
@@ -91,11 +91,11 @@ void  supcon_puti( int num )
 {
   int sign;
   int temp;
-  char buffer[ 128 ];	// You're generous. 
+  char buffer[ 128 ];	// You're generous.
   int position = 126;
 
   // Short circuit unnecessary work.
-  if ( num == 0 ) 
+  if ( num == 0 )
   {
 	fputs("0",stdout);
 	return;
@@ -113,45 +113,45 @@ void  supcon_puti( int num )
 	sign = 0;
 	temp = num;
   }
-  
+
 
   buffer[127] = 0;
-  
+
   // Now reduce it.
   while ( temp > 0 )
   {
 	buffer[ position-- ] = '0' + (temp % 10);
 	temp = temp / 10;
   }
-		  
+
   if ( sign == 1 ) buffer[ position-- ] = '-';
-  
+
   // Now print it.
   fputs(buffer + position + 1 ,stdout);
 }
 
 void  supcon_putui( unsigned int num )
 {
-  char buffer[ 128 ];	// You're generous. 
+  char buffer[ 128 ];	// You're generous.
   int position = 126;
   unsigned int temp = num;
 
   // Short circuit unnecessary work.
-  if ( num == 0 ) 
+  if ( num == 0 )
   {
 	  fputs("0",stdout);
 	return;
   }
 
   buffer[127] = 0;
-  
+
   // Now reduce it.
   while ( temp > 0 )
   {
 	buffer[ position-- ] = '0' + (temp % 10);
 	temp = temp / 10;
   }
-		  
+
   // Now print it.
   fputs(buffer + position + 1 ,stdout);
 }
@@ -159,29 +159,29 @@ void  supcon_putui( unsigned int num )
 
 void  supcon_putp( unsigned int num, char offset )
 {
-  char buffer[ 128 ];	// You're generous. 
+  char buffer[ 128 ];	// You're generous.
   int position = 126;
   unsigned int temp = num;
   int value;
 
   // Short circuit unnecessary work.
-  if ( num == 0 ) 
+  if ( num == 0 )
   {
 	fputs("0",stdout);
 	return;
   }
 
   buffer[127] = 0;
-  
+
   // Now reduce it.
   while ( temp > 0 )
   {
 	value = temp % 16;
 	if ( value < 10 ) buffer[ position-- ] = '0' + value;
-				else  buffer[ position-- ] = offset - 10 + value;	
+				else  buffer[ position-- ] = offset - 10 + value;
 	temp = temp / 16;
   }
-		  
+
   // Now print it.
     fputs(buffer + position + 1 ,stdout);
 

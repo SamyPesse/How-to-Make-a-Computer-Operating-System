@@ -1,5 +1,5 @@
 
- 
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -172,7 +172,7 @@ _getopt_initialize (int argc, char *const *argv, const char *optstring,
 
   return optstring;
 }
-
+
 /* Scan elements of ARGV (whose length is ARGC) for option characters
    given in OPTSTRING.
 

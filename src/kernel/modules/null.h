@@ -11,8 +11,8 @@ class Null : public Device
 	public:
 		Null(char* n);
 		~Null();
-		
-		
+
+
 		u32		open(u32 flag);
 		u32		close();
 		u32		read(u32 pos,u8* buffer,u32 size);

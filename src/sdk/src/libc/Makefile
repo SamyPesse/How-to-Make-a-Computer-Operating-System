@@ -14,7 +14,7 @@ arch/i386/math/e_hypot.S \
 arch/i386/math/e_pow.S \
 arch/i386/math/s_finite.S \
 arch/i386/math/s_scalbn.S \
-arch/i386/math/e_log10.S 
+arch/i386/math/e_log10.S
 
 OBJS= arch/i386/getpagesize.c \
 src/os/syscall.c \
@@ -250,33 +250,33 @@ src/pwd/getpwnam.c \
 src/pwd/endpwent.c \
 src/pwd/setpwent.c \
 src/network/inet_aton.c \
-src/network/inet_ntoa.c 
+src/network/inet_ntoa.c
 
 # src/trio/trio.c \
 # src/trio/trionan.c \
 # src/trio/triostr.c \
 
 START=src/start.c
-STARTO= $(START:.c=.o) 
-OBJO = $(OBJS:.c=.o) 
+STARTO= $(START:.c=.o)
+OBJO = $(OBJS:.c=.o)
 OBJSO= $(ASMOBJS:.S=.o)
 OBJ=libc.a crt
 CC=gcc -w -m32 -Wa,--32  -g -nostdlib -nostdinc -trigraphs  -I $(SDKDIR)/include -c
 SDKDIR=../..
 
-all: $(OBJ) 
+all: $(OBJ)
 
-libc.a: $(OBJO) $(OBJSO) 
+libc.a: $(OBJO) $(OBJSO)
 	ar rcs $@ *.o
 	cp libc.a $(SDKDIR)/lib/libc.a
-	
+
 crt: $(STARTO)
 	cp start.o $(SDKDIR)/lib/crt_c.o
 	rm *.o
-	
+
 %.o: %.c
 	$(CC) $<
-	
+
 %.o: %.S
 	$(CC) $<
 

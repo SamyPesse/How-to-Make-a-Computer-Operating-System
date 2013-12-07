@@ -26,7 +26,7 @@ typedef int	wchar_t;
 
 #define offsetof(struct_type, member) \
           (size_t) &(((struct_type *)0)->member)
-          
+
 /*#define offsetof(type, memberdesig)	\
 			((const unsigned int)((ptrdiff_t)&(type.memberdesig) - (ptrdiff_t)&type))
 */

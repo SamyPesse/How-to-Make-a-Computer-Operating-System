@@ -13,8 +13,8 @@ class Clock_x86 : public Device
 	public:
 		Clock_x86(char* n);
 		~Clock_x86();
-		
-		
+
+
 		u32		open(u32 flag);
 		u32		close();
 		u32		read(u32 pos,u8* buffer,u32 size);
@@ -22,7 +22,7 @@ class Clock_x86 : public Device
 		u32		ioctl(u32 id,u8* buffer);
 		u32		remove();
 		void	scan();
-		
+
 		void 	reset_info();
 	private:
 		clock_info	cinfo;

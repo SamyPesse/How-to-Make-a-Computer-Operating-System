@@ -2,11 +2,11 @@ extern isr_default_int, do_syscalls, isr_schedule_int
 
 
 %macro	SAVE_REGS 0
-	pushad 
+	pushad
 	push ds
 	push es
 	push fs
-	push gs 
+	push gs
 	push ebx
 	mov bx,0x10
 	mov ds,bx
@@ -34,7 +34,7 @@ _asm_int_%1:
 	iret
 %endmacro
 
-extern isr_GP_exc, isr_PF_exc 
+extern isr_GP_exc, isr_PF_exc
 global _asm_syscalls, _asm_exc_GP, _asm_exc_PF
 _asm_syscalls:
 	SAVE_REGS

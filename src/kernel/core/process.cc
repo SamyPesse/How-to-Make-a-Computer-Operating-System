@@ -10,7 +10,7 @@ u32 Process::proc_pid=0;
 
 Process::~Process(){
 	delete ipc;
-	arch.change_process_father(this,pparent);	//on change le pere des enfants	
+	arch.change_process_father(this,pparent);	//on change le pere des enfants
 }
 
 Process::Process(char* n) : File(n,TYPE_PROCESS)
@@ -23,7 +23,7 @@ Process::Process(char* n) : File(n,TYPE_PROCESS)
 		cdir=pparent->getCurrentDir();
 	else
 		cdir=fsm.getRoot();
-		
+
 	arch.addProcess(this);
 	info.vinfo=(void*)this;
 	int i;
@@ -54,7 +54,7 @@ u32	Process::read(u32 pos,u8* buffer,u32 sizee){
 	arch.enable_interrupt();
 	while (ipc->isEmpty());
 	ret=ipc->get(buffer,sizee);
-	
+
 	arch.disable_interrupt();
 	return ret;
 }
@@ -70,18 +70,18 @@ u32	Process::ioctl(u32 id,u8* buffer){
 		case API_PROC_GET_PID:
 			ret= pid;
 			break;
-			
+
 		case API_PROC_GET_INFO:
 			reset_pinfo();
 			memcpy((char*)buffer,(char*)&ppinfo,sizeof(proc_info));
 			break;
-			
-			
+
+
 		default:
 			ret=NOT_DEFINED;
 			break;
 	}
-	
+
 	return ret;
 }
 
@@ -89,7 +89,7 @@ int	Process::fork(){
 	/*Process* p=new Process("fork_child");
 	return arch.fork(p->getPInfo(),&info);*/
 	if (pparent!=NULL)
-		pparent->sendSignal(SIGCHLD);	
+		pparent->sendSignal(SIGCHLD);
 	return 0;
 }
 
@@ -135,7 +135,7 @@ u32 Process::create(char* file, int argc, char **argv){
 		setState(CHILD);
 	else
 		setState(ZOMBIE);
-		
+
 	//stdin stdout et stderr du parent
 	if (pparent!=NULL){
 		memcpy((char*)&openfp[0],(char*)pparent->getFileInfo(0),sizeof(openfile));
@@ -147,9 +147,9 @@ u32 Process::create(char* file, int argc, char **argv){
 		addFile(fsm.path(default_tty),0);
 		addFile(fsm.path(default_tty),0);
 		addFile(fsm.path(default_tty),0);
-		
+
 	}
-	
+
 	return RETURN_OK;
 }
 
@@ -199,24 +199,24 @@ Process* Process::schedule(){
 	int out=1;
 	n=n->getPNext();
 	while (out){
-		
+
 		if (n==NULL){
 			n=arch.plist;
 		}
 		//io.print("testing %s\n",n->getName());
-		
-		
+
+
 		if (n->getState() !=ZOMBIE){
 			out=0;
 		}
 		else{
 			n=n->getPNext();
 		}
-		
+
 	}
-	
+
 	arch.pcurrent=n;
-	
+
 	return n;
 }
 

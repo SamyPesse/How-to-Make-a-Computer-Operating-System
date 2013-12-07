@@ -6,7 +6,7 @@
  *							ajout gestion login et variable d'environnement
  *	10/04/07 (Samy Pessé) : la classe System gere maintenant une liste chainé des utilisateur (User)
  **/
- 
+
 
 
 /*
@@ -14,7 +14,7 @@ Cette classe organise le systeme en lui meme : utilisateur, variable, ...
 */
 
 System::System(){
-	
+
 }
 
 System::~System(){
@@ -28,10 +28,10 @@ void System::init(){
 	/** System user **/
 	root=new User("root");
 	root->setUType(USER_ROOT);
-	
+
 	actual=new User("liveuser");
 
-	
+
 	/** Environnement variable **/
 	uservar=new Variable("USER","liveuser");
 	new Variable("OS_NAME",KERNEL_NAME);
@@ -51,7 +51,7 @@ int	System::login(User* us,char* pass){
 	if (us==NULL)
 		return ERROR_PARAM;
 	if (us->getPassword() != NULL){	//si il ya un password
-		
+
 		if (pass==NULL)	//si on a passé un code
 			return PARAM_NULL;
 			//
@@ -59,7 +59,7 @@ int	System::login(User* us,char* pass){
 			return RETURN_FAILURE;
 		//io.print("login %s with %s (%s)\n",us->getName(),pass,us->getPassword());
 	}
-		
+
 	uservar->write(0,(u8*)us->getName(),strlen(us->getName()));
 	actual=us;
 	return RETURN_OK;

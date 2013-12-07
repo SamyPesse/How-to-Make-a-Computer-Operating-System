@@ -2,7 +2,7 @@
 
 extern "C"
 {
-	
+
 	int __cxa_atexit(void (*Destructor) (void *), void *Parameter, void *HomeDSO);
 	void __cxa_finalize(void *);
 	void __cxa_pure_virtual();
@@ -11,7 +11,7 @@ extern "C"
 	void _Unwind_Resume();
 }
 
-void *__dso_handle;	
+void *__dso_handle;
 void *__stack_chk_guard(0);
 
 
@@ -34,12 +34,12 @@ int __cxa_atexit(void (*) (void *), void *, void *)
 }
 
 void _Unwind_Resume(){
-	
+
 }
 
 void __cxa_finalize(void *)
 {
-	
+
 }
 
 void __cxa_pure_virtual()
@@ -65,41 +65,41 @@ void __attribute__((noreturn)) __stack_chk_fail()
 	for(;;) ;
 }
 
-void operator delete(void *ptr) 
+void operator delete(void *ptr)
 {
 		kfree(ptr);
 }
 
 #ifndef __arm__
-void* operator new(size_t len) 
+void* operator new(size_t len)
 {
 	return (void*)kmalloc(len);
 }
 
-void operator delete[](void *ptr) 
+void operator delete[](void *ptr)
 {
 	::operator delete(ptr);
 }
 
-void* operator new[](size_t len) 
+void* operator new[](size_t len)
 {
 	return ::operator new(len);
 }
 
 #else
 
-	
-void* operator new(size_t len) 
+
+void* operator new(size_t len)
 {
 	return (void*)kmalloc(len);
 }
 
-void operator delete[](void *ptr) 
+void operator delete[](void *ptr)
 {
 	::operator delete(ptr);
 }
 
-void* operator new[](size_t len) 
+void* operator new[](size_t len)
 {
 	return ::operator new(len);
 }
