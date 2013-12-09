@@ -19,19 +19,19 @@ The goal is to build a very simple UNIX-based operating system in C++, not just 
 
 ### Summary
 
-#### [Chapter 1: Introduction about the x86 architecture and about our OS](Chapter-1/README.md)
+#### [Chapter 1: Introduction about the x86 architecture and about our OS](Chapters/1.md)
 
-#### [Chapter 2: Setup the development environment](Chapter-2/README.md)
+#### [Chapter 2: Setup the development environment](Chapters/2.md)
 
-#### [Chapter 3: First boot with GRUB](Chapter-3/README.md)
+#### [Chapter 3: First boot with GRUB](Chapters/3.md)
 
-#### [Chapter 4: Backbone of the OS and C++ runtime](Chapter-4/README.md)
+#### [Chapter 4: Backbone of the OS and C++ runtime](Chapters/4.md)
 
-#### [Chapter 5: Base classes for managing x86 architecture](Chapter-5/README.md)
+#### [Chapter 5: Base classes for managing x86 architecture](Chapters/5.md)
 
-#### [Chapter 6: GDT](Chapter-6/README.md)
+#### [Chapter 6: GDT](Chapters/6.md)
 
-#### [Chapter 7: IDT and interrupts](Chapter-7/README.md)
+#### [Chapter 7: IDT and interrupts](Chapters/7.md)
 
 #### Chapter 8: Memory management: physical and virtual
 
