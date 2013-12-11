@@ -121,3 +121,5 @@ void init_gdt(void)
             next:		\n");
 }
 ```
+
+<table><tr><td><a href="../Chapter-5/README.md" >&larr; Previous</a></td><td><a href="../Chapter-7/README.md" >Next &rarr;</a></td></tr></table>
