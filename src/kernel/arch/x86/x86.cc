@@ -345,14 +345,12 @@ void isr_PF_exc(void)
  */
 void init_idt(void)
 {
-	/* init irq */
-	
-
+	/* Init irq */
 	int i;
 	for (i = 0; i < IDTSIZE; i++) 
 		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); // 
 	
-	/* Les vecteurs 0 -> 31 sont reserves pour les exceptions */
+	/* Vectors  0 -> 31 are for exceptions */
 	init_idt_desc(0x08, (u32) _asm_exc_GP, INTGATE, &kidt[13]);		/* #GP */
 	init_idt_desc(0x08, (u32) _asm_exc_PF, INTGATE, &kidt[14]);     /* #PF */
 	
@@ -366,10 +364,10 @@ void init_idt(void)
 	kidtr.base = IDTBASE;
 	
 	
-	/* Recopie de la IDT a son adresse */
+	/* Copy the IDT to the memory */
 	memcpy((char *) kidtr.base, (char *) kidt, kidtr.limite);
 
-	/* Chargement du registre IDTR */
+	/* Load the IDTR registry */
 	asm("lidtl (kidtr)");
 }
 
