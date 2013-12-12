@@ -73,3 +73,4 @@ Here is a table of common interrupts (Maskable hardware interrupt are called IRQ
 | 15 | Secondary ATA Hard Disk | 
 
 
+<table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td>Next &rarr;</td></tr></table>

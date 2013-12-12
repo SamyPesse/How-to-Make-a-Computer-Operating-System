@@ -63,3 +63,4 @@ The documentation for qemu is available at [QEMU Emulator Documentation](http://
 
 You can exit the emulator using: \<Ctrl-a x\>.
 
+<table><tr><td><a href="../Chapter-1/README.md" >&larr; Previous</a></td><td><a href="../Chapter-3/README.md" >Next &rarr;</a></td></tr></table>

@@ -172,3 +172,5 @@ losetup -d /dev/loop1
 
 * [GNU GRUB on Wikipedia](http://en.wikipedia.org/wiki/GNU_GRUB)
 * [Multiboot specification](https://www.gnu.org/software/grub/manual/multiboot/multiboot.html)
+
+<table><tr><td><a href="../Chapter-2/README.md" >&larr; Previous</a></td><td><a href="../Chapter-4/README.md" >Next &rarr;</a></td></tr></table>
