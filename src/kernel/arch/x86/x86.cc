@@ -374,23 +374,23 @@ void init_idt(void)
 
 void init_pic(void)
 {
-	/* Initialisation de ICW1 */
+	/* Initialization of ICW1 */
 	io.outb(0x20, 0x11);
 	io.outb(0xA0, 0x11);
 
-	/* Initialisation de ICW2 */
-	io.outb(0x21, 0x20);	/* vecteur de depart = 32 */
-	io.outb(0xA1, 0x70);	/* vecteur de depart = 96 */
+	/* Initialization of ICW2 */
+	io.outb(0x21, 0x20);	/* start vector = 32 */
+	io.outb(0xA1, 0x70);	/* start vector = 96 */
 
-	/* Initialisation de ICW3 */
+	/* Initialization of ICW3 */
 	io.outb(0x21, 0x04);
 	io.outb(0xA1, 0x02);
 
-	/* Initialisation de ICW4 */
+	/* Initialization of ICW4 */
 	io.outb(0x21, 0x01);
 	io.outb(0xA1, 0x01);
 
-	/* masquage des interruptions */
+	/* mask interrupts */
 	io.outb(0x21, 0x0);
 	io.outb(0xA1, 0x0);
 }
