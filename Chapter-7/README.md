@@ -90,6 +90,13 @@ void init_idt_desc(u16 select, u32 offset, u16 type, struct idtdesc *desc)
 And we can now initialize the interupts:
 
 ```cpp
+#define IDTBASE	0x00000000
+#define IDTSIZE 0xFF
+idtr kidtr;
+```
+
+
+```cpp
 void init_idt(void)
 {
 	/* Init irq */
@@ -119,6 +126,87 @@ void init_idt(void)
 }
 ```
 
-After intialization our IDT
+After intialization our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
+
+* Master PIC: 0x20 and 0x21
+* Slave PIC: 0xA0 and 0xA1
+
+For a PIC, there is 2 types of registries:
+
+* ICW (Initialization Command Word): reinit the controller
+* OCW (Operation Control Word): configure the controller once initialized (used to mask/unmask the interrupts)
+
+```cpp
+void init_pic(void)
+{
+	/* Initialization of ICW1 */
+	io.outb(0x20, 0x11);
+	io.outb(0xA0, 0x11);
+
+	/* Initialization of ICW2 */
+	io.outb(0x21, 0x20);	/* start vector = 32 */
+	io.outb(0xA1, 0x70);	/* start vector = 96 */
+
+	/* Initialization of ICW3 */
+	io.outb(0x21, 0x04);
+	io.outb(0xA1, 0x02);
+
+	/* Initialization of ICW4 */
+	io.outb(0x21, 0x01);
+	io.outb(0xA1, 0x01);
+
+	/* mask interrupts */
+	io.outb(0x21, 0x0);
+	io.outb(0xA1, 0x0);
+}
+```
+
+#### PIC ICW configurations details
+
+The registries have to be configured in order.
+
+**ICW1 (port 0x20 / port 0xA0)**
+```
+|0|0|0|1|x|0|x|x|
+         |   | +--- with ICW4 (1) ou without (0)
+         |   +----- one controller (1), ou cascade (0)
+         +--------- triggering by level (level) (1) or by edge (edge) (0)
+```
+
+**ICW2 (port 0x21 / port 0xA1)**
+```
+|x|x|x|x|x|0|0|0|  
+ | | | | |
+ +----------------- base address for interrupts vectors
+```
+
+**ICW2 (port 0x21 / port 0xA1)**
+
+For the master:
+```
+|x|x|x|x|x|x|x|x|
+ | | | | | | | |
+ +------------------ slave controller connected to the port yes (1), or no (0)
+```
+
+For the slave:
+```
+|0|0|0|0|0|x|x|x|  pour l'esclave
+           | | |
+           +-------- Slave ID which is equal to the master port
+```
+
+**ICW4 (port 0x21 / port 0xA1)**
+
+It is used to define in which mode the controller chould works.
+
+```
+|0|0|0|x|x|x|x|1|
+       | | | +------ mode "automatic end of interrupt" AEOI (1)
+       | | +-------- mode buffered slave (0) or master (1)
+       | +---------- mode buffered (1)
+       +------------ mode "fully nested" (1)
+```
+
 
 <table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td>Next &rarr;</td></tr></table>
