@@ -2,7 +2,7 @@
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention.
 
-There are 3 types of interruptions:
+There are 3 types of interrupts:
 
 - **Hardware interrupts:** are sent to the processor from an external device (keyboard, mouse, hard disk, ...). Hardware interrupts were introduced as a way to reduce wasting the processor's valuable time in polling loops, waiting for external events.
 - **Software interrupts:** are initiated voluntarily by the software. It's used to manage system calls.
@@ -70,7 +70,55 @@ Here is a table of common interrupts (Maskable hardware interrupt are called IRQ
 | 12 | PS2 Mouse | 
 | 13 | FPU / Coprocessor / Inter-processor | 
 | 14 | Primary ATA Hard Disk | 
-| 15 | Secondary ATA Hard Disk | 
+| 15 | Secondary ATA Hard Disk |
 
+#### How to initialize the interrupts?
+
+This is a simple method to define an IDT segment
+
+```cpp
+void init_idt_desc(u16 select, u32 offset, u16 type, struct idtdesc *desc)
+{
+	desc->offset0_15 = (offset & 0xffff);
+	desc->select = select;
+	desc->type = type;
+	desc->offset16_31 = (offset & 0xffff0000) >> 16;
+	return;
+}
+```
+
+And we can now initialize the interupts:
+
+```cpp
+void init_idt(void)
+{
+	/* Init irq */
+	int i;
+	for (i = 0; i < IDTSIZE; i++) 
+		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); // 
+	
+	/* Vectors  0 -> 31 are for exceptions */
+	init_idt_desc(0x08, (u32) _asm_exc_GP, INTGATE, &kidt[13]);		/* #GP */
+	init_idt_desc(0x08, (u32) _asm_exc_PF, INTGATE, &kidt[14]);     /* #PF */
+	
+	init_idt_desc(0x08, (u32) _asm_schedule, INTGATE, &kidt[32]);
+	init_idt_desc(0x08, (u32) _asm_int_1, INTGATE, &kidt[33]);
+	
+	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[48]);
+	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[128]); //48
+	
+	kidtr.limite = IDTSIZE * 8;
+	kidtr.base = IDTBASE;
+	
+	
+	/* Copy the IDT to the memory */
+	memcpy((char *) kidtr.base, (char *) kidt, kidtr.limite);
+
+	/* Load the IDTR registry */
+	asm("lidtl (kidtr)");
+}
+```
+
+After intialization our IDT
 
 <table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td>Next &rarr;</td></tr></table>
