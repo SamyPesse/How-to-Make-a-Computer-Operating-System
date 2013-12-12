@@ -168,8 +168,8 @@ The registries have to be configured in order.
 **ICW1 (port 0x20 / port 0xA0)**
 ```
 |0|0|0|1|x|0|x|x|
-         |   | +--- with ICW4 (1) ou without (0)
-         |   +----- one controller (1), ou cascade (0)
+         |   | +--- with ICW4 (1) or without (0)
+         |   +----- one controller (1), or cascade (0)
          +--------- triggering by level (level) (1) or by edge (edge) (0)
 ```
 
@@ -208,5 +208,45 @@ It is used to define in which mode the controller chould works.
        +------------ mode "fully nested" (1)
 ```
 
+#### Why does idt segments offset are ASM functions?
+
+You should had notice that when I'm initializing our IDT segments, I'm using offset to segment of code in Assembly. The se different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are following the scheme:
+
+```
+%macro	SAVE_REGS 0
+	pushad 
+	push ds
+	push es
+	push fs
+	push gs 
+	push ebx
+	mov bx,0x10
+	mov ds,bx
+	pop ebx
+%endmacro
+
+%macro	RESTORE_REGS 0
+	pop gs
+	pop fs
+	pop es
+	pop ds
+	popad
+%endmacro
+
+%macro	INTERRUPT 1
+global _asm_int_%1
+_asm_int_%1:
+	SAVE_REGS
+	push %1
+	call isr_default_int
+	pop eax	;;a enlever sinon
+	mov al,0x20
+	out 0x20,al
+	RESTORE_REGS
+	iret
+%endmacro
+```
+
+These macros will be used to define interrupt segment that will prevent corruption of the different registries, it will be very usefull for multitasking.
 
 <table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td>Next &rarr;</td></tr></table>
