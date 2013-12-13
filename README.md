@@ -9,6 +9,8 @@ How to Make a Computer Operating System
 
 **Questions**: Feel free to ask any questions by adding issues. Please don't email me.
 
+**Translations**: A Chinese translation is available at [How to Make a Computer Operating System in Chinese](https://github.com/Kroderia/How-to-Make-a-Computer-Operating-System-in-Chinese).
+
 You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or support me on [Flattr](https://flattr.com/profile/samy.pesse) or [Gittip](https://www.gittip.com/SamyPesse/).
 
 ### What kind of OS are we building?
