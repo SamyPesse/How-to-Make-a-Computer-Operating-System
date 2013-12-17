@@ -9,8 +9,12 @@ In this chapter, we are going to implement paging, paging will translate a linea
 Paging will allow our kernel to:
 
 * use the hard-drive as a memory and not be limited by the machine ram memory limit
-* to have a unique memory space for each task
+* to have a unique memory space for each process
 * to allow and unallow memory space in a dynamic way
+
+In a paged system, each process may execute in its own 4gb area of memory, without any chance of effecting any other process's memory, or the kernel's. It simplified multitasking.
+
+![Processes memories](./processes.png)
 
 
 <table><tr><td><a href="../Chapter-7/README.md" >&larr; Previous</a></td><td><a href="../Chapter-9/README.md" >Next &rarr;</a></td></tr></table>
