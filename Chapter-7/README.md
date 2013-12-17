@@ -249,4 +249,4 @@ _asm_int_%1:
 
 These macros will be used to define interrupt segment that will prevent corruption of the different registries, it will be very usefull for multitasking.
 
-<table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td>Next &rarr;</td></tr></table>
+<table><tr><td><a href="../Chapter-6/README.md" >&larr; Previous</a></td><td><a href="../Chapter-8/README.md" >Next &rarr;</a></td></tr></table>
