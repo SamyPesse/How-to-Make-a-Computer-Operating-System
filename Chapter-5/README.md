@@ -193,5 +193,3 @@ u32	Io::inl(u32 ad){
 	return _v;
 }
 ```
-
-<table><tr><td><a href="../Chapter-4/README.md" >&larr; Previous</a></td><td><a href="../Chapter-6/README.md" >Next &rarr;</a></td></tr></table>

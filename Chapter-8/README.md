@@ -16,5 +16,3 @@ In a paged system, each process may execute in its own 4gb area of memory, witho
 
 ![Processes memories](./processes.png)
 
-
-<table><tr><td><a href="../Chapter-7/README.md" >&larr; Previous</a></td><td><a href="../Chapter-9/README.md" >Next &rarr;</a></td></tr></table>
