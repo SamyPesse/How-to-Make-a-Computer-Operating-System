@@ -1,0 +1,21 @@
+{
+    "name": "how-to-make-an-operating-system",
+    "version": "0.0.1",
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System.git"
+    },
+    "author": "Samy Pesse <samypesse@gmail.com>",
+    "license": "Apache 2",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-gitbook": "git+https://github.com/GitbookIO/grunt-gitbook.git",
+        "grunt-gh-pages": "0.9.1",
+        "grunt-contrib-clean": "~0.5.0"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.1"
+    }
+}
