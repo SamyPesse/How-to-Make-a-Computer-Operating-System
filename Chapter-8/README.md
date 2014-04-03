@@ -12,7 +12,7 @@ Paging will allow our kernel to:
 * to have a unique memory space for each process
 * to allow and unallow memory space in a dynamic way
 
-In a paged system, each process may execute in its own 4gb area of memory, without any chance of effecting any other process's memory, or the kernel's. It simplified multitasking.
+In a paged system, each process may execute in its own 4gb area of memory, without any chance of effecting any other process's memory, or the kernel's. It simplifies multitasking.
 
 ![Processes memories](./processes.png)
 
