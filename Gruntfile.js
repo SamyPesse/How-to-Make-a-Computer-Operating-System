@@ -8,16 +8,13 @@ module.exports = function (grunt) {
     grunt.initConfig({
         'gitbook': {
             development: {
-                output: path.join(__dirname, ".grunt/gitbook"),
                 input: "./",
-                title: "How to Make a Computer Operating System in C++",
-                description: "Online book about how to write a computer operating system in C/C++ from scratch",
                 github: "SamyPesse/How-to-Make-a-Computer-Operating-System"
             }
         },
         'gh-pages': {
             options: {
-                base: '.grunt/gitbook'
+                base: '_book'
             },
             src: ['**']
         },
