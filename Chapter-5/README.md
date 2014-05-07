@@ -159,7 +159,7 @@ A large number of instructions are available in Assembly but there is not equiva
 
 In C, we can include Assembly using the directive "asm()", gcc use gas to compile the assembly.
 
-**Caution:** gas use the AT&T syntax.
+**Caution:** gas uses the AT&T syntax.
 
 ```cpp
 /* output byte */
