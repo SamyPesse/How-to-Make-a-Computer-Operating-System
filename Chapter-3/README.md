@@ -72,7 +72,7 @@ You can use the command ```mbchk kernel.elf``` to validate your kernel.elf file 
 
 #### Create a disk image for our kernel and grub
 
-The script [diskimage.sh](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/sdk/diskimage.sh) will generate a hard disk image than can be used by QEMU.
+The script [diskimage.sh](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/sdk/diskimage.sh) will generate a hard disk image that can be used by QEMU.
 
 The first step is to create a hard-disk image (c.img) using qemu-img:
 
