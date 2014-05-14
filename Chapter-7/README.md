@@ -10,15 +10,15 @@ There are 3 types of interrupts:
 
 #### The keyboard example:
 
-When the user pressed a key on the keyboard, the keyboard controller will signal an interrupt to the Interrupt Controller. If the interrupt is not masked, the controller signal the interrupt to the processor, the processor will execute a routine to manage the interrupt (key pressed or key released), this routine could for example get the pressed key from the keyboard controller and print the key to the screen. Once the character processing routine is completed, the interrupted job can be resumed.
+When the user pressed a key on the keyboard, the keyboard controller will signal an interrupt to the Interrupt Controller. If the interrupt is not masked, the controller will signal the interrupt to the processor, the processor will execute a routine to manage the interrupt (key pressed or key released), this routine could, for example, get the pressed key from the keyboard controller and print the key to the screen. Once the character processing routine is completed, the interrupted job can be resumed.
 
 #### What is the PIC?
 
 The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable interrupt controller)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
 
-The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, it's allow the computer to manager interrupts from 14 devices.
+The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, this allows the computer to manage interrupts from 14 devices.
 
-In this chapter, we will need to program this controller to initialize it and mask interrupts.
+In this chapter, we will need to program this controller to initialize and mask interrupts.
 
 #### What is the IDT?
 
@@ -46,7 +46,7 @@ struct idtdesc {
 } __attribute__ ((packed));
 ```
 
-**Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use as little memory as possible. Without this directive, gcc include some bytes to optimize the memory alignment and the access during execution.
+**Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use as little memory as possible. Without this directive, gcc includes some bytes to optimize the memory alignment and the access during execution.
 
 Now we need to define our IDT table and then load it using LIDTL. The IDT table can be stored wherever we want in memory, its address should just be signaled to the process using the IDTR registry.
 
@@ -126,12 +126,12 @@ void init_idt(void)
 }
 ```
 
-After intialization our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
+After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
 
 * Master PIC: 0x20 and 0x21
 * Slave PIC: 0xA0 and 0xA1
 
-For a PIC, there is 2 types of registries:
+For a PIC, there are 2 types of registries:
 
 * ICW (Initialization Command Word): reinit the controller
 * OCW (Operation Control Word): configure the controller once initialized (used to mask/unmask the interrupts)
@@ -198,7 +198,7 @@ For the slave:
 
 **ICW4 (port 0x21 / port 0xA1)**
 
-It is used to define in which mode the controller chould works.
+It is used to define in which mode the controller should work.
 
 ```
 |0|0|0|x|x|x|x|1|
@@ -208,9 +208,9 @@ It is used to define in which mode the controller chould works.
        +------------ mode "fully nested" (1)
 ```
 
-#### Why does idt segments offset are ASM functions?
+#### Why do idt segments offset our ASM functions?
 
-You should had notice that when I'm initializing our IDT segments, I'm using offset to segment of code in Assembly. The se different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are following the scheme:
+You should have noticed that when I'm initializing our IDT segments, I'm using offsets to segment the code in Assembly. The different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are of the following scheme:
 
 ```
 %macro	SAVE_REGS 0
@@ -247,4 +247,4 @@ _asm_int_%1:
 %endmacro
 ```
 
-These macros will be used to define interrupt segment that will prevent corruption of the different registries, it will be very usefull for multitasking.
+These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
