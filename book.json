@@ -1,0 +1,6 @@
+{
+    "plugins": ["autocover"],
+    "pluginsConfig": {
+        "autocover": {}
+    }
+}
