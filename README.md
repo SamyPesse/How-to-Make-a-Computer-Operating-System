@@ -5,7 +5,7 @@ Online book about how to write a computer operating system in C/C++ from scratch
 
 **Caution**: This repository is a remake of my old course. It was written several years ago [as one of my first projects when I was in High School](https://github.com/SamyPesse/devos), I'm still refactoring some parts. The original course was in French and I'm not an English native. I'm going to continue and improve this course in my free-time.
 
-**Book**: An online version is available at [http://samypesse.github.io/How-to-Make-a-Computer-Operating-System/](http://samypesse.github.io/How-to-Make-a-Computer-Operating-System/). It was been generated using [GitBook](https://github.com/GitbookIO/gitbook).
+**Book**: An online version is available at [https://www.gitbook.io/book/SamyPesse/how-to-create-an-operating-system](https://www.gitbook.io/book/SamyPesse/how-to-create-an-operating-system) (PDF and ePub). It was been generated using [GitBook](https://www.gitbook.io).
 
 **Source Code**: All the system source code will be stored in the [src](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/tree/master/src) directory. Each step will contain links to the different related files.
 
