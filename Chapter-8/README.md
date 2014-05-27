@@ -27,3 +27,21 @@ The translation of a linear address to a physical address is done in multiple st
 
 ![Address translation](./paging_memory.png)
 
+#### Format for pages table and directory
+
+The two types of entries (table and directory) look like the same. Only the field in gray will be used in our OS.
+
+![Page directory entry](./page_directory_entry.png)
+
+![Page table entry](./page_table_entry.png)
+
+* `P`: indicate if the page or table is in physical memory
+* `R/W`: indicate if the page or table is accessible in writting (equals 1)
+* `U/S`: equals 1 to allow access to non-preferred tasks
+* `A`: indicate if the page or table was accessed
+* `D`: (only for pages table) indicate if the page was written
+* `PS` (only for pages directory) indicate the size of pages:
+    * 0 = 4ko
+    * 1 = 4mo
+
+
