@@ -25,3 +25,5 @@ The translation of a linear address to a physical address is done in multiple st
 3. the next 10 bytes of the linear address represent an offset, pointing to an entry in the pages table. This entry is pointing to a 4ko page.
 4. The last 12 bytes of the linear address represent an offset (between 0 and 4095), which indicates the position in the 4ko page.
 
+![Address translation](./paging_memory.png)
+
