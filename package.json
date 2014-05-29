@@ -1,6 +1,6 @@
 {
     "name": "how-to-make-an-operating-system",
-    "version": "0.0.12",
+    "version": "0.1.0",
     "description": "Book about how to make a computer operating system in C++",
     "repository": {
         "type": "git",
