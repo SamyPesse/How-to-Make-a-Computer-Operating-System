@@ -19,4 +19,4 @@ You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or supp
 
 The goal is to build a very simple UNIX-based operating system in C++, not just a "proof-of-concept". The OS should be able to boot, start a userland shell, and be extensible.
 
-[![Screen](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)
+[![Screen](./preview.png)](./preview.png)
