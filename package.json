@@ -1,15 +1,13 @@
 {
     "name": "how-to-make-an-operating-system",
     "version": "0.1.0",
-    "description": "Book about how to make a computer operating system in C++",
     "repository": {
         "type": "git",
         "url": "https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System.git"
     },
     "author": "Samy Pesse <samypesse@gmail.com>",
     "license": "Apache 2",
-    "dependencies": {},
-    "devDependencies": {
+    "dependencies": {
         "gitbook-plugin-autocover": "0.0.5"
     }
 }
