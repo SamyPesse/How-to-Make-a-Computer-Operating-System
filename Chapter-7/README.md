@@ -55,21 +55,21 @@ Here is a table of common interrupts (Maskable hardware interrupt are called IRQ
 
 | IRQ   |         Description        |
 |:-----:| -------------------------- |
-| 0 | Programmable Interrupt Timer Interrupt | 
-| 1 | Keyboard Interrupt | 
-| 2 | Cascade (used internally by the two PICs. never raised) | 
-| 3 | COM2 (if enabled) | 
-| 4 | COM1 (if enabled) | 
-| 5 | LPT2 (if enabled) | 
-| 6 | Floppy Disk | 
-| 7 | LPT1 | 
-| 8 | CMOS real-time clock (if enabled) | 
-| 9 | Free for peripherals / legacy SCSI / NIC | 
-| 10 | Free for peripherals / SCSI / NIC | 
-| 11 | Free for peripherals / SCSI / NIC | 
-| 12 | PS2 Mouse | 
-| 13 | FPU / Coprocessor / Inter-processor | 
-| 14 | Primary ATA Hard Disk | 
+| 0 | Programmable Interrupt Timer Interrupt |
+| 1 | Keyboard Interrupt |
+| 2 | Cascade (used internally by the two PICs. never raised) |
+| 3 | COM2 (if enabled) |
+| 4 | COM1 (if enabled) |
+| 5 | LPT2 (if enabled) |
+| 6 | Floppy Disk |
+| 7 | LPT1 |
+| 8 | CMOS real-time clock (if enabled) |
+| 9 | Free for peripherals / legacy SCSI / NIC |
+| 10 | Free for peripherals / SCSI / NIC |
+| 11 | Free for peripherals / SCSI / NIC |
+| 12 | PS2 Mouse |
+| 13 | FPU / Coprocessor / Inter-processor |
+| 14 | Primary ATA Hard Disk |
 | 15 | Secondary ATA Hard Disk |
 
 #### How to initialize the interrupts?
@@ -101,23 +101,23 @@ void init_idt(void)
 {
 	/* Init irq */
 	int i;
-	for (i = 0; i < IDTSIZE; i++) 
-		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); // 
-	
+	for (i = 0; i < IDTSIZE; i++)
+		init_idt_desc(0x08, (u32)_asm_schedule, INTGATE, &kidt[i]); //
+
 	/* Vectors  0 -> 31 are for exceptions */
 	init_idt_desc(0x08, (u32) _asm_exc_GP, INTGATE, &kidt[13]);		/* #GP */
 	init_idt_desc(0x08, (u32) _asm_exc_PF, INTGATE, &kidt[14]);     /* #PF */
-	
+
 	init_idt_desc(0x08, (u32) _asm_schedule, INTGATE, &kidt[32]);
 	init_idt_desc(0x08, (u32) _asm_int_1, INTGATE, &kidt[33]);
-	
+
 	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[48]);
 	init_idt_desc(0x08, (u32) _asm_syscalls, TRAPGATE, &kidt[128]); //48
-	
+
 	kidtr.limite = IDTSIZE * 8;
 	kidtr.base = IDTBASE;
-	
-	
+
+
 	/* Copy the IDT to the memory */
 	memcpy((char *) kidtr.base, (char *) kidt, kidtr.limite);
 
@@ -175,7 +175,7 @@ The registries have to be configured in order.
 
 **ICW2 (port 0x21 / port 0xA1)**
 ```
-|x|x|x|x|x|0|0|0|  
+|x|x|x|x|x|0|0|0|
  | | | | |
  +----------------- base address for interrupts vectors
 ```
@@ -212,13 +212,13 @@ It is used to define in which mode the controller should work.
 
 You should have noticed that when I'm initializing our IDT segments, I'm using offsets to segment the code in Assembly. The different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are of the following scheme:
 
-```
+```asm
 %macro	SAVE_REGS 0
-	pushad 
+	pushad
 	push ds
 	push es
 	push fs
-	push gs 
+	push gs
 	push ebx
 	mov bx,0x10
 	mov ds,bx
