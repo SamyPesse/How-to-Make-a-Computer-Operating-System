@@ -21,7 +21,7 @@ build:
 
 run:
 	@echo "Running Dev Operating System."
-	cd ./sdk && sudo ./diskimage.sh
+	cd ./sdk && sudo bash ./diskimage.sh
 	cd ./sdk && ./qemu.sh
 
 clean:
