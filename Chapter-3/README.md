@@ -2,7 +2,7 @@
 
 #### How the boot works?
 
-When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not it's successor (UEFI).
+When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not its successor (UEFI).
 
 The BIOS boot sequence is: RAM detection -> Hardware detection/Initialization -> Boot sequence.
 
