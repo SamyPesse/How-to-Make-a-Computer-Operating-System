@@ -37,7 +37,7 @@ You can now access your box by using ssh to connect to the virtual box using:
 vagrant ssh
 ```
 
-The code will be available in the */vagrant* directory:
+Put any file into the same directory of Vargrantfile, it will be available in the */vagrant* directory of VM (in this case, Ubuntu Lucid32):
 
 ```
 cd /vagrant
