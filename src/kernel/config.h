@@ -12,7 +12,7 @@
 #ifdef __x86__
 #define KERNEL_PROCESSOR_IDENTIFIER "x86"
 #else
-#defien KERNEL_PROCESSOR_IDENTIFIER "(null)"
+#define KERNEL_PROCESSOR_IDENTIFIER "(null)"
 #endif
 
 /* max open file */
