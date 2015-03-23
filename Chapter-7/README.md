@@ -248,3 +248,5 @@ _asm_int_%1:
 ```
 
 These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
+
+Next: [Memory management: physical and virtual](../Chapter-8/README.md/)

@@ -193,3 +193,5 @@ u32	Io::inl(u32 ad){
 	return _v;
 }
 ```
+
+Next: [GDT](../Chapter-6/README.md/)

@@ -121,3 +121,5 @@ void init_gdt(void)
             next:		\n");
 }
 ```
+
+Next: [IDT and interrupts](../Chapter-7/README.md/)

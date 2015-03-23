@@ -65,3 +65,5 @@ FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-pr
 ASM=nasm
 ASMFLAG=-f elf -o
 ```
+
+Next: [Base classes for managing x86 architecture](../Chapter-5/README.md/)
