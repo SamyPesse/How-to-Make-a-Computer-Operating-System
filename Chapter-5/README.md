@@ -1,3 +1,5 @@
+Previous: [Backbone of the OS and C++ runtime](../Chapter-4/README.md/)
+
 ## Chapter 5: Base classes for managing x86 architecture
 
 Now that we know how to compile our C++ kernel and boot the binary using GRUB, we can start to do some cool things in C/C++.

@@ -1,3 +1,5 @@
+Previous: [Setup the development environment](../Chapter-2/README.md/)
+
 ## Chapter 3: First boot with GRUB
 
 #### How the boot works?

@@ -1,3 +1,5 @@
+Previous: [Base classes for managing x86 architecture](../Chapter-5/README.md/)
+
 ## Chapter 6: GDT
 
 Thanks to GRUB, your kernel is no longer in real-mode, but already in [protected mode](http://en.wikipedia.org/wiki/Protected_mode), this mode allows us to use all the possibilities of the microprocessor such as virtual memory management, paging and safe multi-tasking.

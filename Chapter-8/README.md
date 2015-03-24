@@ -1,3 +1,5 @@
+Previous: [IDT and interrupts](../Chapter-7/README.md/)
+
 ## Chapter 8: Memory management: physical and virtual
 
 In the chapter related to the GDT, we saw that using segmentation a physical memory address is calculated using a segment selector and an offset.

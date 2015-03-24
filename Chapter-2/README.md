@@ -1,3 +1,5 @@
+Previous: [Introduction to the x86 architecture and about our OS](../Chapter-1/README.md/)
+
 ## Chapter 2: Setup the development environment
 
 The first step is to setup a good and viable development environment. Using Vagrant and Virtualbox, you'll be able to compile and test your OS from all the OSs (Linux, Windows or Mac).

@@ -1,3 +1,5 @@
+Previous: [First boot with GRUB](../CHapter-3/README.md/)
+
 ## Chapter 4: Backbone of the OS and C++ runtime
 
 #### C++ kernel run-time
