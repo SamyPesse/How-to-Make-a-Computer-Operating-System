@@ -1,3 +1,5 @@
+Previous: [Setup the development environment](../Chapter-2/README.md/)
+
 ## Chapter 3: First boot with GRUB
 
 #### How the boot works?
@@ -172,3 +174,5 @@ losetup -d /dev/loop1
 
 * [GNU GRUB on Wikipedia](http://en.wikipedia.org/wiki/GNU_GRUB)
 * [Multiboot specification](https://www.gnu.org/software/grub/manual/multiboot/multiboot.html)
+
+Next: [Backbone of the OS and C++ runtime](../Chapter-4/README.md/)

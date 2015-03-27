@@ -1,3 +1,5 @@
+Previous: [GDT](../Chapter-6/README.md/)
+
 ## Chapter 7: IDT and interrupts
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention.
@@ -248,3 +250,5 @@ _asm_int_%1:
 ```
 
 These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
+
+Next: [Memory management: physical and virtual](../Chapter-8/README.md/)
