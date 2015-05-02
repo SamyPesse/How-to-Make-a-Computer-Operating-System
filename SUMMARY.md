@@ -8,7 +8,7 @@
 * [Base classes for managing x86 architecture](Chapter-5/README.md)
 * [GDT](Chapter-6/README.md)
 * [IDT and interrupts](Chapter-7/README.md)
-* [Memory management: physical and virtual](Chapter-8/README.md)
+* [Theory: physical and virtual memory](Chapter-8/README.md)
 * [Memory management: physical and virtual](chapter9/README.md)
 * Process management and multitasking
 * External program execution: ELF files
