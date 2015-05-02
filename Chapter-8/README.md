@@ -69,6 +69,8 @@ For a first implementation, we will not create user task. The page will apply on
 
 ![Identity Mapping](identitymapping.png)
 
+This model is simple: the first virtual memory page coincide to the first page in physical memory, the second page coincide to the second page on physical memory and so on ...
+
 
 
 
