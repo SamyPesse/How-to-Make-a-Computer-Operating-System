@@ -1,6 +1,6 @@
 # Memory management: physical and virtual
 
-The kernel knows the size of the physical memory available thanks to [Grub](../Chapter-3/README.md).
+The kernel knows the size of the physical memory available thanks to [GRUB](../Chapter-3/README.md).
 
 In our implementation, the first 8 megabytes of physical memory will be reserved for use by the kernel and will contain:
 
