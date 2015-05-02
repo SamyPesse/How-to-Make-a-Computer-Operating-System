@@ -13,3 +13,9 @@ In our implementation, the first 8 megabytes of physical memory will be reserved
 The rest of the physical memory is freely available to the kernel and applications.
 
 ![Physical Memory](physicalmemory.png)
+
+
+### Virtual Memory Mapping
+
+The address space between the beginning of memory and `0x40000000` address is the kernel space, while the space between the address `0x40000000` and the end of the memory corresponds to user space:
+
