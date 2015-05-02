@@ -1,4 +1,4 @@
-## Chapter 8: Memory management: physical and virtual
+## Chapter 8: Theory: physical and virtual memory
 
 In the chapter related to the GDT, we saw that using segmentation a physical memory address is calculated using a segment selector and an offset.
 
