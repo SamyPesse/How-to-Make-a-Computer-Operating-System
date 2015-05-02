@@ -11,3 +11,5 @@ In our implementation, the first 8 megabytes of physical memory will be reserved
 - Page directory and pages table for the kernel
 
 The rest of the physical memory is freely available to the kernel and applications.
+
+![Physical Memory](physicalmemory.png)
