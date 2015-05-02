@@ -23,7 +23,7 @@ The address space between the beginning of memory and `0x40000000` address is th
 
 The kernel space in virtual memory, which is using 1Gb of virtual memory, is common to all tasks (kernel and user).
 
-This is implemented by pointing the first 256 entries of the task page directory to the kernel page directory:
+This is implemented by pointing the first 256 entries of the task page directory to the kernel page directory (In [vmm.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/vmm.cc#L204)):
 
 ```cpp
 /* 
