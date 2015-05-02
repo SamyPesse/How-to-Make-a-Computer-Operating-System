@@ -1,5 +1,6 @@
-### Summary
+# Summary
 
+* [introduction](README.md)
 * [Introduction about the x86 architecture and about our OS](Chapter-1/README.md)
 * [Setup the development environment](Chapter-2/README.md)
 * [First boot with GRUB](Chapter-3/README.md)
@@ -19,3 +20,5 @@
 * Standard C library (libC)
 * UNIX basic tools: sh, cat
 * Lua interpreter
+* Memory management: physical and virtual
+
