@@ -19,3 +19,4 @@ The rest of the physical memory is freely available to the kernel and applicatio
 
 The address space between the beginning of memory and `0x40000000` address is the kernel space, while the space between the address `0x40000000` and the end of the memory corresponds to user space:
 
+![Virtual Memory](virtualmemory.png)
