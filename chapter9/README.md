@@ -20,3 +20,15 @@ The rest of the physical memory is freely available to the kernel and applicatio
 The address space between the beginning of memory and `0x40000000` address is the kernel space, while the space between the address `0x40000000` and the end of the memory corresponds to user space:
 
 ![Virtual Memory](virtualmemory.png)
+
+The kernel space in virtual memory, which is using 1Gb of virtual memory, is common to all tasks (kernel and user).
+
+This is implemented by pointing the first 256 entries of the task page directory to the kernel page directory:
+
+```cpp
+/* 
+ * Kernel Space. v_addr < USER_OFFSET are addressed by the kernel pages table
+ */
+ for (i=0; i<256; i++) 
+         pdir[i] = pd0[i];
+```
