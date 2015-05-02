@@ -29,6 +29,6 @@ This is implemented by pointing the first 256 entries of the task page directory
 /* 
  * Kernel Space. v_addr < USER_OFFSET are addressed by the kernel pages table
  */
- for (i=0; i<256; i++) 
-         pdir[i] = pd0[i];
+for (i=0; i<256; i++) 
+    pdir[i] = pd0[i];
 ```
