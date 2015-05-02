@@ -1,6 +1,6 @@
 # Summary
 
-* [introduction](README.md)
+* [Introduction](README.md)
 * [Introduction about the x86 architecture and about our OS](Chapter-1/README.md)
 * [Setup the development environment](Chapter-2/README.md)
 * [First boot with GRUB](Chapter-3/README.md)
