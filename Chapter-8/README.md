@@ -63,7 +63,7 @@ asm("  mov %%cr0, %%eax; \
 
 But before, we need to initialize our pages directory with at least one pages table.
 
-#### First Implementation: Identity Mapping
+#### Identity Mapping
 
 For a first implementation, we will not create user task. The page will apply only to the kernel as the first 4 MB of virtual memory coincide with the first 4 MB of physical memory:
 
