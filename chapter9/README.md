@@ -7,7 +7,7 @@ In our implementation, the first 8 megabytes of physical memory will be reserved
 - The kernel
 - GDT, IDT et TSS
 - Kernel Stack
-- Some space reserved to hardware (video memory, ..)
+- Some space reserved to hardware (video memory, ...)
 - Page directory and pages table for the kernel
 
 The rest of the physical memory is freely available to the kernel and applications.
