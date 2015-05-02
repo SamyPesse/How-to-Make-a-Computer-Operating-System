@@ -9,7 +9,7 @@
 * [GDT](Chapter-6/README.md)
 * [IDT and interrupts](Chapter-7/README.md)
 * [Memory management: physical and virtual](Chapter-8/README.md)
-* Memory management: physical and virtual
+* [Memory management: physical and virtual](chapter9/README.md)
 * Process management and multitasking
 * External program execution: ELF files
 * Userland and syscalls
