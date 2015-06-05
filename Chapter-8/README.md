@@ -1,4 +1,4 @@
-## Chapter 8: Memory management: physical and virtual
+## Chapter 8: Theory: physical and virtual memory
 
 In the chapter related to the GDT, we saw that using segmentation a physical memory address is calculated using a segment selector and an offset.
 
@@ -41,14 +41,14 @@ The two types of entries (table and directory) look like the same. Only the fiel
 * `A`: indicate if the page or table was accessed
 * `D`: (only for pages table) indicate if the page was written
 * `PS` (only for pages directory) indicate the size of pages:
-    * 0 = 4ko
-    * 1 = 4mo
+    * 0 = 4kb
+    * 1 = 4mb
 
-**Note:** Physical addresses in the pages diretcory or pages table are written using 20 bits because these addresses are aligned on 4ko, so the last 12bits should be equal to 0.
+**Note:** Physical addresses in the pages diretcory or pages table are written using 20 bits because these addresses are aligned on 4kb, so the last 12bits should be equal to 0.
 
 * A pages directory or pages table used 1024*4 = 4096 bytes = 4k
-* A pages table can address 1024 * 4k = 4 Mo
-* A pages directory can address 1024 * (1024 * 4k) = 4 Go
+* A pages table can address 1024 * 4k = 4 Mb
+* A pages directory can address 1024 * (1024 * 4k) = 4 Gb
 
 #### How to enable pagination?
 
@@ -62,6 +62,17 @@ asm("  mov %%cr0, %%eax; \
 ```
 
 But before, we need to initialize our pages directory with at least one pages table.
+
+#### Identity Mapping
+
+With the identity mapping model, the page will apply only to the kernel as the first 4 MB of virtual memory coincide with the first 4 MB of physical memory:
+
+![Identity Mapping](identitymapping.png)
+
+This model is simple: the first virtual memory page coincide to the first page in physical memory, the second page coincide to the second page on physical memory and so on ...
+
+
+
 
 
 

@@ -112,10 +112,10 @@ fdisk ./c.img
 # Choose partition number
 > 1
 
-# Choose first cylinder (1-4, default 1)
+# Choose first sector (1-4, default 1)
 > 1
 
-# Choose last cylinder, +cylinders or +size{K,M,G} (1-4, default 4)
+# Choose last sector, +cylinders or +size{K,M,G} (1-4, default 4)
 > 4
 
 # Toggle bootable flag
