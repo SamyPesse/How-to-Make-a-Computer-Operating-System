@@ -1,10 +1,10 @@
 ## Chapter 6: GDT
 
-Thanks to GRUB, your kernel is no longer in real-mode, but already in [protected mode](http://en.wikipedia.org/wiki/Protected_mode), this mode allows us to use all the possibilities of the microprocessor such as virtual memory management, paging and safe multi-tasking.
+Thanks to GRUB, your kernel is no longer in real mode, but already in [protected mode](http://en.wikipedia.org/wiki/Protected_mode). This mode allows us to use all the possibilities of the microprocessor such as virtual memory management, paging and safe multitasking.
 
 #### What is the GDT?
 
-The [GDT](http://en.wikipedia.org/wiki/Global_Descriptor_Table) ("Global Descriptor Table") is a data structure used to define the different memory areas: the base address, the size and access privileges like execute and write. These memory areas are called "segments".
+The [GDT](http://en.wikipedia.org/wiki/Global_Descriptor_Table) ("Global Descriptor Table") is a data structure used to define the different memory areas: the base address and the size and access privileges such as execute and write. These memory areas are called "segments".
 
 We are going to use the GDT to define different memory segments:
 
@@ -79,7 +79,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *des
 }
 ```
 
-And the function **init_gdt** initialize the GDT, some parts of the below function will be explained later and are used for multitasking.
+The function **init_gdt** initializes the GDT. Some parts of the function below are used for multitasking and will be explained later.
 
 ```cpp
 void init_gdt(void)
@@ -101,17 +101,17 @@ void init_gdt(void)
 
 	init_gdt_desc((u32) & default_tss, 0x67, 0xE9, 0x00, &kgdt[7]);	/* descripteur de tss */
 
-	/* initialize the gdtr structure */
+	/* Initialize the gdtr structure */
 	kgdtr.limite = GDTSIZE * 8;
 	kgdtr.base = GDTBASE;
 
-	/* copy the gdtr to its memory area */
+	/* Copy the gdtr to its memory area */
 	memcpy((char *) kgdtr.base, (char *) kgdt, kgdtr.limite);
 
-	/* load the gdtr registry */
+	/* Load the gdtr registry */
 	asm("lgdtl (kgdtr)");
 
-	/* initiliaz the segments */
+	/* Initialize the segments */
 	asm("   movw $0x10, %ax	\n \
             movw %ax, %ds	\n \
             movw %ax, %es	\n \

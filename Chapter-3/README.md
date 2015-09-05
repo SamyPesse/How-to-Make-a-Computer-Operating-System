@@ -1,16 +1,16 @@
 ## Chapter 3: First boot with GRUB
 
-#### How the boot works?
+#### How does the boot work?
 
-When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not it's successor (UEFI).
+When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not its successor (UEFI).
 
 The BIOS boot sequence is: RAM detection -> Hardware detection/Initialization -> Boot sequence.
 
 The most important step for us is the "Boot sequence", where the BIOS is done with its initialization and tries to transfer control to the next stage of the bootloader process.
 
-During the "Boot sequence", the BIOS will try to determine a "boot device" (e.g. floppy disk, hard-disk, CD, USB flash memory device or network). Our Operating System will initially boot from the hard-disk (but it will be possible to boot it from a CD or a USB flash memory device in future). A device is considered bootable if the bootsector contains the valid signature bytes `0x55` and `0xAA` at offsets 511 and 512 respectively (called the magic bytes of Master Boot Record (MBR), This signature is represented (in binary) as 0b1010101001010101. The alternating bit pattern was thought to be a protection against certain failures (drive or controller). If this pattern is garbled or 0x00, the device is not considered bootable)
+During the "Boot sequence", the BIOS will try to determine a "boot device" (e.g. floppy disk, hard-disk, CD, USB flash memory device or network). Our Operating System will initially boot from the hard disk (but it will be possible to boot it from a CD or a USB flash memory device in future). A device is considered bootable if the boot sector contains the valid signature bytes `0x55` and `0xAA` at offsets 511 and 512 respectively (called the magic bytes of Master Boot Record (MBR). This signature is represented in binary as 0b1010101001010101. The alternating bit pattern was thought to be a protection against certain failures (drive or controller). If this pattern is garbled or 0x00 the device is not considered bootable)
 
-BIOS physically searches for a boot device by loading the first 512 bytes from the bootsector of each device into physical memory, starting at the address `0x7C00` (1 KiB below the 32 KiB mark). When the valid signature bytes are detected, BIOS transfers control to the `0x7C00` memory address (via a jump instruction) in order to execute the bootsector code.
+BIOS physically searches for a boot device by loading the first 512 bytes from the boot sector of each device into physical memory, starting at the address `0x7C00` (1 KiB below the 32 KiB mark). When the valid signature bytes are detected, BIOS transfers control to the `0x7C00` memory address (via a jump instruction) in order to execute the boot sector code.
 
 Throughout this process the CPU has been running in 16-bit Real Mode (the default state for x86 CPUs in order to maintain backwards compatibility). To execute the 32-bit instructions within our kernel, a bootloader is required to switch the CPU into Protected Mode.
 
@@ -18,22 +18,22 @@ Throughout this process the CPU has been running in 16-bit Real Mode (the defaul
 
 > GNU GRUB (short for GNU GRand Unified Bootloader) is a boot loader package from the GNU Project. GRUB is the reference implementation of the Free Software Foundation's Multiboot Specification, which provides a user the choice to boot one of multiple operating systems installed on a computer or select a specific kernel configuration available on a particular operating system's partitions.
 
-To make it simple, GRUB is the first thing booted by the machine (a boot-loader) and will simplify the loading of our kernel stored on the hard-disk.
+To put it simply, GRUB is the first thing booted by the machine (a bootloader) and will simplify the loading of our kernel stored on the hard disk.
 
 #### Why are we using GRUB?
 
-* GRUB is very simple to use
-* Make it very simple to load 32bits kernels without needs of 16bits code
-* Multiboot with Linux, Windows and others
-* Make it easy to load external modules in memory
+* GRUB is very simple to use.
+* It makes it very simple to load 32bits kernels without need of 16-bit code.
+* Multiboot with Linux, Windows and others.
+* It makes it easy to load external modules into memory.
 
 #### How to use GRUB?
 
-GRUB uses the Multiboot specification, the executable binary should be 32bits and must contain a special header (multiboot header) in its 8192 first bytes. Our kernel will be a ELF executable file ("Executable and Linkable Format", a common standard file format for executables in most UNIX system).
+GRUB uses the Multiboot specification. The executable binary should be 32bits and must contain a special header (multiboot header) in its first 8192 bytes. Our kernel will be an ELF executable file ("Executable and Linkable Format", a common standard file format for executables in most UNIX systems).
 
 The first boot sequence of our kernel is written in Assembly: [start.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/start.asm) and we use a linker file to define our executable structure: [linker.ld](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/linker.ld).
 
-This boot process also initializes some of our C++ runtime, it will be described in the next chapter.
+This boot process also initializes some of our C++ runtime. It will be described in the next chapter.
 
 Multiboot header structure:
 
@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to attach the created partition to the loop-device (which allows a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
+We need now to attach the created partition to the loop device (which allows a file to be access like a block device) using losetup. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32256.
 

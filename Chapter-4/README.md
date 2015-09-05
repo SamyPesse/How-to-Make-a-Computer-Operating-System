@@ -2,9 +2,9 @@
 
 #### C++ kernel run-time
 
-A kernel can be programmed in C++, it is very similar to making a kernel in C, except that there are a few pitfalls you must take into account (runtime support, constructors, ...)
+A kernel can be programmed in C++. It is very similar to making a kernel in C, except that there are a few pitfalls you must take into account (runtime support, constructors, ...)
 
-The compiler will assume that all the necessary C++ runtime support is available by default, but as we are not linking in libsupc++ into your C++ kernel, we need to add some basic functions that can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
+The compiler will assume that all the necessary C++ runtime support is available by default, but as we are not linking libsupc++ into your C++ kernel, we need to add some basic functions that can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
 
 **Caution:** The operators `new` and `delete` cannot be used before virtual memory and pagination have been initialized.
 
@@ -59,7 +59,7 @@ LDFLAG= -melf_i386 -static  -L ./  -T ./arch/$(ARCH)/linker.ld
 
 # C++ compiler
 SC=g++
-FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-protector -O0 -m32  -fno-rtti -nostdlib -nodefaultlibs 
+FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-protector -O0 -m32  -fno-rtti -nostdlib -nodefaultlibs
 
 # Assembly compiler
 ASM=nasm
