@@ -13,17 +13,17 @@ The first step is to download and install Vagrant for your system at http://www.
 
 > Oracle VM VirtualBox is a virtualization software package for x86 and AMD64/Intel64-based computers.
 
-Vagrant needs Virtualbox to work, Download and install for your system at https://www.virtualbox.org/wiki/Downloads.
+Vagrant needs Virtualbox to work. Download it and install it for your system at https://www.virtualbox.org/wiki/Downloads.
 
 ### Start and test your development environment
 
-Once Vagrant and Virtualbox are installed, you need to download the ubuntu lucid32 image for Vagrant:
+Once Vagrant and Virtualbox are installed, you need to download the Ubuntu lucid32 image for Vagrant:
 
 ```
 vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
 ```
 
-Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
+Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*. [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
 
 Start your box using:
 

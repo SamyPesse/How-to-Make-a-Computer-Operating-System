@@ -2,19 +2,19 @@
 
 An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention.
 
-There are 3 types of interrupts:
+There are 3 types of interrupt:
 
-- **Hardware interrupts:** are sent to the processor from an external device (keyboard, mouse, hard disk, ...). Hardware interrupts were introduced as a way to reduce wasting the processor's valuable time in polling loops, waiting for external events.
+- **Hardware interrupts:** are sent to the processor from an external device (such as keyboard, mouse or hard disk). Hardware interrupts were introduced as a way to reduce wasting the processor's valuable time in polling loops, waiting for external events.
 - **Software interrupts:** are initiated voluntarily by the software. It's used to manage system calls.
-- **Exceptions:**  are used for errors or events occurring during program execution that are exceptional enough that they cannot be handled within the program itself (division by zero, page fault, ...)
+- **Exceptions:**  are used for errors or events occurring during program execution that are exceptional enough that they cannot be handled within the program itself (such as division by zero and page faults).
 
-#### The keyboard example:
+#### Keyboard example:
 
-When the user pressed a key on the keyboard, the keyboard controller will signal an interrupt to the Interrupt Controller. If the interrupt is not masked, the controller will signal the interrupt to the processor, the processor will execute a routine to manage the interrupt (key pressed or key released), this routine could, for example, get the pressed key from the keyboard controller and print the key to the screen. Once the character processing routine is completed, the interrupted job can be resumed.
+When the user presses a key on the keyboard, the keyboard controller will signal an interrupt to the Interrupt Controller. If the interrupt is not masked, the controller will signal the interrupt to the processor, the processor will execute a routine to manage the interrupt (key pressed or key released), this routine could, for example, get the pressed key from the keyboard controller and print the key to the screen. Once the character processing routine is completed, the interrupted job can be resumed.
 
 #### What is the PIC?
 
-The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable interrupt controller)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
+The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable Interrupt Controller)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
 
 The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, this allows the computer to manage interrupts from 14 devices.
 
@@ -126,7 +126,7 @@ void init_idt(void)
 }
 ```
 
-After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
+After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writing in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
 
 * Master PIC: 0x20 and 0x21
 * Slave PIC: 0xA0 and 0xA1
@@ -208,9 +208,9 @@ It is used to define in which mode the controller should work.
        +------------ mode "fully nested" (1)
 ```
 
-#### Why do idt segments offset our ASM functions?
+#### Why do IDT segments offset our ASM functions?
 
-You should have noticed that when I'm initializing our IDT segments, I'm using offsets to segment the code in Assembly. The different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are of the following scheme:
+You should have noticed that when I initialize our IDT segments, I use offsets to segment the code in Assembly. The different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are of the following scheme:
 
 ```asm
 %macro	SAVE_REGS 0
@@ -247,4 +247,4 @@ _asm_int_%1:
 %endmacro
 ```
 
-These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
+These macros will be used to define the interrupt segment that will prevent corruption of the different registries. They will be very useful for multitasking.
