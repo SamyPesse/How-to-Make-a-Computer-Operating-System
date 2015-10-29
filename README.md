@@ -11,9 +11,9 @@ Online book about how to write a computer operating system in C/C++ from scratch
 
 **Contributions**: This course is open to contributions, feel free to signal errors with issues or directly correct the errors with pull-requests.
 
-**Questions**: Feel free to ask any questions by adding issues. Please don't email me.
+**Questions**: Feel free to ask any questions by adding issues or commenting sections.
 
-You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or support me on [Flattr](https://flattr.com/profile/samy.pesse) or [Gittip](https://www.gittip.com/SamyPesse/).
+You can follow me on Twitter [@SamyPesse](https://twitter.com/SamyPesse) or [GitHub](https://github.com/SamyPesse).
 
 ### What kind of OS are we building?
 
