@@ -15,7 +15,7 @@ class Architecture
 		void	reboot();		/* reboot the computer */
 		void	shutdown();		/* shutdown the computer */
 		char*	detect();		/* detect the type of processor */
-		void	install_irq(int_handler h);	/* install a interruption handler */
+        void	install_irq(int int_code, void* func_address);	/* install a interruption handler */
 		void	addProcess(Process* p);		/* add a process to the scheduler */
 		void	enable_interrupt();		/* enable the interruption */
 		void	disable_interrupt();	/* disable the interruption */

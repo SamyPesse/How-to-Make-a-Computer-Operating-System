@@ -64,10 +64,40 @@ void Architecture::shutdown(){
 	// todo
 }
 
+/* IDT Entry_Struct */
+struct IDT_entry{
+    unsigned short int offset_lowerbits;
+    unsigned short int selector;
+    unsigned char zero;
+    unsigned char type_attr;
+    unsigned short int offset_higherbits;
+};
+
+struct IDT_entry IDT[IDT_SIZE];
+
 /* Install a interruption handler */
-void Architecture::install_irq(int_handler h){
-	// todo
+void Architecture::install_irq(int int_code, void* func_address){
+    unsigned long address;
+    unsigned long idt_address;
+    unsigned long idt_ptr[2];
+    
+    address = (unsigned long) func_address;
+    IDT[int_code].offset_lowerbits = address & 0xffff;
+    IDT[int_code].selector = 0x08;
+    IDT[int_code].zero = 0;
+    IDT[int_code].type_attr = 0x8e;
+    IDT[int_code].offset_higherbits = (address & 0xffff0000) >> 16;
+    
+    /* fill the IDT descriptor */
+    idt_address = (unsigned long)IDT ;
+    idt_ptr[0] = (sizeof (struct IDT_entry) * IDT_SIZE) + ((idt_address & 0xffff) << 16);
+    idt_ptr[1] = idt_address >> 16 ;
+    
+    load_idt(idt_ptr);
 }
+
+/* loadIDT.asm */
+extern void load_idt(unsigned long *idt_ptr);
 
 /* Add a process to the scheduler */
 void Architecture::addProcess(Process* p){
