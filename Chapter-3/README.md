@@ -23,7 +23,7 @@ To make it simple, GRUB is the first thing booted by the machine (a boot-loader)
 #### Why are we using GRUB?
 
 * GRUB is very simple to use
-* Make it very simple to load 32bits kernels without needs of 16bits code
+* Make it very simple to load 32bits kernels without the need of 16bit code
 * Multiboot with Linux, Windows and others
 * Make it easy to load external modules in memory
 
