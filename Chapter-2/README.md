@@ -25,6 +25,12 @@ vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
 
 Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
 
+Initialize your box:
+
+```
+vagrant init lucid32
+```
+
 Start your box using:
 
 ```
