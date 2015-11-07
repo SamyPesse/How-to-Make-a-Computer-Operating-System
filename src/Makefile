@@ -13,6 +13,7 @@ all:
 	make -C ./sdk
 	@echo "Building Userland"
 	make -C ./userland
+	if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
 	@echo "Update/Upgrade system. Install basic software"
 	sudo apt-get update
 	sudo apt-get upgrade
@@ -21,7 +22,7 @@ all:
 	sudo apt-get install g++
 	sudo apt-get install grub
 	sudo apt-get install qemu
-	
+	fi
 
 build:
 	zip -r devos-$(VERSION).zip ./
