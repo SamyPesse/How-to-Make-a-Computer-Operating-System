@@ -13,6 +13,14 @@ all:
 	make -C ./sdk
 	@echo "Building Userland"
 	make -C ./userland
+	@echo "Update/Upgrade system. Install basic software"
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install make
+	sudo apt-get install nasm
+	sudo apt-get install g++
+	sudo apt-get install grub
+	sudo apt-get install qemu
 	
 
 build:
