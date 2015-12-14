@@ -17,7 +17,7 @@ We are going to use the GDT to define different memory segments:
 
 #### How to load our GDT?
 
-GRUB initializes a GDT but this GDT is does not correspond to our kernel.
+GRUB initializes a GDT but this GDT does not correspond to our kernel.
 The GDT is loaded using the LGDT assembly instruction. It expects the location of a GDT description structure:
 
 ![GDTR](./gdtr.png)
@@ -31,7 +31,7 @@ struct gdtr {
 } __attribute__ ((packed));
 ```
 
-**Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use as little memory as possible. Without this directive, gcc include some bytes to optimize the memory alignment and the access during execution.
+**Caution:** the directive ```__attribute__ ((packed))``` signals to gcc that the structure should use as little memory as possible. Without this directive, gcc includes some bytes to optimize the memory alignment and the access during execution.
 
 Now we need to define our GDT table and then load it using LGDT. The GDT table can be stored wherever we want in memory, its address should just be signaled to the process using the GDTR registry.
 
@@ -63,7 +63,7 @@ We are going to store our GDT at the address:
 #define GDTBASE	0x00000800
 ```
 
-The function **init_gdt_desc** in [x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc) initialize a gdt segment descriptor.
+The function **init_gdt_desc** in [x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc) initializes a gdt segment descriptor.
 
 ```cpp
 void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *desc)
@@ -79,7 +79,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *des
 }
 ```
 
-And the function **init_gdt** initialize the GDT, some parts of the below function will be explained later and are used for multitasking.
+And the function **init_gdt** initializes the GDT, some parts of the below function will be explained later and are used for multitasking.
 
 ```cpp
 void init_gdt(void)
@@ -111,7 +111,7 @@ void init_gdt(void)
 	/* load the gdtr registry */
 	asm("lgdtl (kgdtr)");
 
-	/* initiliaz the segments */
+	/* initializes the segments */
 	asm("   movw $0x10, %ax	\n \
             movw %ax, %ds	\n \
             movw %ax, %es	\n \
