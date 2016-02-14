@@ -44,7 +44,7 @@ This boot process also initializes some of our C++ runtime, it will be described
 
 Multiboot header structure:
 
-```c
+```cpp
 struct multiboot_info {
 	u32 flags;
 	u32 low_mem;
@@ -89,7 +89,7 @@ qemu-img create c.img 2M
 
 We need now to partition the disk using fdisk:
 
-```sh
+```bash
 fdisk ./c.img
 
 # Switch to Expert commands
@@ -139,19 +139,19 @@ We need now to attach the created partition to the loop-device using losetup. Th
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32256.
 
-```sh
+```bash
 losetup -o 32256 /dev/loop1 ./c.img
 ```
 
 We create a EXT2 filesystem on this new device using:
 
-```sh
+```bash
 mke2fs /dev/loop1
 ```
 
 We copy our files on a mounted disk:
 
-```sh
+```bash
 mount  /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
 umount /mnt/
@@ -159,7 +159,7 @@ umount /mnt/
 
 Install GRUB on the disk:
 
-```sh
+```bash
 grub --device-map=/dev/null << EOF
 device (hd0) ./c.img
 geometry (hd0) 4 16 63
@@ -171,7 +171,7 @@ EOF
 
 And finally we detach the loop device:
 
-```sh
+```bash
 losetup -d /dev/loop1
 ```
 
