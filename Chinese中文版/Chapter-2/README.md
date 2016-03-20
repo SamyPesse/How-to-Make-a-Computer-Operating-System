@@ -11,7 +11,7 @@
 
 ### 安裝 Virtualbox
 
-> Oracle VM VirtualBox 是一個在 x86 以及 AMD64/Intel64-based 電腦上運作的虛擬化的軟體包
+> Oracle VM VirtualBox 是一個在 x86 以及 AMD64/Intel64-based 電腦上運作的虛擬化的軟體
 
 Vagrant 的運行需要 Virtauslbox 從這裡：https://www.virtualbox.org/wiki/Downloads 下載並安裝到你的電腦
 
