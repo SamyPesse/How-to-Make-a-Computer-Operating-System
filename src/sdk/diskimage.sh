@@ -1,4 +1,5 @@
 #!/bin/bash
+rm c.img
 qemu-img create c.img 2M
 fdisk ./c.img  << EOF
 x
@@ -7,21 +8,21 @@ c
 h
 16
 s
-63
+4
 r
 n
 p
 1
 1
-4
+4000
 a
 1
 w
 EOF
 fdisk -l -u ./c.img
-losetup -o 32256 /dev/loop1 ./c.img
+losetup -o 512 /dev/loop1 ./c.img
 
-mke2fs /dev/loop1
+mke2fs -t ext2 /dev/loop1
 mount  /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
 umount /mnt/
