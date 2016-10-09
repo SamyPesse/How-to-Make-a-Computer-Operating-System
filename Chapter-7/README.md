@@ -198,7 +198,7 @@ For the slave:
 
 **ICW4 (port 0x21 / port 0xA1)**
 
-It is used to define in which mode the controller should work.
+It is used to define the mode in which the controller should work.
 
 ```
 |0|0|0|x|x|x|x|1|
