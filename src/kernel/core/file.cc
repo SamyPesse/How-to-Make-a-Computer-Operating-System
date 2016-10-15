@@ -22,13 +22,14 @@ u32	File::inode_system=0;	/* numero d'inode de depart */
 
 /* constructeur */
 File::File(char* n,u8 t){
-	name=(char*)kmalloc(strlen(n)+1);
-	memset(name,0,strlen(n));
-	memcpy(name,n,strlen(n));
-	name[strlen(n)]=0;
+	size_t length = strlen(n);
+	name=(char*)kmalloc(length+1);
+	memset(name,0,length);
+	memcpy(name,n,length);
+	name[length]=0;
 	
 	checkName();
-	master=arch.pcurrent;	//à la creation, le maitre est le processus courant
+	master=arch.pcurrent;	//Ã  la creation, le maitre est le processus courant
 	inode=inode_system;
 	inode_system++;
 	size=0;
