@@ -22,7 +22,7 @@ u32	File::inode_system=0;	/* numero d'inode de depart */
 
 /* constructeur */
 File::File(char* n,u8 t){
-	int length = strlen(n);
+	size_t length = strlen(n);
 	name=(char*)kmalloc(length+1);
 	memset(name,0,length);
 	memcpy(name,n,length);
