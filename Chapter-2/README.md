@@ -17,13 +17,7 @@ Vagrant needs Virtualbox to work, Download and install for your system at https:
 
 ### Start and test your development environment
 
-Once Vagrant and Virtualbox are installed, you need to download the ubuntu lucid32 image for Vagrant:
-
-```
-vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
-```
-
-Once the lucid32 image is ready, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
+Once Vagrant and Virtualbox are installed, we need to define our development environment using a *Vagrantfile*, [create a file named *Vagrantfile*](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/Vagrantfile). This file contains instructions to download the ubuntu xenial32 image. It also defines what prerequisites our environment needs: nasm, make, build-essential, grub and qemu.
 
 Start your box using:
 
@@ -37,7 +31,7 @@ You can now access your box by using ssh to connect to the virtual box using:
 vagrant ssh
 ```
 
-The directory containing the *Vagrantfile* will be mounted by default in the */vagrant* directory of the guest VM (in this case, Ubuntu Lucid32):
+The directory containing the *Vagrantfile* will be mounted by default in the */vagrant* directory of the guest VM (in this case, Ubuntu Xenial 32):
 
 ```
 cd /vagrant
