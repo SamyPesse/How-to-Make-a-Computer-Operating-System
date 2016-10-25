@@ -46,7 +46,7 @@ typedef signed long long	s64;
 
 #### Compile our kernel
 
-Compiling a kernel is not the same thing as compiling a linux executable, we can't use a standard library and should have no dependencies to the system.
+Compiling a kernel is not the same thing as compiling a Linux executable. We can't use a standard library and should have no dependencies to the system.
 
 Our [Makefile](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/Makefile) will define the process to compile and link our kernel.
 
