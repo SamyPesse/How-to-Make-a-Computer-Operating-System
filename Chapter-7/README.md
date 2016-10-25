@@ -1,11 +1,11 @@
 ## Chapter 7: IDT and interrupts
 
-An interrupt is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention.
+An interrupt is a signal to the processor, emitted by hardware or software indicating an event that needs immediate attention.
 
-There are 3 types of interrupts:
+There are three types of interrupts:
 
-- **Hardware interrupts:** are sent to the processor from an external device (keyboard, mouse, hard disk, ...). Hardware interrupts were introduced as a way to reduce wasting the processor's valuable time in polling loops, waiting for external events.
-- **Software interrupts:** are initiated voluntarily by the software. It's used to manage system calls.
+- **Hardware interrupts:** are sent to the processor from an external device (keyboard, mouse, hard disk etc). Hardware interrupts were introduced as a way to reduce wasting the processor's valuable time in polling loops, waiting for external events.
+- **Software interrupts:** are initiated voluntarily by the software. These are used to manage system calls.
 - **Exceptions:**  are used for errors or events occurring during program execution that are exceptional enough that they cannot be handled within the program itself (division by zero, page fault, ...)
 
 #### The keyboard example:
@@ -14,7 +14,7 @@ When the user pressed a key on the keyboard, the keyboard controller will signal
 
 #### What is the PIC?
 
-The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable interrupt controller)is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
+The [PIC](http://en.wikipedia.org/wiki/Programmable_Interrupt_Controller) (Programmable Interrupt Controller) is a device that is used to combine several sources of interrupt onto one or more CPU lines, while allowing priority levels to be assigned to its interrupt outputs. When the device has multiple interrupt outputs to assert, it asserts them in the order of their relative priority.
 
 The best known PIC is the 8259A, each 8259A can handle 8 devices but most computers have two controllers: one master and one slave, this allows the computer to manage interrupts from 14 devices.
 
@@ -247,4 +247,4 @@ _asm_int_%1:
 %endmacro
 ```
 
-These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
+These macros will be used to define the interrupt segment that will prevent corruption of the different registries; it will be very useful for multitasking.

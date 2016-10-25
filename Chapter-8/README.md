@@ -1,8 +1,8 @@
 ## Chapter 8: Theory: physical and virtual memory
 
-In the chapter related to the GDT, we saw that using segmentation a physical memory address is calculated using a segment selector and an offset.
+In the chapter related to the GDT, we saw that segmentation with a physical memory address can be calculated using a segment selector and an offset.
 
-In this chapter, we are going to implement paging, paging will translate a linear address from segmentation into a physical address.
+In this chapter, we are going to implement paging. Paging will translate a linear address from segmentation into a physical address.
 
 #### Why do we need paging?
 
@@ -12,7 +12,7 @@ Paging will allow our kernel to:
 * to have a unique memory space for each process
 * to allow and unallow memory space in a dynamic way
 
-In a paged system, each process may execute in its own 4gb area of memory, without any chance of effecting any other process's memory, or the kernel's. It simplifies multitasking.
+In a paged system, each process may execute in its own area of memory, without any chance of affecting any other process' memory or the kernel's – it simplifies multitasking.
 
 ![Processes memories](./processes.png)
 
@@ -29,7 +29,7 @@ The translation of a linear address to a physical address is done in multiple st
 
 #### Format for pages table and directory
 
-The two types of entries (table and directory) look like the same. Only the field in gray will be used in our OS.
+The two types of entries (table and directory) look like the same. Only the field in gray will be used in our particular OS.
 
 ![Page directory entry](./page_directory_entry.png)
 
@@ -44,7 +44,7 @@ The two types of entries (table and directory) look like the same. Only the fiel
     * 0 = 4kb
     * 1 = 4mb
 
-**Note:** Physical addresses in the pages diretcory or pages table are written using 20 bits because these addresses are aligned on 4kb, so the last 12bits should be equal to 0.
+**Note:** Physical addresses in the pages directory or pages table are written using 20 bits because these addresses are aligned on 4kb, so the last 12 bits should be equal to 0.
 
 * A pages directory or pages table used 1024*4 = 4096 bytes = 4k
 * A pages table can address 1024 * 4k = 4 Mb
@@ -69,10 +69,4 @@ With the identity mapping model, the page will apply only to the kernel as the f
 
 ![Identity Mapping](identitymapping.png)
 
-This model is simple: the first virtual memory page coincide to the first page in physical memory, the second page coincide to the second page on physical memory and so on ...
-
-
-
-
-
-
+This model is simple: the first virtual memory page coincide to the first page in physical memory, the second page coincide to the second page on physical memory and so on...
