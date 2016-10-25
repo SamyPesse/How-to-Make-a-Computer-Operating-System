@@ -79,7 +79,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *des
 }
 ```
 
-And the function **init_gdt** initialize the GDT, some parts of the below function will be explained later and are used for multitasking.
+The function **init_gdt** initializes the GDT. Some parts of the below function will be explained later and are used for multitasking.
 
 ```cpp
 void init_gdt(void)
