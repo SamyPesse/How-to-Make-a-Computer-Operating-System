@@ -20,23 +20,24 @@ void Io::putc(char c){
 	kattr = 0x07;
 	unsigned char *video;
 	video = (unsigned char *) (real_screen+ 2 * x + 160 * y);
-	// newline
-	if (c == '\n') {
+	
+	if (c == '\n') {				// newline
 		x = 0;
 		y++;
-	// back space
-	} else if (c == '\b') {
+	} 
+	else if (c == '\b') {				// back space
 		if (x) {
 			*(video + 1) = 0x0;
 			x--;
 		}
-	// horizontal tab
-	} else if (c == '\t') {
+	} 
+	else if (c == '\t') { 				// horizontal tab
 		x = x + 8 - (x % 8);
-	// carriage return
-	} else if (c == '\r') {
+	} 
+	else if (c == '\r') {				// carriage return
 		x = 0;
-	} else {
+	} 
+	else {
 		*video = c;
 		*(video + 1) = kattr;
 
