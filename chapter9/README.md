@@ -1,4 +1,4 @@
-# Memory management: physical and virtual
+## Memory management: physical and virtual
 
 The kernel knows the size of the physical memory available thanks to [GRUB](../Chapter-3/README.md).
 
