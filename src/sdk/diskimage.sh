@@ -20,7 +20,7 @@ w
 EOF
 fdisk -l -u ./c.img
 losetup -o 32256 /dev/loop1 ./c.img
-
+#Start calling different root directories
 mke2fs /dev/loop1
 mount  /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
