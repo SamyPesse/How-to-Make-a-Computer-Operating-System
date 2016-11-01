@@ -9,7 +9,6 @@ h
 16
 s
 16
-r
 n
 p
 1
@@ -22,7 +21,6 @@ EOF
 fdisk -l -u ./c.img
 losetup -o 512 /dev/loop1 ./c.img
 
-#mkdosfs -F 16 /dev/loop1
 mke2fs -t ext2 /dev/loop1
 mount  /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
