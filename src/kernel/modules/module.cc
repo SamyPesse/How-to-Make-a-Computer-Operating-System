@@ -38,7 +38,7 @@ File* Module::createDevice(char* name,char* module,u32 flag){
 			}
 		}
 		
-		i=i++;
+		i++;
 	}
 	return NULL;
 }
