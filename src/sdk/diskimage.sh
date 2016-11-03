@@ -9,6 +9,7 @@ h
 16
 s
 16
+r
 n
 p
 1
@@ -27,7 +28,7 @@ cp -R bootdisk/* /mnt/
 umount /mnt/
 grub --device-map=/dev/null << EOF
 device (hd0) ./c.img
-geometry (hd0) 4 16 63
+geometry (hd0) 16 16 16
 root (hd0,0)
 setup (hd0)
 quit
