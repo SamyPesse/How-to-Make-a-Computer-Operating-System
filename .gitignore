@@ -22,9 +22,5 @@
 /src/userland/helloworld/hello
 
 # SDK binaries
-/src/sdk/bootdisk/bin/hello
-/src/sdk/c.img
-
-node_modules
-.grunt
-_book
+src/sdk/bootdisk/bin/hello
+src/sdk/c.img

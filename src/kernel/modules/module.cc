@@ -22,7 +22,7 @@ void Module::initLink(){
 	ModLink* mod;
 	while (module_builder[i] != 0){
 		mod=new ModLink(module_builder[i]->module_name);
-		i=i++;
+		i++;
 	}
 }
 
@@ -38,7 +38,7 @@ File* Module::createDevice(char* name,char* module,u32 flag){
 			}
 		}
 		
-		i=i++;
+		i++;
 	}
 	return NULL;
 }
@@ -61,7 +61,7 @@ File* Module::mount(char* dev,char* dir,char* module,u32 flag){
 				return NULL;
 		}
 		
-		i=i++;
+		i++;
 	}
 	return NULL;
 }
@@ -79,7 +79,7 @@ File* Module::install(char* dir,char* module,u32 flag,char* dev){
 			}
 		}
 		
-		i=i++;
+		i++;
 	}
 	return NULL;
 }

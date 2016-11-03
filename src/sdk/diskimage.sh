@@ -1,33 +1,34 @@
 #!/bin/bash
+rm c.img
 qemu-img create c.img 2M
 fdisk ./c.img  << EOF
 x
 c
-4
+16
 h
 16
 s
-63
+16
 r
 n
 p
 1
 1
-4
+4095
 a
 1
 w
 EOF
 fdisk -l -u ./c.img
-losetup -o 32256 /dev/loop1 ./c.img
+losetup -o 512 /dev/loop1 ./c.img
 
-mke2fs /dev/loop1
+mke2fs -t ext2 /dev/loop1
 mount  /dev/loop1 /mnt/
 cp -R bootdisk/* /mnt/
 umount /mnt/
 grub --device-map=/dev/null << EOF
 device (hd0) ./c.img
-geometry (hd0) 4 16 63
+geometry (hd0) 16 16 16
 root (hd0,0)
 setup (hd0)
 quit
