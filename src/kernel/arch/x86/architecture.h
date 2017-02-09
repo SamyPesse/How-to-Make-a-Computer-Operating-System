@@ -23,16 +23,16 @@ class Architecture
 		void	setParam(u32 ret,u32 ret1,u32 ret2, u32 ret3,u32 ret4);		/* set the syscall arguments */
 		u32		getArg(u32 n);		/* get a syscall argument */
 		void	setRet(u32 ret);	/* set the return value of syscall */
-		void 	initProc();			/* initialise the list of processus */
-		void	destroy_process(Process* pp);	/* destroy a processus */
+		void 	initProc();			/* initialise the list of processes */
+		void	destroy_process(Process* pp);	/* destroy a processes */
 		void	destroy_all_zombie();
 		void	change_process_father(Process* p,Process* pere);
 		int		fork(process_st* info,process_st* father);	/* fork a process */
 		
 		
 		/** architecture public class attributes */
-		Process*	pcurrent;		/* the current processus */
-		Process*	plist;			/* the chain list of processus */
+		Process*	pcurrent;		/* the current processes */
+		Process*	plist;			/* the chain list of processes */
 		
 		
 	private:

@@ -2,9 +2,9 @@
 
 #### C++ kernel run-time
 
-A kernel can be programmed in C++, it is very similar to making a kernel in C, except that there are a few pitfalls you must take into account (runtime support, constructors, ...)
+A kernel can be written in C++ just as it can be in C, with the exception of a few pitfalls that come with using C++ (runtime support, constructors, etc). 
 
-The compiler will assume that all the necessary C++ runtime support is available by default, but as we are not linking in libsupc++ into your C++ kernel, we need to add some basic functions that can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
+The compiler will assume that all the necessary C++ runtime support is available by default, but as we are not linking libsupc++ into your C++ kernel, we need to add some basic functions that can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
 
 **Caution:** The operators `new` and `delete` cannot be used before virtual memory and pagination have been initialized.
 
@@ -30,7 +30,7 @@ These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-M
 
 #### C types
 
-During the next step, we are going to use different types in our code, most of the types we are going to use unsigned types (all the bits are used to stored the integer, in signed types one bit is used to signal the sign):
+In the next step, we're going to define different types we're going to use in our code. Most of our variable types are going to be unsigned. This means that all the bits are used to store the integer. Signed variables use their first bit to indicate their sign. 
 
 ```cpp
 typedef unsigned char 	u8;
