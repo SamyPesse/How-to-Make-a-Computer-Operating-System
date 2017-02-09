@@ -10,7 +10,7 @@ In the IO class ([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Ope
 * **x,y**: define the cursor position on the screen
 * **real_screen**: define the  video memory pointer
 * **putc(char c)**: print a unique character on the screen and manage cursor position
-* **printf(char* s, ...)**: print a string
+* **print(char* s, ...)**: print a string
 
 We add a method **putc** to the [IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc) to put a character on the screen and update the (x,y) position.
 
@@ -51,7 +51,7 @@ void Io::putc(char c){
 }
 ```
 
-We also add a useful and very known method: [printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
+We also add a useful and very known method: [print](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
 
 ```cpp
 /* put a string in screen */
