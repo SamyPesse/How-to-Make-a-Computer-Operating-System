@@ -1,6 +1,6 @@
 ## Chapter 6: GDT
 
-Thanks to GRUB, your kernel is no longer in real-mode, but already in [protected mode](http://en.wikipedia.org/wiki/Protected_mode), this mode allows us to use all the possibilities of the microprocessor such as virtual memory management, paging and safe multi-tasking.
+Thanks to GRUB, your kernel is no longer in real-mode, but already in [protected mode](http://en.wikipedia.org/wiki/Protected_mode). This mode allows us to use all the possibilities of the microprocessor such as virtual memory management, paging and safe multi-tasking.
 
 #### What is the GDT?
 
@@ -17,7 +17,7 @@ We are going to use the GDT to define different memory segments:
 
 #### How to load our GDT?
 
-GRUB initializes a GDT but this GDT is does not correspond to our kernel.
+GRUB initializes a GDT but this GDT does not correspond to our kernel.
 The GDT is loaded using the LGDT assembly instruction. It expects the location of a GDT description structure:
 
 ![GDTR](./gdtr.png)
@@ -63,7 +63,7 @@ We are going to store our GDT at the address:
 #define GDTBASE	0x00000800
 ```
 
-The function **init_gdt_desc** in [x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc) initialize a gdt segment descriptor.
+The function **init_gdt_desc** in [x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc) initializes a gdt segment descriptor.
 
 ```cpp
 void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *desc)
@@ -79,7 +79,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *des
 }
 ```
 
-And the function **init_gdt** initialize the GDT, some parts of the below function will be explained later and are used for multitasking.
+And the function **init_gdt** initializes the GDT, some parts of the below function will be explained later and are used for multitasking.
 
 ```cpp
 void init_gdt(void)
