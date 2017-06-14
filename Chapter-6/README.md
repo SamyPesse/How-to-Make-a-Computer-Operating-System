@@ -4,7 +4,7 @@ Thanks to GRUB, your kernel is no longer in real-mode, but already in [protected
 
 #### What is the GDT?
 
-The [GDT](http://en.wikipedia.org/wiki/Global_Descriptor_Table) ("Global Descriptor Table") is a data structure used to define the different memory areas: the base address, the size and access privileges like execute and write. These memory areas are called "segments".
+The [GDT](http://en.wikipedia.org/wiki/Global_Descriptor_Table) ("Global Descriptor Table") is a data structure used to define the different memory areas: the base address, and the size and access privileges such as execute and write. These memory areas are called "segments".
 
 We are going to use the GDT to define different memory segments:
 
