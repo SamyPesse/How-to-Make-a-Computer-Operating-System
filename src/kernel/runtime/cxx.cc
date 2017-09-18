@@ -69,7 +69,11 @@ void operator delete(void *ptr)
 {
 		kfree(ptr);
 }
-
+//This function needs to be looked into but for now it allows compilation
+void operator delete(void *ptr, unsigned int k) 
+{
+		kfree(ptr);
+}
 #ifndef __arm__
 void* operator new(size_t len) 
 {
