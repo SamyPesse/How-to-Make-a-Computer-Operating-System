@@ -1,0 +1,2 @@
+(hd0)   /dev/loop0
+(hd0,1) /dev/mapper/loop0p1

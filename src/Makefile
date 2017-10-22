@@ -2,7 +2,7 @@ SDKDIR=./sdk
 
 help:
 	@echo "Makefile for Building Dev Operating System."
-	@echo "Usage: make [ all | clean | help | build | run] " 
+	@echo "Usage: make [ all | clean | help | build | run ]" 
 	@echo ""
 	@echo
 
