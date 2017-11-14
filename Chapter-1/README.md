@@ -33,3 +33,5 @@ The OS will be built for the x86 architecture, running on 32 bits, and compatibl
     * API Posix
     * LibC
     * "Can" run a shell or some executables (e.g., lua)
+
+[Click here to read the next Chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-2)

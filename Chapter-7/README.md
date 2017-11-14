@@ -248,3 +248,5 @@ _asm_int_%1:
 ```
 
 These macros will be used to define the interrupt segment that will prevent corruption of the different registries, it will be very useful for multitasking.
+
+[Click here to read the next chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-8)

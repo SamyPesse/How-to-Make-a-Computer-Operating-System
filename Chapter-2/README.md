@@ -62,3 +62,5 @@ make run
 The documentation for qemu is available at [QEMU Emulator Documentation](http://wiki.qemu.org/download/qemu-doc.html).
 
 You can exit the emulator using: Ctrl-a.
+
+[Click here to read the next chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-3)
