@@ -65,3 +65,4 @@ FLAG= $(INCDIR) -g -O2 -w -trigraphs -fno-builtin  -fno-exceptions -fno-stack-pr
 ASM=nasm
 ASMFLAG=-f elf -o
 ```
+[Click here to read the next chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-5)
