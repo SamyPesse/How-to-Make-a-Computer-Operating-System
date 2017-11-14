@@ -121,3 +121,4 @@ void init_gdt(void)
             next:		\n");
 }
 ```
+[Click here to read the next chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-7)
