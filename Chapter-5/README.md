@@ -193,3 +193,4 @@ u32	Io::inl(u32 ad){
 	return _v;
 }
 ```
+[Click here to read the next chapter.](https://github.com/NoodleCommits/How-to-Make-a-Computer-Operating-System/tree/master/Chapter-6)
