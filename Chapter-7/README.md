@@ -48,7 +48,7 @@ struct idtdesc {
 
 **Caution:** the directive ```__attribute__ ((packed))``` signal to gcc that the structure should use as little memory as possible. Without this directive, gcc includes some bytes to optimize the memory alignment and the access during execution.
 
-Now we need to define our IDT table and then load it using LIDTL. The IDT table can be stored wherever we want in memory, its address should just be signaled to the process using the IDTR registry.
+Now we need to define our IDT table and then load it using LIDTL. The IDT table can be stored wherever we want in memory, it's address should just be signaled to the process using the IDTR registry.
 
 Here is a table of common interrupts (Maskable hardware interrupt are called IRQ):
 
@@ -126,7 +126,7 @@ void init_idt(void)
 }
 ```
 
-After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
+After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writing in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
 
 * Master PIC: 0x20 and 0x21
 * Slave PIC: 0xA0 and 0xA1
