@@ -4,8 +4,8 @@
 extern "C" {
 
 /* 
- * La fonction memcpy permet de copier n octets de src vers dest.
- * Les adresses sont lineaires.
+ * The memcpy function allows you to copy n bytes from src to dest.
+ * The addresses are linear.
  */
 void *memcpy(char *dst, char *src, int n)
 {
@@ -16,7 +16,7 @@ void *memcpy(char *dst, char *src, int n)
 }
 
 /*
- * Met un ensemble memoire (dst>>n) à la valeur src
+ * Set a memory set (dst >> n) to the value src
  */
 void *memset(char *dst,char src, int n)
 {
