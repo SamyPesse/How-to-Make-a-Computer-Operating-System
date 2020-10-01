@@ -13,7 +13,7 @@ The first step is to download and install Vagrant for your system at http://www.
 
 > Oracle VM VirtualBox is a virtualization software package for x86 and AMD64/Intel64-based computers.
 
-Vagrant needs Virtualbox to work, Download and install for your system at https://www.virtualbox.org/wiki/Downloads.
+Vagrant needs Virtualbox to work, download and install for your system. Available at https://www.virtualbox.org/wiki/Downloads.
 
 ### Start and test your development environment
 
