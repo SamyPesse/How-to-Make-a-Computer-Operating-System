@@ -2,7 +2,7 @@
 
 #### How the boot works?
 
-When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not it's successor (UEFI).
+When an x86-based computer is turned on, it begins a complex path to get to the stage where control is transferred to our kernel's "main" routine (`kmain()`). For this course, we are only going to consider the BIOS boot method and not its successor (UEFI).
 
 The BIOS boot sequence is: RAM detection -> Hardware detection/Initialization -> Boot sequence.
 
@@ -80,7 +80,7 @@ The first step is to create a hard-disk image (c.img) using qemu-img:
 qemu-img create c.img 2M
 ```
 
-We need now to partition the disk using fdisk:
+We now need to partition the disk using fdisk:
 
 ```bash
 fdisk ./c.img
@@ -128,7 +128,7 @@ fdisk ./c.img
 > w
 ```
 
-We need now to attach the created partition to the loop-device using losetup. This allows a file to be access like a block device. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
+We now need to attach the created partition to the loop-device using losetup. This allows a file to be accessed like a block device. The offset of the partition is passed as an argument and calculated using: **offset= start_sector * bytes_by_sector**.
 
 Using ```fdisk -l -u c.img```, you get: 63 * 512 = 32256.
 

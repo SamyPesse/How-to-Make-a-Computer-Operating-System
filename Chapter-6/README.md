@@ -8,12 +8,12 @@ The [GDT](http://en.wikipedia.org/wiki/Global_Descriptor_Table) ("Global Descrip
 
 We are going to use the GDT to define different memory segments:
 
-* *"code"*: kernel code, used to stored the executable binary code
+* *"code"*: kernel code, used to store the executable binary code
 * *"data"*: kernel data
-* *"stack"*: kernel stack, used to stored the call stack during kernel execution
-* *"ucode"*: user code, used to stored the executable binary code for user program
+* *"stack"*: kernel stack, used to store the call stack during kernel execution
+* *"ucode"*: user code, used to store the executable binary code for user program
 * *"udata"*: user program data
-* *"ustack"*: user stack, used to stored the call stack during execution in userland
+* *"ustack"*: user stack, use to stored the call stack during execution in userland
 
 #### How to load our GDT?
 

@@ -2,7 +2,7 @@
 
 #### C++ kernel run-time
 
-A kernel can be written in C++ just as it can be in C, with the exception of a few pitfalls that come with using C++ (runtime support, constructors, etc). 
+A kernel can be written in C++ just as it can be in C, with the exception of a few pitfalls that come with the use of C++ (runtime support, constructors, etc). 
 
 The compiler will assume that all the necessary C++ runtime support is available by default, but as we are not linking libsupc++ into your C++ kernel, we need to add some basic functions that can be found in the [cxx.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/runtime/cxx.cc) file.
 
@@ -30,7 +30,7 @@ These functions are defined in [string.cc](https://github.com/SamyPesse/How-to-M
 
 #### C types
 
-In the next step, we're going to define different types we're going to use in our code. Most of our variable types are going to be unsigned. This means that all the bits are used to store the integer. Signed variables use their first bit to indicate their sign. 
+In the next step, we're going to define different 'types' that we will be using in our code. Most of our variable 'types' are going to be unsigned. This means that all the bits are used to store the value and will be positive. Signed variables use their first bit to indicate their sign. 
 
 ```cpp
 typedef unsigned char 	u8;
