@@ -36,7 +36,7 @@ The two types of entries (table and directory) look like the same. Only the fiel
 ![Page table entry](./page_table_entry.png)
 
 * `P`: indicate if the page or table is in physical memory
-* `R/W`: indicate if the page or table is accessible in writting (equals 1)
+* `R/W`: indicate if the page or table is accessible in writing (equals 1)
 * `U/S`: equals 1 to allow access to non-preferred tasks
 * `A`: indicate if the page or table was accessed
 * `D`: (only for pages table) indicate if the page was written
