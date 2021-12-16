@@ -126,7 +126,7 @@ void init_idt(void)
 }
 ```
 
-After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writting in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
+After intialization of our IDT, we need to activate interrupts by configuring the PIC. The following function will configure the two PICs by writing in their internal registries using the output ports of the processor ```io.outb```. We configure the PICs using the ports:
 
 * Master PIC: 0x20 and 0x21
 * Slave PIC: 0xA0 and 0xA1
