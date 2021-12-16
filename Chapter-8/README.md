@@ -44,7 +44,7 @@ The two types of entries (table and directory) look like the same. Only the fiel
     * 0 = 4kb
     * 1 = 4mb
 
-**Note:** Physical addresses in the pages diretcory or pages table are written using 20 bits because these addresses are aligned on 4kb, so the last 12bits should be equal to 0.
+**Note:** Physical addresses in the pages directory or pages table are written using 20 bits because these addresses are aligned on 4kb, so the last 12bits should be equal to 0.
 
 * A pages directory or pages table used 1024*4 = 4096 bytes = 4k
 * A pages table can address 1024 * 4k = 4 Mb
